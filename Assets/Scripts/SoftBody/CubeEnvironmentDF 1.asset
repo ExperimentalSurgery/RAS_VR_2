@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d31207380edf34b1b84ce50af22f2356, type: 3}
+  m_Name: CubeEnvironmentDF 1
+  m_EditorClassIdentifier: 
+  input: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  minNodeSize: 0.6
+  bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.6, y: 0.6, z: 0.6}
+  nodes:
+  - distancesA: {x: 0.17320512, y: 0.17320512, z: 0.17320512, w: 0.17320512}
+    distancesB: {x: 0.17320512, y: 0.17320512, z: 0.17320512, w: 0.17320512}
+    center: {x: 0, y: 0, z: 0, w: 0.6}
+    firstChild: 1
+  - distancesA: {x: 0.17320512, y: 0.1414214, z: 0.1414214, w: 0.100000024}
+    distancesB: {x: 0.1414214, y: 0.100000024, z: 0.100000024, w: -0.5}
+    center: {x: -0.3, y: -0.3, z: -0.3, w: 0.3}
+    firstChild: -1
+  - distancesA: {x: 0.1414214, y: 0.17320512, z: 0.100000024, w: 0.1414214}
+    distancesB: {x: 0.100000024, y: 0.1414214, z: -0.5, w: 0.100000024}
+    center: {x: -0.3, y: -0.3, z: 0.3, w: 0.3}
+    firstChild: -1
+  - distancesA: {x: 0.1414214, y: 0.100000024, z: 0.17320512, w: 0.1414214}
+    distancesB: {x: 0.100000024, y: -0.5, z: 0.1414214, w: 0.100000024}
+    center: {x: -0.3, y: 0.3, z: -0.3, w: 0.3}
+    firstChild: -1
+  - distancesA: {x: 0.100000024, y: 0.1414214, z: 0.1414214, w: 0.17320512}
+    distancesB: {x: -0.5, y: 0.100000024, z: 0.100000024, w: 0.1414214}
+    center: {x: -0.3, y: 0.3, z: 0.3, w: 0.3}
+    firstChild: -1
+  - distancesA: {x: 0.1414214, y: 0.100000024, z: 0.100000024, w: -0.5}
+    distancesB: {x: 0.17320512, y: 0.1414214, z: 0.1414214, w: 0.100000024}
+    center: {x: 0.3, y: -0.3, z: -0.3, w: 0.3}
+    firstChild: -1
+  - distancesA: {x: 0.100000024, y: 0.1414214, z: -0.5, w: 0.100000024}
+    distancesB: {x: 0.1414214, y: 0.17320512, z: 0.100000024, w: 0.1414214}
+    center: {x: 0.3, y: -0.3, z: 0.3, w: 0.3}
+    firstChild: -1
+  - distancesA: {x: 0.100000024, y: -0.5, z: 0.1414214, w: 0.100000024}
+    distancesB: {x: 0.1414214, y: 0.100000024, z: 0.17320512, w: 0.1414214}
+    center: {x: 0.3, y: 0.3, z: -0.3, w: 0.3}
+    firstChild: -1
+  - distancesA: {x: -0.5, y: 0.100000024, z: 0.100000024, w: 0.1414214}
+    distancesB: {x: 0.100000024, y: 0.1414214, z: 0.1414214, w: 0.17320512}
+    center: {x: 0.3, y: 0.3, z: 0.3, w: 0.3}
+    firstChild: -1
+  maxError: 0.02
+  maxDepth: 7
