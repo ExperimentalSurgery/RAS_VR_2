@@ -70,7 +70,8 @@ public class DevicesBodyHandler : MonoBehaviour
             }
             else
             {
-                bodyMat.sharedMaterial.SetFloat("_FadeStart", 0);
+                bodyMat.sharedMaterial.SetFloat("_FadeStart", 0); 
+                bodyMat.sharedMaterial.SetFloat("_FadeSize", 0);
             }
         }
 
@@ -79,7 +80,11 @@ public class DevicesBodyHandler : MonoBehaviour
     IEnumerator StartFadingIn()
     {
         int fadeValue = 0;
-        while(fadeValue < 10)
+        foreach (var bodyMat in bodyMaterials)
+        {
+            bodyMat.sharedMaterial.SetFloat("_FadeSize", 1);
+        }
+        while (fadeValue < 10)
         {
             yield return new WaitForSeconds(0.05f);
             fadeValue++;
@@ -88,6 +93,7 @@ public class DevicesBodyHandler : MonoBehaviour
                 bodyMat.sharedMaterial.SetFloat("_FadeStart", fadeValue);
             }
         }
+
         fadeValue = 0;
     }
 }
