@@ -12,52 +12,120 @@ public enum Device
 public class DevicesBodyHandler : MonoBehaviour
 {
     [SerializeField] Renderer[] bodyMaterials;
-    [SerializeField] GameObject[] touchDevices;
+    [SerializeField] GameObject rightTouchDevice;
+    [SerializeField] GameObject leftTouchDevice;
+    [SerializeField] GameObject platform;
     [SerializeField] Device device;
+    public bool isRightStylusUsed = false;
+    public bool isLeftStylusUsed = false;
+    bool isCallibrated = false;
+
+    private void OnEnable()
+    {
+        ParentConstraintHandler.onCallibrated += ToggleDeviceBodyHandler;
+    }
+
+    void ToggleDeviceBodyHandler(bool isCallibrated)
+    {
+        this.isCallibrated = isCallibrated;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
+        if(!isCallibrated) { return; }
         if (device == Device.RightDevice && other.gameObject.tag == "HapticCollider_Right")
         {
-            ToggleDevices(true);
-            ToggleBody(false);
+            ToggleDevices(true, true);
+
+            if(!isLeftStylusUsed)
+            {
+                ToggleBody(false);
+                platform.SetActive(true);
+            }
+         
         }
         else if (device == Device.LeftDevice && other.gameObject.tag == "HapticCollider_Left")
         {
-            ToggleDevices(true);
-            ToggleBody(false);
+            ToggleDevices(true, false);
+
+            if (!isRightStylusUsed)
+            {
+                ToggleBody(false);
+                platform.SetActive(true);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (!isCallibrated) { return; }
         if (device == Device.RightDevice && other.gameObject.tag == "HapticCollider_Right")
         {
-            ToggleDevices(false);
-            ToggleBody(true);
+            ToggleDevices(false, true);
+            if (!isLeftStylusUsed)
+            {
+                ToggleBody(true);
+                platform.SetActive(false);
+            }
         }
         else if (device == Device.LeftDevice && other.gameObject.tag == "HapticCollider_Left")
         {
-            ToggleDevices(false);
-            ToggleBody(true);
+            ToggleDevices(false, false);
+            if (!isRightStylusUsed)
+            {
+                ToggleBody(true);
+                platform.SetActive(false);
+            }    
         }
     }
 
-    void ToggleDevices(bool toActivate)
-    {
-        foreach (var device in touchDevices)
-        {
+    void ToggleDevices(bool toActivate, bool isRightDevice)
+    {     
             if (toActivate)
             {
-                device.gameObject.SetActive(true);
+            if (isRightDevice)
+            {
+                rightTouchDevice.gameObject.SetActive(true);
+                isRightStylusUsed = true;
             }
             else
             {
-                device.gameObject.SetActive(false);
+                leftTouchDevice.gameObject.SetActive(true);
+                isLeftStylusUsed = true;
+            }
+              
+            }
+            else
+            {
+            if (isRightDevice)
+            {
+                rightTouchDevice.gameObject.SetActive(false);
+                isRightStylusUsed = false;
+            }
+            else
+            {
+                leftTouchDevice.gameObject.SetActive(false);
+                isLeftStylusUsed = false;
             }
         }
 
     }
+
+    //void ToggleDevices(bool toActivate)
+    //{
+    //    foreach (var device in touchDevices)
+    //    {
+    //        if (toActivate)
+    //        {
+    //            device.gameObject.SetActive(true);
+    //        }
+    //        else
+    //        {
+    //            device.gameObject.SetActive(false);
+    //        }
+    //    }
+
+    //}
 
     void ToggleBody(bool toActivate)
     {

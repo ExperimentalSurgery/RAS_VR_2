@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -8,6 +9,7 @@ public class ParentConstraintHandler : MonoBehaviour
     ParentConstraint parentConstraint;
     [SerializeField] float loadingSpeed = 1;
     [SerializeField] HapticDevicesHandler hapticDevicesHandler;
+    public static Action<bool> onCallibrated;
     private void Awake()
     {
         parentConstraint = GetComponent<ParentConstraint>();
@@ -15,17 +17,18 @@ public class ParentConstraintHandler : MonoBehaviour
 
     private void Start()
     {
-        if (parentConstraint.GetSource(0).sourceTransform.gameObject.activeSelf)
-        {
-            //StartCoroutine(StartCallibration());
-        } 
+        StartCoroutine(InitiateCallibration());
+        //if (parentConstraint.GetSource(0).sourceTransform.gameObject.activeSelf)
+        //{
+        //    StartCoroutine(StartCallibration());
+        //} 
     }
 
     private void Update()
     {
         if(Input.GetKeyUp(KeyCode.Space))
         {
-            StartCoroutine(StartCallibration());
+           // StartCoroutine(StartCallibration());
         }
     }
     public void Calllibrate()
@@ -35,13 +38,22 @@ public class ParentConstraintHandler : MonoBehaviour
     }
     IEnumerator StartCallibration()
     {
-      //  hapticDevicesHandler.DeactivateDevices();
+        //  hapticDevicesHandler.DeactivateDevices();
+        onCallibrated?.Invoke(false);
         parentConstraint.constraintActive = true;
         yield return new WaitForSeconds(1f);
         parentConstraint.constraintActive = false;
-     //   hapticDevicesHandler.ActivateDevices();
+        onCallibrated?.Invoke(true);
+        //   hapticDevicesHandler.ActivateDevices();
     }
 
+    IEnumerator InitiateCallibration()
+    {
+        parentConstraint.constraintActive = false;
+        yield return new WaitForSeconds(1f);
+        onCallibrated?.Invoke(true);
+        parentConstraint.constraintActive = true;
+    }
     public void ResetSimulation()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

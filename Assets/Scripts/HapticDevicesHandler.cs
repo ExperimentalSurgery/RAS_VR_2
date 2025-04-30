@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class HapticDevicesHandler : MonoBehaviour
 {
+    [SerializeField] Transform[] objectsToRotate;
+    [SerializeField] Transform[] rotations;
     [SerializeField] GameObject[] HapticDevices;
     [SerializeField] GameObject[] stylusMeshes;
     [SerializeField] HapticPlugin[] hapticPlugins;
@@ -17,15 +19,27 @@ public class HapticDevicesHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        ToggleSceneObjects(false);
-        ToggleHapticPlugins(false);
-        ToggleHapticDevices(false);
+        //    ToggleSceneObjects(false);
+        //    ToggleHapticPlugins(false);
+        //    ToggleHapticDevices(false);
+        ParentConstraintHandler.onCallibrated += AssignRotation;
     }
     private void Start()
     {
        
         imageForFading.gameObject.SetActive(true);
         StartCoroutine(StartLoading());
+    }
+
+    void AssignRotation(bool isCallibrated)
+    {
+        if (isCallibrated)
+        {
+            for (int i = 0; i < objectsToRotate.Length; i++)
+            {
+                objectsToRotate[i].rotation = rotations[i].rotation;
+            }
+        }   
     }
 
     public void ActivateDevices()
