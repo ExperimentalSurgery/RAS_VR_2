@@ -37,6 +37,7 @@ public class HapticDevicesHandler : MonoBehaviour
         {
             for (int i = 0; i < objectsToRotate.Length; i++)
             {
+                if (objectsToRotate[i] != null)
                 objectsToRotate[i].rotation = rotations[i].rotation;
             }
         }   

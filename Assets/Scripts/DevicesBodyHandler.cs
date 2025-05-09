@@ -19,7 +19,7 @@ public class DevicesBodyHandler : MonoBehaviour
     public static bool isRightStylusUsed = false;
     public static bool isLeftStylusUsed = false;
     bool isCallibrated = false;
-
+    int fadeValue = 0;
     private void OnEnable()
     {
         ParentConstraintHandler.onCallibrated += ToggleDeviceBodyHandler;
@@ -149,6 +149,7 @@ public class DevicesBodyHandler : MonoBehaviour
 
     void ToggleBody(bool toActivate)
     {
+        fadeValue = 0;
         foreach (var bodyMat in bodyMaterials)
         {
             if (toActivate)
@@ -167,7 +168,8 @@ public class DevicesBodyHandler : MonoBehaviour
 
     IEnumerator StartFadingIn()
     {
-        int fadeValue = 0;
+        fadeValue = 0;
+
         foreach (var bodyMat in bodyMaterials)
         {
             bodyMat.sharedMaterial.SetFloat("_FadeSize", 1);
