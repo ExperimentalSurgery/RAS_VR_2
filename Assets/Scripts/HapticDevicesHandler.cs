@@ -19,10 +19,7 @@ public class HapticDevicesHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        //    ToggleSceneObjects(false);
-        //    ToggleHapticPlugins(false);
-        //    ToggleHapticDevices(false);
-        ParentConstraintHandler.onCallibrated += AssignRotation;
+       // ParentConstraintHandler.onCallibrated += AssignRotation;
     }
     private void Start()
     {
