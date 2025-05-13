@@ -17,7 +17,7 @@ public class ParentConstraintHandler : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(InitiateCallibration());
+       // StartCoroutine(InitiateCallibration());
         //if (parentConstraint.GetSource(0).sourceTransform.gameObject.activeSelf)
         //{
         //    StartCoroutine(StartCallibration());

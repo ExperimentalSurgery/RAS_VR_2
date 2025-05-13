@@ -26,6 +26,7 @@ public class DevicesBodyHandler : MonoBehaviour
 
         foreach (var bodyMat in bodyMaterials)
         {
+            StopCoroutine(StartFadingIn());
             bodyMat.sharedMaterial.SetFloat("_FadeStart", 0);
             bodyMat.sharedMaterial.SetFloat("_FadeSize", 0);
         }
@@ -36,6 +37,7 @@ public class DevicesBodyHandler : MonoBehaviour
     {
         foreach (var bodyMat in bodyMaterials)
         {
+            StopCoroutine(StartFadingIn());
             bodyMat.sharedMaterial.SetFloat("_FadeStart", 0);
             bodyMat.sharedMaterial.SetFloat("_FadeSize", 0);
         }
@@ -48,9 +50,19 @@ public class DevicesBodyHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!isCallibrated) { return; }
+        if(!isCallibrated)
+        {
+            foreach (var bodyMat in bodyMaterials)
+            {
+                StopCoroutine(StartFadingIn());
+                bodyMat.sharedMaterial.SetFloat("_FadeStart", 0);
+                bodyMat.sharedMaterial.SetFloat("_FadeSize", 0);
+            }
+            return; 
+        }
         if (device == Device.RightDevice && other.gameObject.tag == "HapticCollider_Right" && isRightStylusUsed)
         {
+            isRightStylusUsed = false;
             ToggleDevices(true, true);
 
             if(!isLeftStylusUsed)
@@ -62,6 +74,7 @@ public class DevicesBodyHandler : MonoBehaviour
         }
         else if (device == Device.LeftDevice && other.gameObject.tag == "HapticCollider_Left" && isLeftStylusUsed)
         {
+            isLeftStylusUsed = false;
             ToggleDevices(true, false);
 
             if (!isRightStylusUsed)
@@ -74,9 +87,19 @@ public class DevicesBodyHandler : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!isCallibrated) { return; }
+        if (!isCallibrated)
+        {
+            foreach (var bodyMat in bodyMaterials)
+            {
+                StopCoroutine(StartFadingIn());
+                bodyMat.sharedMaterial.SetFloat("_FadeStart", 0);
+                bodyMat.sharedMaterial.SetFloat("_FadeSize", 0);
+            }
+            return;
+        }
         if (device == Device.RightDevice && other.gameObject.tag == "HapticCollider_Right" && !isRightStylusUsed)
         {
+            isRightStylusUsed = true;
             ToggleDevices(false, true);
             if (!isLeftStylusUsed)
             {
@@ -86,6 +109,7 @@ public class DevicesBodyHandler : MonoBehaviour
         }
         else if (device == Device.LeftDevice && other.gameObject.tag == "HapticCollider_Left" && !isLeftStylusUsed)
         {
+            isLeftStylusUsed = true;
             ToggleDevices(false, false);
             if (!isRightStylusUsed)
             {
@@ -102,13 +126,11 @@ public class DevicesBodyHandler : MonoBehaviour
             if (isRightDevice)
             {
                 rightTouchDevice.gameObject.SetActive(true);
-                isRightStylusUsed = false;
                 Debug.Log("isRightStylusUsed: " + isRightStylusUsed);
             }
             else
             {
                 leftTouchDevice.gameObject.SetActive(true);
-                isLeftStylusUsed = false;
                 Debug.Log("isLeftStylusUsed: " + isLeftStylusUsed);
             }
               
@@ -118,34 +140,17 @@ public class DevicesBodyHandler : MonoBehaviour
             if (isRightDevice)
             {
                 rightTouchDevice.gameObject.SetActive(false);
-                isRightStylusUsed = true;
                 Debug.Log("isRightStylusUsed: " + isRightStylusUsed);
             }
             else
             {
                 leftTouchDevice.gameObject.SetActive(false);
-                isLeftStylusUsed = true;
                 Debug.Log("isLeftStylusUsed: " + isLeftStylusUsed);
             }
         }
 
     }
 
-    //void ToggleDevices(bool toActivate)
-    //{
-    //    foreach (var device in touchDevices)
-    //    {
-    //        if (toActivate)
-    //        {
-    //            device.gameObject.SetActive(true);
-    //        }
-    //        else
-    //        {
-    //            device.gameObject.SetActive(false);
-    //        }
-    //    }
-
-    //}
 
     void ToggleBody(bool toActivate)
     {
@@ -157,8 +162,9 @@ public class DevicesBodyHandler : MonoBehaviour
                 StartCoroutine(StartFadingIn());
 
             }
-            else
+            else 
             {
+                StopCoroutine(StartFadingIn());
                 bodyMat.sharedMaterial.SetFloat("_FadeStart", 0); 
                 bodyMat.sharedMaterial.SetFloat("_FadeSize", 0);
             }
@@ -168,13 +174,11 @@ public class DevicesBodyHandler : MonoBehaviour
 
     IEnumerator StartFadingIn()
     {
-        fadeValue = 0;
-
         foreach (var bodyMat in bodyMaterials)
         {
             bodyMat.sharedMaterial.SetFloat("_FadeSize", 1);
         }
-        while (fadeValue < 10)
+        while (fadeValue < 8)
         {
             yield return new WaitForSeconds(0.05f);
             fadeValue++;
@@ -183,8 +187,6 @@ public class DevicesBodyHandler : MonoBehaviour
                 bodyMat.sharedMaterial.SetFloat("_FadeStart", fadeValue);
             }
         }
-
-        fadeValue = 0;
     }
 }
 
