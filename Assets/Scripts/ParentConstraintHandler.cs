@@ -9,7 +9,7 @@ public class ParentConstraintHandler : MonoBehaviour
     ParentConstraint parentConstraint;
     [SerializeField] float loadingSpeed = 1;
     [SerializeField] HapticDevicesHandler hapticDevicesHandler;
-    public static Action<bool> onCallibrated;
+    public static Action<bool> onCalibrated;
     private void Awake()
     {
         parentConstraint = GetComponent<ParentConstraint>();
@@ -18,10 +18,10 @@ public class ParentConstraintHandler : MonoBehaviour
     private void Start()
     {
 
-       // StartCoroutine(InitiateCallibration());
+       // StartCoroutine(InitiateCalibration());
         //if (parentConstraint.GetSource(0).sourceTransform.gameObject.activeSelf)
         //{
-        //    StartCoroutine(StartCallibration());
+        //    StartCoroutine(StartCalibration());
         //} 
     }
 
@@ -29,36 +29,36 @@ public class ParentConstraintHandler : MonoBehaviour
     {
         if(Input.GetKeyUp(KeyCode.Space))
         {
-           // StartCoroutine(StartCallibration());
+           // StartCoroutine(StartCalibration());
         }
     }
-    public void Calllibrate()
+    public void Calibrate()
     {
-        StartCoroutine(StartCallibration());
-        Debug.Log("Callibrate manually");
+        StartCoroutine(StartCalibration());
+        Debug.Log("Calibrate manually");
     }
-    IEnumerator StartCallibration()
+    IEnumerator StartCalibration()
     {
         //  hapticDevicesHandler.DeactivateDevices();
-        onCallibrated?.Invoke(false);
+        onCalibrated?.Invoke(false);
         parentConstraint.constraintActive = true;
         yield return new WaitForSeconds(1f);
         parentConstraint.constraintActive = false;
-        onCallibrated?.Invoke(true);
+        onCalibrated?.Invoke(true);
         //   hapticDevicesHandler.ActivateDevices();
     }
 
-    IEnumerator InitiateCallibration()
+    IEnumerator InitiateCalibration()
     {
         parentConstraint.constraintActive = false;
         yield return new WaitForSeconds(1f);
-        onCallibrated?.Invoke(true);
+        onCalibrated?.Invoke(true);
         parentConstraint.constraintActive = true;
     }
     public void ResetSimulation()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        StartCoroutine(StartCallibration());
-        Debug.Log("Callibrate after restart");
+        StartCoroutine(StartCalibration());
+        Debug.Log("Calibrate after restart");
     }
 }
