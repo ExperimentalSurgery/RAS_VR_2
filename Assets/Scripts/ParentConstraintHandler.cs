@@ -42,7 +42,7 @@ public class ParentConstraintHandler : MonoBehaviour
         //  hapticDevicesHandler.DeactivateDevices();
         onCalibrated?.Invoke(false);
         parentConstraint.constraintActive = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         parentConstraint.constraintActive = false;
         onCalibrated?.Invoke(true);
         //   hapticDevicesHandler.ActivateDevices();
@@ -57,6 +57,7 @@ public class ParentConstraintHandler : MonoBehaviour
     }
     public void ResetSimulation()
     {
+        StopAllCoroutines();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         StartCoroutine(StartCalibration());
         Debug.Log("Calibrate after restart");
