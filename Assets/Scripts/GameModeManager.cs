@@ -22,8 +22,8 @@ public class GameModeManager : MonoBehaviour
     private void Start()
     {
         isVirtualReality = false;
-       // rightStylusCollider.enabled = false;
-      //  leftStylusCollider.enabled = false;
+        rightStylusCollider.enabled = false;
+        leftStylusCollider.enabled = false;
     }
     public void ToggleGameMode(bool isRightStylus)
     {
