@@ -45,16 +45,17 @@ public class ParentConstraintHandler : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         parentConstraint.constraintActive = false;
         onCalibrated?.Invoke(true);
+        Debug.Log("onCalibrated" + onCalibrated);
         //   hapticDevicesHandler.ActivateDevices();
     }
 
-    IEnumerator InitiateCalibration()
-    {
-        parentConstraint.constraintActive = false;
-        yield return new WaitForSeconds(1f);
-        onCalibrated?.Invoke(true);
-        parentConstraint.constraintActive = true;
-    }
+    //IEnumerator InitiateCalibration()
+    //{
+    //    parentConstraint.constraintActive = false;
+    //    yield return new WaitForSeconds(1f);
+    //    onCalibrated?.Invoke(true);
+    //    parentConstraint.constraintActive = true;
+    //}
     public void ResetSimulation()
     {
         StopAllCoroutines();

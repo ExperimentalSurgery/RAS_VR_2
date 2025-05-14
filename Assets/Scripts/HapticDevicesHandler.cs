@@ -19,7 +19,7 @@ public class HapticDevicesHandler : MonoBehaviour
 
     private void OnEnable()
     {
-       ParentConstraintHandler.onCalibrated += AssignRotation;
+       //ParentConstraintHandler.onCalibrated += AssignRotation;
     }
     private void Start()
     {
