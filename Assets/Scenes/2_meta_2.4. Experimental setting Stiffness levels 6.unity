@@ -10090,9 +10090,12 @@ MonoBehaviour:
   - {fileID: 1841921402}
   - {fileID: 1887351447}
   - {fileID: 1921074285}
-  touchDevices:
-  - {fileID: 335440533}
+  rightTouchDevice: {fileID: 0}
+  leftTouchDevice: {fileID: 0}
+  platform: {fileID: 0}
   device: 0
+  handLeft: {fileID: 0}
+  handRight: {fileID: 0}
 --- !u!1 &461238481
 GameObject:
   m_ObjectHideFlags: 0
@@ -11650,7 +11653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &506851022
 Transform:
   m_ObjectHideFlags: 0
@@ -16115,7 +16118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &709612818
 Transform:
   m_ObjectHideFlags: 0
@@ -25931,6 +25934,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7493382bb6cfa40a8703b18104fb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsToRotate: []
+  rotations: []
   HapticDevices:
   - {fileID: 506851021}
   - {fileID: 709612817}
