@@ -21,7 +21,7 @@ public class DevicesBodyHandler : MonoBehaviour
     [SerializeField] OVRControllerInHandActiveState OVRControllerInHandActiveState_left;
     public static bool isRightStylusUsed = false;
     public static bool isLeftStylusUsed = false;
-    bool isCallibrated = false;
+    bool isCalibrated = false;
     int fadeValue = 0;
     private void OnEnable()
     {
@@ -46,14 +46,15 @@ public class DevicesBodyHandler : MonoBehaviour
         }
     }
 
-    void ToggleDeviceBodyHandler(bool isCallibrated)
+    void ToggleDeviceBodyHandler(bool isCalibrated)
     {
-        this.isCallibrated = isCallibrated;
+        this.isCalibrated = isCalibrated;
+        Debug.Log("isCalibrated: " + isCalibrated);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isCallibrated)
+        if (!isCalibrated)
         {
             foreach (var bodyMat in bodyMaterials)
             {
@@ -92,7 +93,7 @@ public class DevicesBodyHandler : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!isCallibrated)
+        if (!isCalibrated)
         {
             foreach (var bodyMat in bodyMaterials)
             {
