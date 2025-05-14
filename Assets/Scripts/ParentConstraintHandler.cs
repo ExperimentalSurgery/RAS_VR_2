@@ -17,32 +17,19 @@ public class ParentConstraintHandler : MonoBehaviour
 
     private void Start()
     {
-
-       // StartCoroutine(InitiateCalibration());
-        //if (parentConstraint.GetSource(0).sourceTransform.gameObject.activeSelf)
-        //{
-        //    StartCoroutine(StartCalibration());
-        //} 
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyUp(KeyCode.Space))
-        {
-           // StartCoroutine(StartCalibration());
-        }
+        StartCoroutine(StartCalibration(0.5f));
     }
     public void Calibrate()
     {
-        StartCoroutine(StartCalibration());
+        StartCoroutine(StartCalibration(0.5f));
         Debug.Log("Calibrate manually");
     }
-    IEnumerator StartCalibration()
+    IEnumerator StartCalibration(float waitTime)
     {
         //  hapticDevicesHandler.DeactivateDevices();
         onCalibrated?.Invoke(false);
         parentConstraint.constraintActive = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(waitTime);
         parentConstraint.constraintActive = false;
         onCalibrated?.Invoke(true);
         Debug.Log("onCalibrated" + onCalibrated);
@@ -60,7 +47,6 @@ public class ParentConstraintHandler : MonoBehaviour
     {
         StopAllCoroutines();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        StartCoroutine(StartCalibration());
         Debug.Log("Calibrate after restart");
     }
 }
