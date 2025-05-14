@@ -1973,16 +1973,16 @@ MonoBehaviour:
   textLabelObject: {fileID: 37420036}
   textBodyObject: {fileID: 1401265330}
   stepLabelTexts:
-  - Initial Interaction
   - Stiffness Assessment
+  - Initial Interaction
   stepBodyTexts:
-  - Please pick up the surgical instrument. Observe the interaction site on the liver.
-    Start tracing the surface of the liver from the left side. Take a moment to perceive
-    the existing stiffness and resistance quality of the healthy tissue.
   - Please proceed to move the instrument slowly to the right in a linear movement.
     When you arrive at the tumor, take a moment to differentiate between healthy
     liver tissue and more stiff tumor-affected areas. simulating the real-life need
     for haptic feedback to assess margins before resection.
+  - Please pick up the surgical instrument. Observe the interaction site on the liver.
+    Start tracing the surface of the liver from the left side. Take a moment to perceive
+    the existing stiffness and resistance quality of the healthy tissue.
 --- !u!1001 &170746404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30011,19 +30011,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 935305165792370163, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 935305165792370163, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 935305165792370163, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 154
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 935305165792370163, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1160791420975879911, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMax.y
@@ -30250,19 +30250,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7974221873738248123, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7974221873738248123, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7974221873738248123, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7974221873738248123, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8043156362340038974, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMax.y
