@@ -1625,6 +1625,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oVRPassthroughLayer: {fileID: 365159464}
+  timeForToggleEnabling: 1.5
+  canToggle: 1
   glowMaterial: {fileID: 2100000, guid: 2580da69fbc1f0145a79316151fa3ced, type: 2}
   defaultMat: {fileID: 2100000, guid: 8fb1e6d5532f3c342b1434272623042a, type: 2}
   rightStylus: {fileID: 1272707044}
@@ -1664,6 +1666,7 @@ GameObject:
   - component: {fileID: 163339216}
   - component: {fileID: 163339215}
   - component: {fileID: 163339214}
+  - component: {fileID: 163339219}
   m_Layer: 0
   m_Name: HapticCollider_Left
   m_TagString: HapticCollider_Left
@@ -1802,6 +1805,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163339212}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!135 &163339219
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163339212}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &164229985
 GameObject:
   m_ObjectHideFlags: 0
@@ -6142,7 +6166,7 @@ GameObject:
   - component: {fileID: 457998483}
   - component: {fileID: 457998484}
   - component: {fileID: 457998485}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DevicesBodyHandler_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6207,6 +6231,7 @@ MonoBehaviour:
   device: 0
   handLeft: {fileID: 1772369109}
   handRight: {fileID: 132146837}
+  fadeValue: 0
 --- !u!1 &465163454
 GameObject:
   m_ObjectHideFlags: 0
@@ -33924,6 +33949,7 @@ GameObject:
   - component: {fileID: 1272707043}
   - component: {fileID: 1272707042}
   - component: {fileID: 1272707041}
+  - component: {fileID: 1272707047}
   m_Layer: 0
   m_Name: HapticCollider_Right
   m_TagString: HapticCollider_Right
@@ -34001,7 +34027,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272707040}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -34063,6 +34089,27 @@ Transform:
   - {fileID: 7240796263900889016}
   m_Father: {fileID: 506851022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1272707047
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272707040}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1304352816
 GameObject:
   m_ObjectHideFlags: 0
@@ -34072,7 +34119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1304352817}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DevicesBodyHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35566,19 +35613,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 935305165792370163, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 935305165792370163, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 935305165792370163, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 154
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 935305165792370163, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1028240608209102563, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_Layer
@@ -35921,19 +35968,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7974221873738248123, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7974221873738248123, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7974221873738248123, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7974221873738248123, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8043156362340038974, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMax.y
@@ -41327,7 +41374,7 @@ GameObject:
   - component: {fileID: 2033162448}
   - component: {fileID: 2033162450}
   - component: {fileID: 2033162449}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DevicesBodyHandler_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41371,6 +41418,7 @@ MonoBehaviour:
   device: 1
   handLeft: {fileID: 1772369109}
   handRight: {fileID: 132146837}
+  fadeValue: 0
 --- !u!135 &2033162450
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -21,31 +21,26 @@ public class DevicesBodyHandler : MonoBehaviour
     [SerializeField] OVRHand handRight;
     //[SerializeField] OVRControllerInHandActiveState OVRControllerInHandActiveState_right;
     //[SerializeField] OVRControllerInHandActiveState OVRControllerInHandActiveState_left;
-    public static bool isRightStylusUsed = false;
-    public static bool isLeftStylusUsed = false;
+    static bool isRightStylusUsed = false;
+    static bool isLeftStylusUsed = false;
+    static bool isStartedFadingIn = false;
     bool isCalibrated = false;
-    int fadeValue = 0;
+    public int fadeValue = 0;
+
     private void OnEnable()
     {
         ParentConstraintHandler.onCalibrated += ToggleDeviceBodyHandler;
-
-        foreach (var bodyMat in bodyMaterials)
-        {
-            StopCoroutine(StartFadingIn());
-            bodyMat.sharedMaterial.SetFloat("_FadeStart", 0);
-            bodyMat.sharedMaterial.SetFloat("_FadeSize", 0);
-        }
     }
 
 
     private void OnDisable()
     {
-        foreach (var bodyMat in bodyMaterials)
-        {
-            StopCoroutine(StartFadingIn());
-            bodyMat.sharedMaterial.SetFloat("_FadeStart", 0);
-            bodyMat.sharedMaterial.SetFloat("_FadeSize", 0);
-        }
+        FadeOut();
+    }
+
+    private void Start()
+    {
+        isStartedFadingIn = false;
     }
 
     void ToggleDeviceBodyHandler(bool isCalibrated)
@@ -58,12 +53,6 @@ public class DevicesBodyHandler : MonoBehaviour
     {
         if (!isCalibrated)
         {
-            foreach (var bodyMat in bodyMaterials)
-            {
-                StopCoroutine(StartFadingIn());
-                bodyMat.sharedMaterial.SetFloat("_FadeStart", 0);
-                bodyMat.sharedMaterial.SetFloat("_FadeSize", 0);
-            }
             return;
         }
         if (device == Device.RightDevice && other.gameObject.tag == "HapticCollider_Right" && isRightStylusUsed)
@@ -86,7 +75,6 @@ public class DevicesBodyHandler : MonoBehaviour
             handLeft.m_showState = OVRInput.InputDeviceShowState.ControllerNotInHand;
             isLeftStylusUsed = false;
             ToggleDevices(true, false);
-
             if (!isRightStylusUsed)
             {
                 ToggleBody(false);
@@ -94,17 +82,10 @@ public class DevicesBodyHandler : MonoBehaviour
             }
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (!isCalibrated)
         {
-            foreach (var bodyMat in bodyMaterials)
-            {
-                StopCoroutine(StartFadingIn());
-                bodyMat.sharedMaterial.SetFloat("_FadeStart", 0);
-                bodyMat.sharedMaterial.SetFloat("_FadeSize", 0);
-            }
             return;
         }
         if (device == Device.RightDevice && other.gameObject.tag == "HapticCollider_Right" && !isRightStylusUsed)
@@ -170,37 +151,55 @@ public class DevicesBodyHandler : MonoBehaviour
     void ToggleBody(bool toActivate)
     {
         fadeValue = 0;
-        foreach (var bodyMat in bodyMaterials)
+        if (toActivate)
         {
-            if (toActivate)
-            {
-                StartCoroutine(StartFadingIn());
+            StartCoroutine(StartFadingIn());
 
-            }
-            else
-            {
-                StopCoroutine(StartFadingIn());
-                bodyMat.sharedMaterial.SetFloat("_FadeStart", 0);
-                bodyMat.sharedMaterial.SetFloat("_FadeSize", 0);
-            }
         }
-
+        else
+        {
+            FadeOut();
+        }
     }
 
     IEnumerator StartFadingIn()
     {
+        if (isStartedFadingIn) yield break;
+        isStartedFadingIn = true;
         foreach (var bodyMat in bodyMaterials)
         {
             bodyMat.sharedMaterial.SetFloat("_FadeSize", 1);
         }
-        while (fadeValue < 8)
+        while (fadeValue < 10)
         {
+            if (!isRightStylusUsed && !isLeftStylusUsed)
+            {
+                foreach (var bodyMat in bodyMaterials)
+                {
+                    bodyMat.sharedMaterial.SetFloat("_FadeStart", 0);
+                    bodyMat.sharedMaterial.SetFloat("_FadeSize", 0);
+                }
+                Debug.Log("!isRightStylusUsed && !isLeftStylusUsed");
+                break;
+            }
             yield return new WaitForSeconds(0.05f);
-            fadeValue++;
             foreach (var bodyMat in bodyMaterials)
             {
                 bodyMat.sharedMaterial.SetFloat("_FadeStart", fadeValue);
             }
+            fadeValue++;
+        }
+        isStartedFadingIn = false;
+       
+    }
+
+    void FadeOut()
+    {
+        fadeValue = 0;
+        foreach (var bodyMat in bodyMaterials)
+        {    
+            bodyMat.sharedMaterial.SetFloat("_FadeStart", 0);
+            bodyMat.sharedMaterial.SetFloat("_FadeSize", 0);
         }
     }
 }

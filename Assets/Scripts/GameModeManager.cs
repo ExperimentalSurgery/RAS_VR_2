@@ -66,8 +66,10 @@ public class GameModeManager : MonoBehaviour
         if (isVirtualReality)
         {
             oVRPassthroughLayer.enabled = false;
-            rightStylusCollider.enabled = true;
-            leftStylusCollider.enabled = true;
+            rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
+            leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
+            //rightStylusCollider.enabled = true;
+            //leftStylusCollider.enabled = true;
             SwapMaterial(true, isRightStylus);
             StartCoroutine(EnableQuickVibration());
 
@@ -75,8 +77,12 @@ public class GameModeManager : MonoBehaviour
         else
         {
             oVRPassthroughLayer.enabled = true;
-            rightStylusCollider.enabled = false;
-            leftStylusCollider.enabled = false;
+            rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
+            rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+            leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
+            leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+            //rightStylusCollider.enabled = false;
+            //leftStylusCollider.enabled = false;
             SwapMaterial(false, isRightStylus);
         }
     }
@@ -109,12 +115,10 @@ public class GameModeManager : MonoBehaviour
         canToggle = false;
         while (timeForToggleEnabling > 0)
         {
-            Debug.Log($"Timer running: {timeForToggleEnabling} seconds remaining");
             yield return new WaitForSeconds(1f);
             timeForToggleEnabling -= 1f;
         }
         canToggle = true;
-        Debug.Log("Timer finished!");
         // Add any logic here that should run after the timer ends
     }
 }
