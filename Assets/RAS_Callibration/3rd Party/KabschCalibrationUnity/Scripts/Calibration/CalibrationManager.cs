@@ -7,6 +7,8 @@ using UnityEngine.Serialization;
 
 public class CalibrationManager : MonoBehaviour
 {
+    [SerializeField] private OVRPassthroughLayer oVRPassthroughLayer;
+
     public Transform tooltip;
     
     [Space(10)] 
@@ -67,6 +69,7 @@ public class CalibrationManager : MonoBehaviour
 
     void Awake()
     {
+        oVRPassthroughLayer.enabled = true;
         alignObjectsInScene = FindObjectsByType<CalibrateObject>(FindObjectsSortMode.None);
         alignObjectChoices = CreateCalibrationObjectsAsString(alignObjectsInScene);
 
@@ -95,6 +98,7 @@ public class CalibrationManager : MonoBehaviour
         // For testing
         if (Keyboard.current.mKey.IsPressed())
         {
+            Debug.Log("AddTargetPoint " + tooltip.position);
             currentObjectToCalibrate.AddTargetPoint(tooltip.position, targetPointParents[choiceIndex].transform);
             ChangeColorOfPointer();
         }
