@@ -8,7 +8,8 @@ public class GameModeManager : MonoBehaviour
     [SerializeField] private OVRPassthroughLayer oVRPassthroughLayer;
     [SerializeField] float timeForToggleEnabling = 1f;
     [SerializeField] bool canToggle = true;
-
+    [SerializeField]
+    GameObject[] VRObjects; // Objects that should be enabled in VR mode
     [Header("Material Settings")]
     [SerializeField] Material glowMaterial;
     [SerializeField] Material defaultMat;
@@ -29,12 +30,13 @@ public class GameModeManager : MonoBehaviour
 
     private void Awake()
     {
-        oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
-        // 1) We enable the passthrough layer to kick off its initialization process
-        oVRPassthroughLayer.enabled = true;
+        InitializePassthroughMode();
     }
 
-
+    private void Start()
+    {
+        cameras = FindObjectsByType<Camera>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+    }
 
     private void OnDestroy()
     {
@@ -47,31 +49,26 @@ public class GameModeManager : MonoBehaviour
         // 3) Do something here after the passthrough layer has resumed
     }
 
-    private void Start()
+    public void ToggleGameMode()
     {
-        isVirtualReality = false;
-        // rightStylusCollider.enabled = false;
-        //  leftStylusCollider.enabled = false;
-        cameras = FindObjectsByType<Camera>(FindObjectsInactive.Include,FindObjectsSortMode.None);
-    }
-    public void ToggleGameMode(bool isRightStylus)
-    {
-        StartCoroutine(StatTimerForToggling());
         if (!canToggle)
         {
             Debug.Log("Cannot toggle game mode yet.");
             return;
         }
+        StartCoroutine(StatTimerForToggling());
         isVirtualReality = !isVirtualReality;
         if (isVirtualReality)
         {
             oVRPassthroughLayer.enabled = false;
             rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
             leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
-            //rightStylusCollider.enabled = true;
-            //leftStylusCollider.enabled = true;
-            SwapMaterial(true, isRightStylus);
+            SwapMaterial(true);
             StartCoroutine(EnableQuickVibration());
+            foreach (GameObject vrObject in VRObjects)
+            {
+                vrObject.SetActive(true);
+            }
 
         }
         else
@@ -81,13 +78,33 @@ public class GameModeManager : MonoBehaviour
             rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
             leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
             leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
-            //rightStylusCollider.enabled = false;
-            //leftStylusCollider.enabled = false;
-            SwapMaterial(false, isRightStylus);
+            SwapMaterial(false);
+            foreach (GameObject vrObject in VRObjects)
+            {
+                vrObject.SetActive(false);
+            }
         }
     }
 
-    public void SwapMaterial(bool isOn, bool isRightStylus)
+    void InitializePassthroughMode()
+    {
+        // This method can be used to initialize the passthrough mode if needed
+        isVirtualReality = false;
+        oVRPassthroughLayer.enabled = true;
+        oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
+        rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
+        rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+        leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
+        leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+        SwapMaterial(false);
+        foreach (GameObject vrObject in VRObjects)
+        {
+            vrObject.SetActive(false);
+        }
+
+    }
+
+    public void SwapMaterial(bool isOn)
     {
         if (isOn)
         {
@@ -121,4 +138,6 @@ public class GameModeManager : MonoBehaviour
         canToggle = true;
         // Add any logic here that should run after the timer ends
     }
+
+
 }
