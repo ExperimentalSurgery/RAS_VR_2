@@ -1769,6 +1769,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44778858571da3e4095baa1e15986425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oVRPassthroughLayer: {fileID: 0}
+  timeForToggleEnabling: 1
+  canToggle: 1
+  VRObjects: []
   glowMaterial: {fileID: 2100000, guid: 2580da69fbc1f0145a79316151fa3ced, type: 2}
   defaultMat: {fileID: 2100000, guid: 8fb1e6d5532f3c342b1434272623042a, type: 2}
   rightStylus: {fileID: 1272707044}
@@ -1778,6 +1782,7 @@ MonoBehaviour:
   isVirtualReality: 0
   hapticPluginR: {fileID: 1510442269}
   hapticPluginL: {fileID: 1354850131}
+  cameras: []
 --- !u!4 &163138131
 Transform:
   m_ObjectHideFlags: 0
@@ -6262,6 +6267,7 @@ MonoBehaviour:
   device: 0
   handLeft: {fileID: 1772369109}
   handRight: {fileID: 132146837}
+  fadeValue: 0
 --- !u!1 &465163454
 GameObject:
   m_ObjectHideFlags: 0
@@ -28374,7 +28380,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272707040}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -29985,19 +29991,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 935305165792370163, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 935305165792370163, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 935305165792370163, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 154
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 935305165792370163, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1160791420975879911, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMax.y
@@ -30224,19 +30230,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7974221873738248123, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7974221873738248123, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7974221873738248123, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7974221873738248123, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8043156362340038974, guid: ee824579eadf66544a0c3913fec1debf, type: 3}
       propertyPath: m_AnchorMax.y
@@ -36460,6 +36466,7 @@ MonoBehaviour:
   device: 1
   handLeft: {fileID: 1772369109}
   handRight: {fileID: 132146837}
+  fadeValue: 0
 --- !u!135 &2033162450
 SphereCollider:
   m_ObjectHideFlags: 0

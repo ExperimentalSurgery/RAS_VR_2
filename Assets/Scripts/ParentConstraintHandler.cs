@@ -17,7 +17,7 @@ public class ParentConstraintHandler : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(StartCalibration(0.5f));
+        //StartCoroutine(StartCalibration(0.5f));
     }
     public void Calibrate()
     {
