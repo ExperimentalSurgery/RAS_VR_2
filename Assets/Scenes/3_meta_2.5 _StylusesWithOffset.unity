@@ -6779,11 +6779,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bca9c57e0f9bf04f9f914fc0007ff5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointerTip: {fileID: 4559713845261974433}
-  pointerTail: {fileID: 5388385785095478703}
-  pointerDirZ: {fileID: 1495529232962279969}
-  surfacePosition: {fileID: 696846031530214711}
-  depthPosition: {fileID: 147497873237328016}
+  pointer1Tip: {fileID: 0}
+  pointer1Tail: {fileID: 0}
+  pointer1DirZ: {fileID: 0}
+  pointer2Tip: {fileID: 0}
+  pointer2Tail: {fileID: 0}
+  pointer2DirZ: {fileID: 0}
   deformMeshRenderer: {fileID: 337636761}
   deformMeshCollider: {fileID: 337636760}
   deformLayer:
@@ -6791,6 +6792,9 @@ MonoBehaviour:
     m_Bits: 64
   maxDepth: 0.07
   deformRadius: 0.015
+  enableDebugVisualisations: 0
+  depthVizPrefab: {fileID: 0}
+  surfaceVizPrefab: {fileID: 0}
 --- !u!1001 &507274685
 PrefabInstance:
   m_ObjectHideFlags: 0
