@@ -8,8 +8,8 @@ public class GameModeManager : MonoBehaviour
     [SerializeField] private OVRPassthroughLayer oVRPassthroughLayer;
     [SerializeField] float timeForToggleEnabling = 1f;
     [SerializeField] bool canToggle = true;
-    [SerializeField]
-    GameObject[] VRObjects; // Objects that should be enabled in VR mode
+    [SerializeField] GameObject[] VRObjects; // Objects that should be enabled in VR mode
+    [SerializeField] GameObject[] MRObjects; // Objects that should be enabled in MR mode
     [Header("Material Settings")]
     [SerializeField] Material glowMaterial;
     [SerializeField] Material defaultMat;
@@ -70,6 +70,11 @@ public class GameModeManager : MonoBehaviour
                 vrObject.SetActive(true);
             }
 
+        foreach(GameObject mrObject in MRObjects)
+            {
+                mrObject.SetActive(false);
+            }
+
         }
         else
         {
@@ -82,6 +87,10 @@ public class GameModeManager : MonoBehaviour
             foreach (GameObject vrObject in VRObjects)
             {
                 vrObject.SetActive(false);
+            }
+            foreach (GameObject mrObject in MRObjects)
+            {
+                mrObject.SetActive(true);
             }
         }
     }
