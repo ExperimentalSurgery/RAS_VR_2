@@ -6275,6 +6275,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2995467507800580558, guid: 22f5a9a1f5db5a245bc2fa2343ed362d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3413053040735071051, guid: 22f5a9a1f5db5a245bc2fa2343ed362d, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -38129,6 +38133,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -686156223597359766, guid: c61e3f37572c24b40a8600d30fde2cc5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 21ff4423a6d1c404db4ac5f4c1c9cd91, type: 2}
     - target: {fileID: 919132149155446097, guid: c61e3f37572c24b40a8600d30fde2cc5, type: 3}
       propertyPath: m_Name
       value: Abdomen Anatomy_unwrapped
