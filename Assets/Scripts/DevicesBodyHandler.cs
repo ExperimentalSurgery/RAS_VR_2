@@ -92,7 +92,7 @@ public class DevicesBodyHandler : MonoBehaviour
         {
 
             //OVRControllerInHandActiveState_right.ShowState = OVRInput.InputDeviceShowState.NoHand;
-            handRight.m_showState = OVRInput.InputDeviceShowState.NoHand;
+            //handRight.m_showState = OVRInput.InputDeviceShowState.NoHand;
             isRightStylusUsed = true;
             ToggleDevices(false, true);
             if (!isLeftStylusUsed)
@@ -104,7 +104,7 @@ public class DevicesBodyHandler : MonoBehaviour
         else if (device == Device.LeftDevice && other.gameObject.tag == "HapticCollider_Left" && !isLeftStylusUsed)
         {
             //OVRControllerInHandActiveState_left.ShowState = OVRInput.InputDeviceShowState.NoHand;
-            handLeft.m_showState = OVRInput.InputDeviceShowState.NoHand;
+            //handLeft.m_showState = OVRInput.InputDeviceShowState.NoHand;
             isLeftStylusUsed = true;
             ToggleDevices(false, false);
             if (!isRightStylusUsed)
