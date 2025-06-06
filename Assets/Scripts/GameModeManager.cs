@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameModeManager : MonoBehaviour
 {
+    public static GameModeManager Instance { get; private set; }
     [Header("OVRPassthroughLayer")]
     [SerializeField] private OVRPassthroughLayer oVRPassthroughLayer;
     [SerializeField] float timeForToggleEnabling = 1f;
@@ -19,7 +20,7 @@ public class GameModeManager : MonoBehaviour
     [Header("Styluses Settings")]
     [SerializeField] Collider rightStylusCollider;
     [SerializeField] Collider leftStylusCollider;
-    [SerializeField] bool isVirtualReality = false;
+    public bool isVirtualReality = false;
 
     [Header("Vibration Settings")]
     [SerializeField] HapticPlugin hapticPluginR;
@@ -30,6 +31,15 @@ public class GameModeManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
         InitializePassthroughMode();
     }
 

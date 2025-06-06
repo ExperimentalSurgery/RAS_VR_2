@@ -1460,6 +1460,15 @@ MonoBehaviour:
   - {fileID: 8436006884838781319}
   - {fileID: 728461135}
   - {fileID: 505998155}
+  - {fileID: 335440533}
+  - {fileID: 1596291980}
+  - {fileID: 1985203600}
+  - {fileID: 454962859}
+  - {fileID: 1155728146}
+  - {fileID: 507274687}
+  MRObjects:
+  - {fileID: 686504290}
+  - {fileID: 1404129252}
   glowMaterial: {fileID: 2100000, guid: 2580da69fbc1f0145a79316151fa3ced, type: 2}
   defaultMat: {fileID: 2100000, guid: 8fb1e6d5532f3c342b1434272623042a, type: 2}
   rightStylus: {fileID: 1272707044}
@@ -6372,6 +6381,11 @@ PrefabInstance:
       addedObject: {fileID: 1530275839}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22f5a9a1f5db5a245bc2fa2343ed362d, type: 3}
+--- !u!1 &454962859 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4720030898897600456, guid: 22f5a9a1f5db5a245bc2fa2343ed362d, type: 3}
+  m_PrefabInstance: {fileID: 454962858}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &454962860 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8488354269278167242, guid: 22f5a9a1f5db5a245bc2fa2343ed362d, type: 3}
@@ -7066,6 +7080,11 @@ PrefabInstance:
 --- !u!4 &507274686 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58167329d19257142957070cd789cefc, type: 3}
+  m_PrefabInstance: {fileID: 507274685}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &507274687 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58167329d19257142957070cd789cefc, type: 3}
   m_PrefabInstance: {fileID: 507274685}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &511892277
@@ -13260,6 +13279,11 @@ PrefabInstance:
 --- !u!4 &1155728145 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58167329d19257142957070cd789cefc, type: 3}
+  m_PrefabInstance: {fileID: 1155728144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1155728146 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58167329d19257142957070cd789cefc, type: 3}
   m_PrefabInstance: {fileID: 1155728144}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1178854991

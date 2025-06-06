@@ -1572,7 +1572,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -1593,7 +1593,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -4441,7 +4441,7 @@ Transform:
   m_GameObject: {fileID: 335440533}
   serializedVersion: 2
   m_LocalRotation: {x: -0.009120606, y: 0.45493677, z: -0.0035810827, w: 0.89046985}
-  m_LocalPosition: {x: -0.234, y: 0.802, z: 0.304}
+  m_LocalPosition: {x: -0.2294, y: 0.8022, z: 0.2931}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4487,7 +4487,7 @@ GameObject:
   - component: {fileID: 337636762}
   - component: {fileID: 337636761}
   - component: {fileID: 337636760}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lever_scan_1_visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6904,7 +6904,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 506851022}
-  - component: {fileID: 506851023}
   m_Layer: 0
   m_Name: HapticDevice_Right
   m_TagString: Untagged
@@ -6921,7 +6920,7 @@ Transform:
   m_GameObject: {fileID: 506851021}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000037252896, y: 0.38268343, z: -0.000000052154054, w: 0.9238795}
-  m_LocalPosition: {x: -0.2255, y: -0.145, z: 0.1001}
+  m_LocalPosition: {x: -0.2303, y: -0.145, z: 0.0889}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6930,34 +6929,6 @@ Transform:
   - {fileID: 1130808728}
   m_Father: {fileID: 1193857078}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &506851023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 506851021}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bca9c57e0f9bf04f9f914fc0007ff5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointer1Tip: {fileID: 0}
-  pointer1Tail: {fileID: 0}
-  pointer1DirZ: {fileID: 0}
-  pointer2Tip: {fileID: 0}
-  pointer2Tail: {fileID: 0}
-  pointer2DirZ: {fileID: 0}
-  deformMeshRenderer: {fileID: 337636761}
-  deformMeshCollider: {fileID: 337636760}
-  deformLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  maxDepth: 0.07
-  deformRadius: 0.015
-  enableDebugVisualisations: 0
-  depthVizPrefab: {fileID: 0}
-  surfaceVizPrefab: {fileID: 0}
 --- !u!1001 &507274685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9389,7 +9360,7 @@ GameObject:
   - component: {fileID: 671021164}
   - component: {fileID: 671021163}
   - component: {fileID: 671021162}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InternalSphere (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9745,7 +9716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &713845068
 Transform:
   m_ObjectHideFlags: 0
@@ -9768,7 +9739,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 713845067}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -34706,7 +34677,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -34727,7 +34698,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -35628,7 +35599,7 @@ MonoBehaviour:
   GlobalScale: 0.001
   VisualizationMesh: {fileID: 1400185016}
   CollisionMesh: {fileID: 163339212}
-  tipOffset: 0
+  tipOffset: 0.038
   GrabObject: {fileID: 0}
   ModelType: Touch
   SerialNumber: 23129000763
@@ -37931,7 +37902,7 @@ MonoBehaviour:
   GlobalScale: 0.001
   VisualizationMesh: {fileID: 1130808727}
   CollisionMesh: {fileID: 1272707040}
-  tipOffset: 0
+  tipOffset: 0.038
   GrabObject: {fileID: 0}
   ModelType: Touch
   SerialNumber: 23109000548
@@ -38354,7 +38325,7 @@ Transform:
   m_GameObject: {fileID: 1596291980}
   serializedVersion: 2
   m_LocalRotation: {x: 0.009479637, y: -0.4549384, z: -0.0029307003, w: 0.89046764}
-  m_LocalPosition: {x: 0.20700002, y: 0.802, z: 0.308}
+  m_LocalPosition: {x: 0.2106, y: 0.8022, z: 0.2977}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -44664,8 +44635,8 @@ Transform:
   m_GameObject: {fileID: 618661112217906362}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4669268, y: -0.63236505, z: 0.53323877, w: 0.3126504}
-  m_LocalPosition: {x: -0.029348362, y: -0.082974605, z: 0.09008493}
-  m_LocalScale: {x: 41.49964, y: 41.499664, z: 41.499645}
+  m_LocalPosition: {x: -0.029512, y: -0.081054, z: 0.091138}
+  m_LocalScale: {x: 38.96448, y: 38.964504, z: 38.964485}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1416250226}
@@ -44989,7 +44960,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618661112217906362}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -45005,7 +44976,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 822984b8550f75e4d9f783740fe8887f, type: 2}
+  - {fileID: 2100000, guid: a3ce8e2c56f13264a9ec91f60e1f7cd6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -45654,7 +45625,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618661112217906362}
-  m_Mesh: {fileID: -7088251939457776589, guid: 10c5972b4d528e2449d4bda4d1e07c8e, type: 3}
+  m_Mesh: {fileID: -6774276701431980268, guid: 1e6ca9669c7f25d45a1099c74af4fe7f, type: 3}
 --- !u!33 &3799183048674939811
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -45754,7 +45725,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6584558121107291892}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -46214,7 +46185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &6598373551501079181
 CapsuleCollider:
   m_ObjectHideFlags: 0
