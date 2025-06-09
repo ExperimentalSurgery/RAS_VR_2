@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Barrier_1
-  m_Shader: {fileID: -6465566751694194690, guid: ac3a78f3a81ddcd44a767e3c98464635,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: ac3a78f3a81ddcd44a767e3c98464635, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -50,7 +49,7 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 2
     - _CastShadows: 1
-    - _Cull: 2
+    - _Cull: 0
     - _DstBlend: 1
     - _HexNoiseScale: 30
     - _HexScale: 1
@@ -67,9 +66,9 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _BorderColor: {r: 7.5523453, g: 7.5523453, b: 7.5523453, a: 1}
-    - _HexColor: {r: 0.2991723, g: 0.6592834, b: 0.764151, a: 0.14901961}
+    - _HexColor: {r: 0.2991723, g: 0.6592834, b: 0.764151, a: 0.3529412}
     - _HexTiling: {r: 15, g: 15, b: 0, a: 0}
-    - _IntersectionColor: {r: 0, g: 0.14488721, b: 3.9533498, a: 1}
+    - _IntersectionColor: {r: 0, g: 0.10980396, b: 2.9960787, a: 1}
     - _NoiseSpeed: {r: 0, g: 0.2, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
