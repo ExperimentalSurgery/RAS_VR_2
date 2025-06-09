@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de965f2e710c1c489ead8e62cd25da0, type: 3}
+  m_Name: Intestine_Large_Dikke_darms_large_int_mat_0 Painting Data
+  m_EditorClassIdentifier: 
+  hullData: {fileID: 11400000, guid: 19caf789714ae194ba3ce2b036c2c8e0, type: 2}
+  sourceMesh: {fileID: 477315817188857035, guid: c61e3f37572c24b40a8600d30fde2cc5, type: 3}
+  sourceMeshHash:
+    data: aebaad8cef5b739f12628d8c5a2e5ac9f35a2e29
+  activeHull: -1
+  faceThickness: 0.1
+  hulls: []
+  autoHullPreset: 2
+  vhacdParams:
+    concavity: 0.001
+    alpha: 0.05
+    beta: 0.05
+    minVolumePerCH: 0.0001
+    resolution: 100000
+    maxNumVerticesPerCH: 64
+    planeDownsampling: 4
+    convexhullDownsampling: 4
+    pca: 0
+    mode: 0
+    convexhullApproximation: 1
+    oclAcceleration: 0
+    maxConvexHulls: 1024
+    projectHullVertices: 1
+  hasLastVhacdTimings: 0
+  lastVhacdPreset: 1
+  lastVhacdDurationSecs: 0
+  suppressMeshModificationWarning: 0
