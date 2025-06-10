@@ -49,13 +49,13 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 2
     - _CastShadows: 1
-    - _Cull: 0
+    - _Cull: 2
     - _DstBlend: 1
     - _HexNoiseScale: 30
     - _HexScale: 1
     - _HexWidth: 0.5
-    - _IntersectionDepth: 0.28
-    - _MaskPower: 1
+    - _IntersectionDepth: 0.68
+    - _MaskPower: 3.46
     - _NoiseScale: 10
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -68,7 +68,7 @@ Material:
     - _BorderColor: {r: 7.5523453, g: 7.5523453, b: 7.5523453, a: 1}
     - _HexColor: {r: 0.2991723, g: 0.6592834, b: 0.764151, a: 0.3529412}
     - _HexTiling: {r: 15, g: 15, b: 0, a: 0}
-    - _IntersectionColor: {r: 0, g: 0.10980396, b: 2.9960787, a: 1}
+    - _IntersectionColor: {r: 2.9960787, g: 1.4000323, b: 0, a: 1}
     - _NoiseSpeed: {r: 0, g: 0.2, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -170,7 +170,7 @@ public class DevicesBodyHandler : MonoBehaviour
         {
             bodyMat.sharedMaterial.SetFloat("_FadeSize", 1);
         }
-        while (fadeValue < 10)
+        while (fadeValue <= 10)
         {
             if (!isRightStylusUsed && !isLeftStylusUsed)
             {
