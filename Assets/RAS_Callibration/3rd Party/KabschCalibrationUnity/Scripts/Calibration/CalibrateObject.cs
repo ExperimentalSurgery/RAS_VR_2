@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CalibrateObject : MonoBehaviour
 {
-    public Transform[] sourcePoints = new Transform[0];
+	public Transform[] sourcePoints = new Transform[0];
 	public Transform[] targetPoints;
 	public int calibrationPointIndex;
 	
@@ -56,44 +56,53 @@ public class CalibrateObject : MonoBehaviour
 		}
 	}
 
-	public void AddTargetPoint(Vector3 position, Transform targetPointParent, float pointScale)
+	public void AddTargetPoint(Vector3 position, Transform targetPointParent, int index)
 	{
 		// TODO: Update GUI in Editor everytime this gets called
 		
 		GameObject newRefPoint;
 
-		if (targetPoints[calibrationPointIndex] == null)
+		if (targetPoints[index] == null)
 		{
 			newRefPoint = Instantiate(Resources.Load("SourcePointPrefab", typeof(GameObject)), position, Quaternion.identity, targetPointParent) as GameObject;
-			newRefPoint.transform.localScale = new Vector3(pointScale, pointScale, pointScale);
-            newRefPoint.name = "TargetPoint";
+			newRefPoint.name = "TargetPoint";
 			Renderer renderer = newRefPoint.GetComponent<Renderer>();
 			renderer.material = new Material(Shader.Find("UI/Unlit/Detail"));
-			renderer.sharedMaterial.color = ColorOrder.GetColor(calibrationPointIndex);
+			renderer.sharedMaterial.color = ColorOrder.GetColor(index);
 		}
 		else
 		{
-			newRefPoint = targetPoints[calibrationPointIndex].gameObject;
-            Renderer renderer = newRefPoint.GetComponent<Renderer>();
-            renderer.material = new Material(Shader.Find("UI/Unlit/Detail"));
-            renderer.sharedMaterial.color = ColorOrder.GetColor(calibrationPointIndex);
-        }
+			newRefPoint = targetPoints[index].gameObject;
+		}
 
 		newRefPoint.transform.SetPositionAndRotation(new Vector3(position.x, position.y, position.z), Quaternion.identity);
-		targetPoints[calibrationPointIndex] = newRefPoint.transform;
-		calibrationPointIndex += 1;
-		
-		if (calibrationPointIndex >= sourcePoints.Length)
-		{
-			calibrationPointIndex = 0;
-			Matrix4x4 alignmentTransform = CalculateAlignmentTransform();
-			ApplyAlignment(alignmentTransform);
-			calibrationDistanceError = CalculateCalibrationDistance();
-			SaveOriginalPosition();
-		}
+		targetPoints[index] = newRefPoint.transform;		
 	}
 
-	public void Calibrate()
+    public void AddSourcePoint(Vector3 position, Transform sourcePointParent, int index)
+    {
+        // TODO: Update GUI in Editor everytime this gets called
+
+        GameObject newRefPoint;
+
+        if (sourcePoints[index] == null)
+        {
+            newRefPoint = Instantiate(Resources.Load("SourcePointPrefab", typeof(GameObject)), position, Quaternion.identity, sourcePointParent) as GameObject;
+            newRefPoint.name = "SourcePoint";
+            Renderer renderer = newRefPoint.GetComponent<Renderer>();
+            renderer.material = new Material(Shader.Find("UI/Unlit/Detail"));
+            renderer.sharedMaterial.color = ColorOrder.GetColor(index);
+        }
+        else
+        {
+            newRefPoint = sourcePoints[index].gameObject;
+        }
+
+        newRefPoint.transform.SetPositionAndRotation(new Vector3(position.x, position.y, position.z), Quaternion.identity);
+        sourcePoints[index] = newRefPoint.transform;
+    }
+
+    public void Calibrate()
 	{
 		if(sourcePoints.Length >= 4 && targetPoints.Length >= 4 && sourcePoints.Length == targetPoints.Length)
 		{

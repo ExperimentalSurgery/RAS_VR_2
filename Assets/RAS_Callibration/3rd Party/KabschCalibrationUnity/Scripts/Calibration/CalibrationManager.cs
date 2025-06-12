@@ -7,23 +7,16 @@ using UnityEngine.Serialization;
 
 public class CalibrationManager : MonoBehaviour
 {
-    [Header("Passthrough mode settings")]
-    [SerializeField] 
-    OVRPassthroughLayer oVRPassthroughLayer;
-
-    [Space(10)]
-
     public Transform tooltip;
     
     [Space(10)] 
     
     // this is just to display the calibration process in the inspector
     [Header("Calibration points")]
-
-    [SerializeField] 
-    float targetPointScale = 1f;
     [SerializeField] 
     private int calibrationPointIndex;
+    [SerializeField]
+    float sourcePointScale = 1f; // scale of the target points in the scene
     [SerializeField]
     private Vector3[] sourcePoints;
     [SerializeField]
@@ -35,7 +28,7 @@ public class CalibrationManager : MonoBehaviour
     private CalibrateObject currentObjectToCalibrate;
     
     private string[] alignObjectChoices;
-    [SerializeField] CalibrateObject[] alignObjectsInScene;
+    private CalibrateObject[] alignObjectsInScene;
 
     private int choiceIndex;
     private GameObject targetPointTopParentInScene;
@@ -76,8 +69,7 @@ public class CalibrationManager : MonoBehaviour
 
     void Awake()
     {
-       //oVRPassthroughLayer.enabled = true;
-       // alignObjectsInScene = FindObjectsByType<CalibrateObject>(FindObjectsSortMode.None);
+        alignObjectsInScene = FindObjectsByType<CalibrateObject>(FindObjectsSortMode.None);
         alignObjectChoices = CreateCalibrationObjectsAsString(alignObjectsInScene);
 
         if (alignObjectsInScene.Length != 0)
@@ -102,13 +94,6 @@ public class CalibrationManager : MonoBehaviour
         FetchSourceAndTargetPointsToDisplay();
         ChangeColorOfPointer();
 
-        // For testing
-        if (Keyboard.current.mKey.IsPressed())
-        {
-            Debug.Log("AddTargetPoint " + tooltip.position);
-            currentObjectToCalibrate.AddTargetPoint(tooltip.position, targetPointParents[choiceIndex].transform, targetPointScale);
-            ChangeColorOfPointer();
-        }
 
         //throw new Exception("No input method implemented yet.");
         
@@ -123,10 +108,10 @@ public class CalibrationManager : MonoBehaviour
         
     }
 
-    public void CreateTargetPoint()
+    public void CreateSourcePoint()
     {
         Debug.Log("AddTargetPoint " + tooltip.position);
-        currentObjectToCalibrate.AddTargetPoint(tooltip.position, targetPointParents[choiceIndex].transform, targetPointScale);
+        currentObjectToCalibrate.AddSourcePoint(tooltip.position, targetPointParents[choiceIndex].transform, choiceIndex);
         ChangeColorOfPointer();
     }
 
