@@ -92,8 +92,7 @@ public class CreateSourcePoints : Editor
                 {
                     foreach (Collider currentCollider in childrenCollider)
                     {
-                        if (hitInfo.collider.Equals(currentCollider))
-                        {
+
                             if (mode == Mode.add)
                             {
                                 GameObject sourcePoint = Instantiate(Resources.Load("SourcePointPrefab", typeof(GameObject)), hitInfo.point, Quaternion.identity, currentObject.transform) as GameObject;
@@ -112,7 +111,7 @@ public class CreateSourcePoints : Editor
                                 currentObject.sourcePoints[currentIndex].transform.position = hitInfo.point;
                             }
                             mode = Mode.none;
-                        }
+                        
                     }
                 }
 

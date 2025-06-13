@@ -16,8 +16,6 @@ public class CalibrationManager : MonoBehaviour
     [SerializeField] 
     private int calibrationPointIndex;
     [SerializeField]
-    float sourcePointScale = 1f; // scale of the target points in the scene
-    [SerializeField]
     private Vector3[] sourcePoints;
     [SerializeField]
     private Vector3[] targetPoints;
@@ -31,9 +29,9 @@ public class CalibrationManager : MonoBehaviour
     private CalibrateObject[] alignObjectsInScene;
 
     private int choiceIndex;
-    private GameObject targetPointTopParentInScene;
+    private GameObject sourcePointTopParentInScene;
 
-    private GameObject[] targetPointParents;
+    [SerializeField] GameObject[] sourcePointParents;
 
     private int dummyIndex = 0;
 
@@ -78,14 +76,14 @@ public class CalibrationManager : MonoBehaviour
             ChangeColorOfPointer();
         }
 
-        targetPointTopParentInScene = new GameObject("TargetPoints");
+        sourcePointTopParentInScene = new GameObject("SourcePoints");
         //targetPointTopParentInScene.transform.SetParent(GameObject.FindGameObjectWithTag("SteamVR").transform);
-        targetPointParents = new GameObject[alignObjectsInScene.Length];
+        sourcePointParents = new GameObject[alignObjectsInScene.Length];
         
         for (int i = 0; i < alignObjectsInScene.Length; i++)
         {
-            targetPointParents[i] = new GameObject(alignObjectsInScene[i].name + "Targets");
-            targetPointParents[i].transform.SetParent(targetPointTopParentInScene.transform);
+            sourcePointParents[i] = new GameObject(alignObjectsInScene[i].name + "Sources");
+            sourcePointParents[i].transform.SetParent(sourcePointTopParentInScene.transform);
         }
     }
 
@@ -110,10 +108,11 @@ public class CalibrationManager : MonoBehaviour
 
     public void CreateSourcePoint()
     {
-        Debug.Log("AddTargetPoint " + tooltip.position);
-        currentObjectToCalibrate.AddSourcePoint(tooltip.position, targetPointParents[choiceIndex].transform, choiceIndex);
+        Debug.Log("AddSourcePoint " + tooltip.position);
+        currentObjectToCalibrate.AddSourcePoint(tooltip.position, sourcePointParents[choiceIndex].transform, choiceIndex);
         ChangeColorOfPointer();
     }
+
 
     public void Calibrate()
     {
