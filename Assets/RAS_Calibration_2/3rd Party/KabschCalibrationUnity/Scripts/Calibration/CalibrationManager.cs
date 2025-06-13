@@ -109,7 +109,16 @@ public class CalibrationManager : MonoBehaviour
     public void CreateSourcePoint()
     {
         Debug.Log("AddSourcePoint " + tooltip.position);
+        Debug.Log("ChoiceIndex: " + choiceIndex);
         currentObjectToCalibrate.AddSourcePoint(tooltip.position, sourcePointParents[choiceIndex].transform, choiceIndex);
+        ChangeColorOfPointer();
+    }
+
+    public void CreateTargetPoint()
+    {
+        Debug.Log("AddTargetPoint " + tooltip.position);
+        Debug.Log("ChoiceIndex: " + choiceIndex);
+        currentObjectToCalibrate.AddTargetPoint(tooltip.position, sourcePointParents[choiceIndex].transform, choiceIndex);
         ChangeColorOfPointer();
     }
 

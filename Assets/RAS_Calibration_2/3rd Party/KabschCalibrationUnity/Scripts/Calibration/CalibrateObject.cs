@@ -62,22 +62,34 @@ public class CalibrateObject : MonoBehaviour
 		
 		GameObject newRefPoint;
 
-		if (targetPoints[index] == null)
+		if (targetPoints[calibrationPointIndex] == null)
 		{
 			newRefPoint = Instantiate(Resources.Load("SourcePointPrefab", typeof(GameObject)), position, Quaternion.identity, targetPointParent) as GameObject;
 			newRefPoint.name = "TargetPoint";
-			Renderer renderer = newRefPoint.GetComponent<Renderer>();
-			renderer.material = new Material(Shader.Find("UI/Unlit/Detail"));
-			renderer.sharedMaterial.color = ColorOrder.GetColor(index);
 		}
 		else
 		{
-			newRefPoint = targetPoints[index].gameObject;
-		}
+			newRefPoint = targetPoints[calibrationPointIndex].gameObject;
 
-		newRefPoint.transform.SetPositionAndRotation(new Vector3(position.x, position.y, position.z), Quaternion.identity);
-		targetPoints[index] = newRefPoint.transform;		
-	}
+        }
+        // Set the material and color for the new reference point
+        Renderer renderer = newRefPoint.GetComponent<Renderer>();
+        renderer.material = new Material(Shader.Find("UI/Unlit/Detail"));
+        renderer.sharedMaterial.color = ColorOrder.GetColor(calibrationPointIndex);
+        // Set the position and rotation of the new reference point
+        newRefPoint.transform.SetPositionAndRotation(new Vector3(position.x, position.y, position.z), Quaternion.identity);
+		targetPoints[calibrationPointIndex] = newRefPoint.transform;
+        calibrationPointIndex += 1;
+
+        if (calibrationPointIndex >= sourcePoints.Length)
+        {
+            calibrationPointIndex = 0;
+            Matrix4x4 alignmentTransform = CalculateAlignmentTransform();
+            ApplyAlignment(alignmentTransform);
+            calibrationDistanceError = CalculateCalibrationDistance();
+            SaveOriginalPosition();
+        }
+    }
 
     public void AddSourcePoint(Vector3 position, Transform sourcePointParent, int index)
     {
@@ -85,21 +97,32 @@ public class CalibrateObject : MonoBehaviour
 
         GameObject newRefPoint;
 
-        if (sourcePoints[index] == null)
+        if (sourcePoints[calibrationPointIndex] == null)
         {
             newRefPoint = Instantiate(Resources.Load("SourcePointPrefab", typeof(GameObject)), position, Quaternion.identity, sourcePointParent) as GameObject;
             newRefPoint.name = "SourcePoint";
             Renderer renderer = newRefPoint.GetComponent<Renderer>();
             renderer.material = new Material(Shader.Find("UI/Unlit/Detail"));
-            renderer.sharedMaterial.color = ColorOrder.GetColor(index);
+            renderer.sharedMaterial.color = ColorOrder.GetColor(calibrationPointIndex);
         }
         else
         {
-            newRefPoint = sourcePoints[index].gameObject;
+            newRefPoint = sourcePoints[calibrationPointIndex].gameObject;
+            Renderer renderer = newRefPoint.GetComponent<Renderer>();
+            renderer.material = new Material(Shader.Find("UI/Unlit/Detail"));
+            renderer.sharedMaterial.color = ColorOrder.GetColor(calibrationPointIndex);
         }
 
         newRefPoint.transform.SetPositionAndRotation(new Vector3(position.x, position.y, position.z), Quaternion.identity);
-        sourcePoints[index] = newRefPoint.transform;
+        sourcePoints[calibrationPointIndex] = newRefPoint.transform;
+        calibrationPointIndex += 1;
+
+        if (calibrationPointIndex >= sourcePoints.Length)
+        {
+			Calibrate();
+            Debug.Log("calibrate Object: " + calibrationPointIndex + " / " + sourcePoints.Length);
+        }
+      
     }
 
     public void Calibrate()
