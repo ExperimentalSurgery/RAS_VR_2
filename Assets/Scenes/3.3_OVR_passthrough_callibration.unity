@@ -35514,6 +35514,11 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1302453415 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8343134597487618386, guid: 58167329d19257142957070cd789cefc, type: 3}
+  m_PrefabInstance: {fileID: 507274685}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1304352816
 GameObject:
   m_ObjectHideFlags: 0
@@ -44996,6 +45001,11 @@ RectTransform:
 Canvas:
   m_CorrespondingSourceObject: {fileID: 5865694494262715127, guid: 9c9abb34a04c55847ac5b912b0783284, type: 3}
   m_PrefabInstance: {fileID: 1226624212}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2090466549 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8343134597487618386, guid: 58167329d19257142957070cd789cefc, type: 3}
+  m_PrefabInstance: {fileID: 1155728144}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2115596684
 GameObject:
@@ -81210,8 +81220,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltips:
   - {fileID: 332049344}
-  - {fileID: 1272707046}
-  - {fileID: 163339213}
+  - {fileID: 2090466549}
+  - {fileID: 1302453415}
   tooltip: {fileID: 332049344}
   calibrationPointIndex: 0
   sourcePoints: []
