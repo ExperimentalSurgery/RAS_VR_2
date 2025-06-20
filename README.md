@@ -13,4 +13,6 @@ To get started with the project, you'll need the following hardware:
 * **3D Systems Haptic Device (Touch or Touch X)**
   [https://www.3dsystems.com/haptics-devices/touch](https://www.3dsystems.com/haptics-devices/touch)
 
+  
+
 
