@@ -7,8 +7,9 @@ using UnityEngine.Serialization;
 
 public class CalibrationManager : MonoBehaviour
 {
+    public Transform[] tooltips;
     public Transform tooltip;
-    
+
     [Space(10)] 
     
     // this is just to display the calibration process in the inspector
@@ -26,7 +27,8 @@ public class CalibrationManager : MonoBehaviour
     private CalibrateObject currentObjectToCalibrate;
     
     private string[] alignObjectChoices;
-    private CalibrateObject[] alignObjectsInScene;
+    [SerializeField]
+    CalibrateObject[] alignObjectsInScene;
 
     private int choiceIndex;
     private GameObject sourcePointTopParentInScene;
@@ -67,12 +69,13 @@ public class CalibrationManager : MonoBehaviour
 
     void Awake()
     {
-        alignObjectsInScene = FindObjectsByType<CalibrateObject>(FindObjectsSortMode.None);
+        //alignObjectsInScene = FindObjectsByType<CalibrateObject>(FindObjectsSortMode.None);
         alignObjectChoices = CreateCalibrationObjectsAsString(alignObjectsInScene);
 
         if (alignObjectsInScene.Length != 0)
         {
             currentObjectToCalibrate = alignObjectsInScene[0];
+            tooltip = tooltips[0];
             ChangeColorOfPointer();
         }
 
@@ -106,16 +109,26 @@ public class CalibrationManager : MonoBehaviour
         
     }
 
-    public void CreateSourcePoint()
+    public void CreateSourcePoint(int objectId)
     {
+        // if the objectId is not the same as the current object to calibrate, set it
+        if (currentObjectToCalibrate != alignObjectsInScene[objectId])
+        {
+            SetCallibrationObject(objectId);
+        }
         Debug.Log("AddSourcePoint " + tooltip.position);
         Debug.Log("ChoiceIndex: " + choiceIndex);
         currentObjectToCalibrate.AddSourcePoint(tooltip.position, sourcePointParents[choiceIndex].transform, choiceIndex);
         ChangeColorOfPointer();
     }
 
-    public void CreateTargetPoint()
+    public void CreateTargetPoint(int objectId)
     {
+        // if the objectId is not the same as the current object to calibrate, set it
+        if (currentObjectToCalibrate != alignObjectsInScene[objectId])
+        {
+            SetCallibrationObject(objectId);
+        }
         Debug.Log("AddTargetPoint " + tooltip.position);
         Debug.Log("ChoiceIndex: " + choiceIndex);
         currentObjectToCalibrate.AddTargetPoint(tooltip.position, sourcePointParents[choiceIndex].transform, choiceIndex);
@@ -187,6 +200,18 @@ public class CalibrationManager : MonoBehaviour
         
         return result;
     }
+
+    public void SetCallibrationObject(int objectId)
+    {
+        if (objectId <= alignObjectsInScene.Length)
+        {
+            choiceIndex = objectId;
+            currentObjectToCalibrate = alignObjectsInScene[objectId];
+            tooltip = tooltips[objectId];
+            Debug.Log("Set currentObjectToCalibrate to: " + currentObjectToCalibrate.name);
+            ChangeColorOfPointer();
+        }
+    }
     
     public void ResetTargetPoints()
     {
@@ -215,8 +240,8 @@ public class CalibrationManager : MonoBehaviour
         {
             colorNumber = calibrationPointIndex;
         }
-        
-        Renderer rendererRight = tooltip.GetComponent<Renderer>();
+
+        Renderer rendererRight = tooltips[0].GetComponent<Renderer>(); // to change color of controller pointer
         rendererRight.material = new Material(Shader.Find("UI/Unlit/Detail"));
         rendererRight.sharedMaterial.color = ColorOrder.GetColor(colorNumber);
     }
