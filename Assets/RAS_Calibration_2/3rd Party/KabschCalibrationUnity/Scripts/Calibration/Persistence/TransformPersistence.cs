@@ -109,10 +109,16 @@ public class TransformPersistence : MonoBehaviour
 	public void LoadAndApplyTransformationFromFile() {
 		TransformInfo[] savedTransforms = LoadFromFile ();
 		ApplyTransformation (savedTransforms);
-	}
+		Debug.Log("Applied " + savedTransforms.Length + " transformations from file");
+    }
 
 	public void ApplyTransformation (TransformInfo[] transformInfo)
 	{
+		if(transformInfo == null || transformInfo.Length == 0)
+		{
+            Debug.Log ("No Transformations to apply.");
+            return;
+        }
 		foreach (TransformInfo currentTransformInfo in transformInfo)
 		{
 			GameObject transInScene = GameObject.Find(currentTransformInfo.name);

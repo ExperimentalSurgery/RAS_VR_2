@@ -39,6 +39,9 @@ public class CalibrationManager : MonoBehaviour
 
     public float calibrationDistanceError = 0;
 
+
+    public Action OnCalibrationComplete;
+
     #region GETTER AND SETTER
 
     public CalibrateObject ObjectToCalibrate
@@ -120,6 +123,8 @@ public class CalibrationManager : MonoBehaviour
         Debug.Log("ChoiceIndex: " + choiceIndex);
         currentObjectToCalibrate.AddSourcePoint(tooltip.position, sourcePointParents[choiceIndex].transform, choiceIndex);
         ChangeColorOfPointer();
+        OnCalibrationComplete?.Invoke();
+        SaveCalibrationToFile();
     }
 
     public void CreateTargetPoint(int objectId)
@@ -133,6 +138,9 @@ public class CalibrationManager : MonoBehaviour
         Debug.Log("ChoiceIndex: " + choiceIndex);
         currentObjectToCalibrate.AddTargetPoint(tooltip.position, sourcePointParents[choiceIndex].transform, choiceIndex);
         ChangeColorOfPointer();
+        OnCalibrationComplete?.Invoke();
+        SaveCalibrationToFile();
+
     }
 
 
