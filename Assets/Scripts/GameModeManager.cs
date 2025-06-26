@@ -9,6 +9,7 @@ public class GameModeManager : MonoBehaviour
     [SerializeField] private OVRPassthroughLayer oVRPassthroughLayer;
     [SerializeField] float timeForToggleEnabling = 1f;
     [SerializeField] bool canToggle = true;
+    [SerializeField] bool isHapticFeedbackEnabled = false;
     [SerializeField] GameObject[] VRObjects; // Objects that should be enabled in VR mode
     [SerializeField] GameObject[] MRObjects; // Objects that should be enabled in MR mode
     [Header("Material Settings")]
@@ -71,10 +72,13 @@ public class GameModeManager : MonoBehaviour
         if (isVirtualReality)
         {
             oVRPassthroughLayer.enabled = false;
-            rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
-            leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
-            SwapMaterial(true);
-            StartCoroutine(EnableQuickVibration());
+            if (isHapticFeedbackEnabled)
+            {
+                rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
+                leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
+                SwapMaterial(true);
+                StartCoroutine(EnableQuickVibration());
+            }
             foreach (GameObject vrObject in VRObjects)
             {
                 vrObject.SetActive(true);
@@ -90,9 +94,9 @@ public class GameModeManager : MonoBehaviour
         {
             oVRPassthroughLayer.enabled = true;
             rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-            rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+            //rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
             leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-            leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+            //leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
             SwapMaterial(false);
             foreach (GameObject vrObject in VRObjects)
             {
@@ -102,6 +106,34 @@ public class GameModeManager : MonoBehaviour
             {
                 mrObject.SetActive(true);
             }
+        }
+    }
+
+    public void ToggleHapticFeedback()
+    {
+        if (isVirtualReality)
+        {
+            isHapticFeedbackEnabled = !isHapticFeedbackEnabled;
+            if (isHapticFeedbackEnabled)
+            {
+                rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
+                leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
+                SwapMaterial(true);
+                StartCoroutine(EnableQuickVibration());
+            }
+            else
+            {
+                rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
+                //rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+                leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
+                //leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+                SwapMaterial(false);
+            }
+            Debug.Log("Haptic feedback toggled: " + isHapticFeedbackEnabled);
+        }
+        else
+        {
+            Debug.LogWarning("Haptic feedback is only available in Virtual Reality mode.");
         }
     }
 
