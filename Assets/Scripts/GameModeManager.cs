@@ -5,6 +5,10 @@ using UnityEngine;
 public class GameModeManager : MonoBehaviour
 {
     public static GameModeManager Instance { get; private set; }
+    [Header("UI")]
+    [SerializeField] private GameObject menuPanel;
+    [SerializeField] private GameObject gamePanel;
+
     [Header("Passthrough mode settings")]
     [SerializeField] private OVRPassthroughLayer oVRPassthroughLayer;
     [SerializeField] private OVRScreenFade oVRScreenFade;
@@ -13,6 +17,7 @@ public class GameModeManager : MonoBehaviour
     [SerializeField] bool isHapticFeedbackEnabled = false;
     [SerializeField] GameObject[] VRObjects; // Objects that should be enabled in VR mode
     [SerializeField] GameObject[] MRObjects; // Objects that should be enabled in MR mode
+    public bool IsCalibrationMode { get; private set; } = false;
     [Header("Material Settings")]
     [SerializeField] Material glowMaterial;
     [SerializeField] Material defaultMat;
@@ -42,7 +47,7 @@ public class GameModeManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        //StartCoroutine(InitializePassthroughMode());
+        InitializePassthroughMode();
     }
 
     private void Start()
@@ -141,10 +146,14 @@ public class GameModeManager : MonoBehaviour
         }
     }
 
-    IEnumerator InitializePassthroughMode()
+    void InitializePassthroughMode()
     {
         // This method can be used to initialize the passthrough mode if needed
         isVirtualReality = false;
+        IsCalibrationMode = false;
+        // Set the initial state of UI panels and passthrough layer
+        menuPanel.SetActive(true);
+        gamePanel.SetActive(false);
         oVRPassthroughLayer.enabled = true;
         oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
         rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
@@ -156,9 +165,41 @@ public class GameModeManager : MonoBehaviour
         {
             vrObject.SetActive(false);
         }
-        oVRPassthroughLayer.textureOpacity = 1f; // Set the initial opacity of the passthrough layer
-        yield return new WaitForSeconds(2f); // Wait for a short time to ensure the passthrough layer is initialized and it fades out properly
+        oVRPassthroughLayer.textureOpacity = 1f; // // Hide the passthrough layer
 
+
+    }
+
+    public void StartSimulationMode()
+    {
+        IsCalibrationMode = false;
+        oVRPassthroughLayer.textureOpacity = 1f;
+        ToggleMenuPanel();
+    }
+    public void StartCalibrationMode()
+    {
+        IsCalibrationMode = true;
+        oVRPassthroughLayer.textureOpacity = 1f;
+        ToggleMenuPanel();
+    }
+
+    public void EndSimulationMode()
+    {
+      Application.Quit();
+    }
+
+    public void ToggleMenuPanel()
+    {
+        gamePanel.SetActive(menuPanel.activeSelf);
+        menuPanel.SetActive(!menuPanel.activeSelf);
+        //if (menuPanel.activeSelf)
+        //{
+        //    oVRScreenFade.FadeIn();
+        //}
+        //else
+        //{
+        //    oVRScreenFade.FadeOut();
+        //}
     }
 
     public void SwapMaterial(bool isOn)

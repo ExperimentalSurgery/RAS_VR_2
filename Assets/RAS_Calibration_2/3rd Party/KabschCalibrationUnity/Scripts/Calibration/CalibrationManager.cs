@@ -115,7 +115,8 @@ public class CalibrationManager : MonoBehaviour
     public void CreateSourcePoint(int objectId)
     {
         // if it is virtual reality, do not allow source point creation 
-        if (GameModeManager.Instance.isVirtualReality) { return; }
+        if (GameModeManager.Instance.isVirtualReality || !GameModeManager.Instance.IsCalibrationMode) {tooltips[0].gameObject.SetActive(false); return; }
+        else { if(!tooltips[0].gameObject.activeSelf) tooltips[0].gameObject.SetActive(true);}
         // if the objectId is not the same as the current object to calibrate, set it
         if (currentObjectToCalibrate != alignObjectsInScene[objectId])
         {
@@ -132,7 +133,8 @@ public class CalibrationManager : MonoBehaviour
     public void CreateTargetPoint(int objectId)
     {
         // if it is virtual reality, do not allow target point creation 
-        if (GameModeManager.Instance.isVirtualReality) { return; }
+        if (GameModeManager.Instance.isVirtualReality || !GameModeManager.Instance.IsCalibrationMode) { tooltips[0].gameObject.SetActive(false); return; }
+        else { if (!tooltips[0].gameObject.activeSelf) tooltips[0].gameObject.SetActive(true); }
         // if the objectId is not the same as the current object to calibrate, set it
         if (currentObjectToCalibrate != alignObjectsInScene[objectId])
         {
