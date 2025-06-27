@@ -47,22 +47,22 @@ Material:
     m_Ints: []
     m_Floats:
     - _AmbientOcclusion: 0.694
-    - _DeformDepth1: 0
-    - _DeformDepth2: 0
-    - _DeformRadius: 0.02
+    - _DeformDepth1: 0.14999998
+    - _DeformDepth2: 0.024157524
+    - _DeformRadius: 0.1
     - _DeformationColorStrength: 0.656
-    - _IsBeingDeformed1: 0
-    - _IsBeingDeformed2: 0
-    - _MaxDepth: 10
+    - _IsBeingDeformed1: 1
+    - _IsBeingDeformed2: 1
+    - _MaxDepth: 0.15
     - _Metallic: 0.36
     - _Smoothness: 0.698
     m_Colors:
     - _Color: {r: 0.35309958, g: 0.15481098, b: 0.094699174, a: 1}
-    - _DeformationPosition1: {r: -0.29674774, g: 0.82637763, b: 0.010652572, a: 0}
-    - _DeformationPosition2: {r: -0.011630617, g: 0.88642514, b: 0.031942368, a: 0}
+    - _DeformationPosition1: {r: 0.020999951, g: 0.94344723, b: 0.531, a: 0}
+    - _DeformationPosition2: {r: -0.004, g: 0.98257923, b: 0.231, a: 0}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
-    - _SurfaceContactPosition1: {r: -0.29674774, g: 0.82637763, b: 0.010652572, a: 0}
-    - _SurfaceContactPosition2: {r: -0.011630617, g: 0.88642514, b: 0.031942368, a: 0}
+    - _SurfaceContactPosition1: {r: 0.02099979, g: 1.0934472, b: 0.5309999, a: 0}
+    - _SurfaceContactPosition2: {r: -0.00400012, g: 1.0067368, b: 0.23099986, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2221096671634204933

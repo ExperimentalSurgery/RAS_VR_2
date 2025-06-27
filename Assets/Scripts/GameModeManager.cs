@@ -5,8 +5,9 @@ using UnityEngine;
 public class GameModeManager : MonoBehaviour
 {
     public static GameModeManager Instance { get; private set; }
-    [Header("OVRPassthroughLayer")]
+    [Header("Passthrough mode settings")]
     [SerializeField] private OVRPassthroughLayer oVRPassthroughLayer;
+    [SerializeField] private OVRScreenFade oVRScreenFade;
     [SerializeField] float timeForToggleEnabling = 1f;
     [SerializeField] bool canToggle = true;
     [SerializeField] bool isHapticFeedbackEnabled = false;
@@ -41,7 +42,7 @@ public class GameModeManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        InitializePassthroughMode();
+        //StartCoroutine(InitializePassthroughMode());
     }
 
     private void Start()
@@ -72,6 +73,8 @@ public class GameModeManager : MonoBehaviour
         if (isVirtualReality)
         {
             oVRPassthroughLayer.enabled = false;
+            oVRPassthroughLayer.textureOpacity = 0f; // Set the opacity to 0 to hide the passthrough layer
+
             if (isHapticFeedbackEnabled)
             {
                 rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
@@ -93,6 +96,7 @@ public class GameModeManager : MonoBehaviour
         else
         {
             oVRPassthroughLayer.enabled = true;
+            oVRPassthroughLayer.textureOpacity = 1f;
             rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
             //rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
             leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
@@ -137,21 +141,23 @@ public class GameModeManager : MonoBehaviour
         }
     }
 
-    void InitializePassthroughMode()
+    IEnumerator InitializePassthroughMode()
     {
         // This method can be used to initialize the passthrough mode if needed
         isVirtualReality = false;
         oVRPassthroughLayer.enabled = true;
         oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
         rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-        rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+        //rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
         leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-        leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+        //leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
         SwapMaterial(false);
         foreach (GameObject vrObject in VRObjects)
         {
             vrObject.SetActive(false);
         }
+        oVRPassthroughLayer.textureOpacity = 1f; // Set the initial opacity of the passthrough layer
+        yield return new WaitForSeconds(2f); // Wait for a short time to ensure the passthrough layer is initialized and it fades out properly
 
     }
 
