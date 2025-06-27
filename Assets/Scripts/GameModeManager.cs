@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameModeManager : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class GameModeManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject gamePanel;
+    [SerializeField] private TMP_Text titleGamePanel;
 
     [Header("Passthrough mode settings")]
     [SerializeField] private OVRPassthroughLayer oVRPassthroughLayer;
@@ -53,6 +56,14 @@ public class GameModeManager : MonoBehaviour
     private void Start()
     {
         cameras = FindObjectsByType<Camera>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCalibrationMode();
+        }
     }
 
     private void OnDestroy()
@@ -113,7 +124,15 @@ public class GameModeManager : MonoBehaviour
             }
             foreach (GameObject mrObject in MRObjects)
             {
-                mrObject.SetActive(true);
+                if (IsCalibrationMode)
+                {
+                    mrObject.SetActive(true);
+                }
+                else
+                {
+                    mrObject.SetActive(false);
+                }
+              
             }
         }
     }
@@ -165,7 +184,11 @@ public class GameModeManager : MonoBehaviour
         {
             vrObject.SetActive(false);
         }
-        oVRPassthroughLayer.textureOpacity = 1f; // // Hide the passthrough layer
+        foreach (GameObject mrObject in MRObjects)
+        {
+            mrObject.SetActive(false);
+        }
+        oVRPassthroughLayer.textureOpacity = 0f; // // Hide the passthrough layer
 
 
     }
@@ -173,14 +196,26 @@ public class GameModeManager : MonoBehaviour
     public void StartSimulationMode()
     {
         IsCalibrationMode = false;
+        titleGamePanel.text = "Simulation Mode";
         oVRPassthroughLayer.textureOpacity = 1f;
-        ToggleMenuPanel();
+
+        
+        gamePanel.SetActive(menuPanel.activeSelf);
+        menuPanel.SetActive(!menuPanel.activeSelf);
+
     }
     public void StartCalibrationMode()
     {
         IsCalibrationMode = true;
+        titleGamePanel.text = "Calibration Mode";
         oVRPassthroughLayer.textureOpacity = 1f;
-        ToggleMenuPanel();
+
+        gamePanel.SetActive(menuPanel.activeSelf);
+        menuPanel.SetActive(!menuPanel.activeSelf);
+        foreach (GameObject mrObject in MRObjects)
+        {
+            mrObject.SetActive(true);
+        }
     }
 
     public void EndSimulationMode()
@@ -192,14 +227,16 @@ public class GameModeManager : MonoBehaviour
     {
         gamePanel.SetActive(menuPanel.activeSelf);
         menuPanel.SetActive(!menuPanel.activeSelf);
-        //if (menuPanel.activeSelf)
-        //{
-        //    oVRScreenFade.FadeIn();
-        //}
-        //else
-        //{
-        //    oVRScreenFade.FadeOut();
-        //}
+        if (menuPanel.activeSelf)
+        {
+            oVRPassthroughLayer.textureOpacity = 0f;
+        }
+        else
+        {
+            IsCalibrationMode = false; // after closing the menu, usec can be only in simulation mode
+            titleGamePanel.text = "Simulation Mode";
+            oVRPassthroughLayer.textureOpacity = 1f;
+        }
     }
 
     public void SwapMaterial(bool isOn)
