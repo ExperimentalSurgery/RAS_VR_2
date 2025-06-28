@@ -51,10 +51,10 @@ public class DevicesBodyHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!GameModeManager.Instance.isVirtualReality) //isCalibrated
-        {
-            return;
-        }
+        //if (!GameModeManager.Instance.isVirtualReality) //isCalibrated
+        //{
+        //    return;
+        //}
         if (device == Device.RightDevice && other.gameObject.tag == "HapticCollider_Right" && isRightStylusUsed)
         {
             //OVRControllerInHandActiveState_right.ShowState = OVRInput.InputDeviceShowState.ControllerInHandOrNoHand;
@@ -86,10 +86,10 @@ public class DevicesBodyHandler : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (!GameModeManager.Instance.isVirtualReality) //isCalibrated
-        {
-            return;
-        }
+        //if (!GameModeManager.Instance.isVirtualReality) //isCalibrated
+        //{
+        //    return;
+        //}
         if (device == Device.RightDevice && other.gameObject.tag == "HapticCollider_Right" && !isRightStylusUsed)
         {
 

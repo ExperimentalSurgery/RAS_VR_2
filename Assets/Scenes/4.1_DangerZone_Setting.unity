@@ -1643,6 +1643,18 @@ MonoBehaviour:
   stylusesRenders:
   - {fileID: 1272707044}
   - {fileID: 163339217}
+  - {fileID: 2125163394}
+  - {fileID: 621776993}
+  - {fileID: 2067351472}
+  - {fileID: 776498704}
+  - {fileID: 66781314}
+  - {fileID: 1831272547}
+  - {fileID: 1914558356}
+  - {fileID: 244756463}
+  - {fileID: 977655290}
+  - {fileID: 1508806524}
+  - {fileID: 1858229931}
+  - {fileID: 1317386680}
   VRObjects:
   - {fileID: 8436006884838781319}
   - {fileID: 728461135}
@@ -189625,21 +189637,20 @@ MonoBehaviour:
   textLabelObject: {fileID: 1311105777347002946}
   textBodyObject: {fileID: 7294369809024623351}
   stepLabelTexts:
-  - Begin with the physical liver model
-  - Switch to virtual reality mode
-  - Test visual deformation
-  - Enable haptic feedback
-  - 'Load a new simulation scene:'
+  - Switch to Virtual Reality Mode
+  - Approaching the Urethra
+  - Entering the Critical Zone
+  - Experiencing a Critical Zone
   stepBodyTexts:
-  - Hold one stylus in each hand and gently explore the surface of the physical liver
-    model to become familiar with its shape and texture.
-  - Once finished, set aside the physical liver model and platform. Then, press the
-    light button on either stylus to activate virtual reality mode.
-  - Use the stylus to interact with the virtual liver model. Observe how the surface
-    visually deforms in response to your movements.
-  - Press the dark button on the stylus to activate haptic feedback. You can now
-    feel the virtual liver and compare its tactile response to the physical model.
-  - "To begin a new scenario, click the \u201CLoad New Scene\u201D button.  "
+  - If you are currently in mixed reality, press the light button on either stylus
+    to switch to virtual reality mode.
+  - As you move the stylus closer to the urethra, a visual barrier will appear around
+    it. This signals that you are entering the critical zone.
+  - When the stylus crosses into the critical zone, you will experience a combination
+    of visual changes and haptic feedback. This dual feedback helps simulate the
+    physical sensitivity of the area and highlights the need for precision.
+  - Please proceed slowly and observe both visual cues and tactile responses as you
+    interact with this zone.
   nextButton: {fileID: 5362090612979543733}
 --- !u!114 &7183184251336371449
 MonoBehaviour:
