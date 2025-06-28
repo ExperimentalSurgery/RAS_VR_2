@@ -65,6 +65,8 @@ public class GameModeManager : MonoBehaviour
         }
         else
         {
+            ToggleMenuPanel();
+            ToggleMenuPanel();
             StartSimulationMode();
         }
 
@@ -283,6 +285,11 @@ public class GameModeManager : MonoBehaviour
     public void EndSimulationMode()
     {
         Application.Quit();
+    }
+
+    public void RestartSimulation()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void ToggleMenuPanel()
