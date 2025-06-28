@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/3.3_OVR_passthrough_callibration.unity
-    guid: b066dbbcfa5de6e48b95d80ae9c119ac
+    path: Assets/Scenes/4.0_Stiffnes_Setting.unity
+    guid: fcc7f609b4bd93e41b7ee95c6de0c72c
+  - enabled: 1
+    path: Assets/Scenes/4.1_DangerZone_Setting.unity
+    guid: e65691c210345464e9e8131cf9fa7333
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}

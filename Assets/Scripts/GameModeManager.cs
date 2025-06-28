@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameModeManager : MonoBehaviour
 {
+    [SerializeField] bool isStiffnessSetting = false; // Flag to check if we are in stiffness setting mode
     public static GameModeManager Instance { get; private set; }
     [Header("UI")]
     [SerializeField] private GameObject menuPanel;
@@ -53,13 +54,20 @@ public class GameModeManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
     }
 
     private void OnEnable()
     {
         // Initialize the passthrough mode when the script is enabled
-        InitializePassthroughMode();
+        if (isStiffnessSetting)
+        {
+            InitializePassthroughMode();
+        }
+        else
+        {
+            StartSimulationMode();
+        }
+
     }
 
     private void Start()
@@ -131,9 +139,9 @@ public class GameModeManager : MonoBehaviour
             oVRPassthroughLayer.enabled = true;
             oVRPassthroughLayer.textureOpacity = 1f;
             rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-            //rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+            rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
             leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-            //leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+            leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
             SwapMaterial(false);
             foreach (GameObject vrObject in VRObjects)
             {
@@ -190,9 +198,9 @@ public class GameModeManager : MonoBehaviour
             else
             {
                 rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-                //rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+                rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
                 leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-                //leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+                leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
                 SwapMaterial(false);
             }
             Debug.Log("Haptic feedback toggled: " + isHapticFeedbackEnabled);
@@ -205,6 +213,7 @@ public class GameModeManager : MonoBehaviour
 
     void InitializePassthroughMode()
     {
+        Debug.Log("Initializing Passthrough Mode...");
         // This method can be used to initialize the passthrough mode if needed
         isVirtualReality = false;
         IsCalibrationMode = false;
@@ -215,9 +224,9 @@ public class GameModeManager : MonoBehaviour
         oVRPassthroughLayer.enabled = true;
         oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
         rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-        //rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+        rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
         leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-        //leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+        leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
         SwapMaterial(false);
         foreach (GameObject vrObject in VRObjects)
         {
@@ -281,13 +290,12 @@ public class GameModeManager : MonoBehaviour
         gameModePanel.SetActive(menuPanel.activeSelf);
         menuPanel.SetActive(!menuPanel.activeSelf);
         IsCalibrationMode = false;
-        // Enable the passthrough layer fpr the menu state
+        // Enable the passthrough layer for the menu state
         oVRPassthroughLayer.enabled = true;
-        oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
         rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-        //rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+        rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
         leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-        //leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+        leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
         SwapMaterial(false);
         foreach (GameObject vrObject in VRObjects)
         {

@@ -65,7 +65,8 @@ public class DevicesBodyHandler : MonoBehaviour
             if (!isLeftStylusUsed)
             {
                 ToggleBody(false);
-                platform.SetActive(true);
+                if (platform != null)
+                    platform.SetActive(true);
             }
 
         }
@@ -78,7 +79,8 @@ public class DevicesBodyHandler : MonoBehaviour
             if (!isRightStylusUsed)
             {
                 ToggleBody(false);
-                platform.SetActive(true);
+                if (platform != null)
+                    platform.SetActive(true);
             }
         }
     }
@@ -98,7 +100,8 @@ public class DevicesBodyHandler : MonoBehaviour
             if (!isLeftStylusUsed)
             {
                 ToggleBody(true);
-                platform.SetActive(false);
+                if (platform != null)
+                    platform.SetActive(false);
             }
         }
         else if (device == Device.LeftDevice && other.gameObject.tag == "HapticCollider_Left" && !isLeftStylusUsed)
@@ -110,7 +113,8 @@ public class DevicesBodyHandler : MonoBehaviour
             if (!isRightStylusUsed)
             {
                 ToggleBody(true);
-                platform.SetActive(false);
+                if (platform != null)
+                    platform.SetActive(false);
             }
         }
     }
@@ -190,14 +194,14 @@ public class DevicesBodyHandler : MonoBehaviour
             fadeValue++;
         }
         isStartedFadingIn = false;
-       
+
     }
 
     void FadeOut()
     {
         fadeValue = 0;
         foreach (var bodyMat in bodyMaterials)
-        {    
+        {
             bodyMat.sharedMaterial.SetFloat("_FadeStart", 0);
             bodyMat.sharedMaterial.SetFloat("_FadeSize", 0);
         }
