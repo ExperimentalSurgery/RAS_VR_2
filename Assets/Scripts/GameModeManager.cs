@@ -58,15 +58,17 @@ public class GameModeManager : MonoBehaviour
 
     private void OnEnable()
     {
+        oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
+        IsCalibrationMode = false;
         // Initialize the passthrough mode when the script is enabled
         if (isStiffnessSetting)
         {
+            oVRPassthroughLayer.textureOpacity = 0f;
             InitializePassthroughMode();
         }
         else
         {
-            ToggleMenuPanel();
-            ToggleMenuPanel();
+            oVRPassthroughLayer.textureOpacity = 1f;
             StartSimulationMode();
         }
 
@@ -224,7 +226,6 @@ public class GameModeManager : MonoBehaviour
         gameModePanel.SetActive(false);
         calibrationModePanel.SetActive(false);
         oVRPassthroughLayer.enabled = true;
-        oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
         rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
         rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
         leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
