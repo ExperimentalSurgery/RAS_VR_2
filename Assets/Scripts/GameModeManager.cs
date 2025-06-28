@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameModeManager : MonoBehaviour
 {
     public static GameModeManager Instance { get; private set; }
     [Header("UI")]
     [SerializeField] private GameObject menuPanel;
-    [SerializeField] private GameObject gamePanel;
-    [SerializeField] private TMP_Text titleGamePanel;
+    [SerializeField] private GameObject gameModePanel;
+    [SerializeField] private GameObject calibrationModePanel;
 
     [Header("Passthrough mode settings")]
     [SerializeField] private OVRPassthroughLayer oVRPassthroughLayer;
-    [SerializeField] private OVRScreenFade oVRScreenFade;
     [SerializeField] float timeForToggleEnabling = 1f;
     [SerializeField] bool canToggle = true;
     [SerializeField] bool isHapticFeedbackEnabled = false;
+    [Header("Game Objects Settings")]
+    [SerializeField] Transform controllerTip;
+    [SerializeField] MeshRenderer[] stylusesRenders; // Objects that should be enabled in the menu panel
     [SerializeField] GameObject[] VRObjects; // Objects that should be enabled in VR mode
     [SerializeField] GameObject[] MRObjects; // Objects that should be enabled in MR mode
     public bool IsCalibrationMode { get; private set; } = false;
@@ -50,6 +53,12 @@ public class GameModeManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+    }
+
+    private void OnEnable()
+    {
+        // Initialize the passthrough mode when the script is enabled
         InitializePassthroughMode();
     }
 
@@ -60,7 +69,7 @@ public class GameModeManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCalibrationMode();
         }
@@ -98,14 +107,22 @@ public class GameModeManager : MonoBehaviour
                 SwapMaterial(true);
                 StartCoroutine(EnableQuickVibration());
             }
+
+
+            foreach (GameObject mrObject in MRObjects)
+            {
+                mrObject.SetActive(false);
+            }
+
+            controllerTip.gameObject.SetActive(false);
+
+            foreach (MeshRenderer stylusRenderer in stylusesRenders)
+            {
+                stylusRenderer.enabled = true;
+            }
             foreach (GameObject vrObject in VRObjects)
             {
                 vrObject.SetActive(true);
-            }
-
-        foreach(GameObject mrObject in MRObjects)
-            {
-                mrObject.SetActive(false);
             }
 
         }
@@ -132,7 +149,28 @@ public class GameModeManager : MonoBehaviour
                 {
                     mrObject.SetActive(false);
                 }
-              
+
+            }
+
+            foreach (MeshRenderer stylusRenderer in stylusesRenders)
+            {
+                if (IsCalibrationMode)
+                {
+                    stylusRenderer.enabled = true;
+                }
+                else
+                {
+                    stylusRenderer.enabled = false;
+                }
+            }
+
+            if (IsCalibrationMode)
+            {
+                controllerTip.gameObject.SetActive(true);
+            }
+            else
+            {
+                controllerTip.gameObject.SetActive(false);
             }
         }
     }
@@ -172,7 +210,8 @@ public class GameModeManager : MonoBehaviour
         IsCalibrationMode = false;
         // Set the initial state of UI panels and passthrough layer
         menuPanel.SetActive(true);
-        gamePanel.SetActive(false);
+        gameModePanel.SetActive(false);
+        calibrationModePanel.SetActive(false);
         oVRPassthroughLayer.enabled = true;
         oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
         rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
@@ -188,7 +227,13 @@ public class GameModeManager : MonoBehaviour
         {
             mrObject.SetActive(false);
         }
-        oVRPassthroughLayer.textureOpacity = 0f; // // Hide the passthrough layer
+        foreach (MeshRenderer stylusRenderer in stylusesRenders)
+        {
+            stylusRenderer.enabled = false;
+        }
+        controllerTip.gameObject.SetActive(false); // Hide the controller tip in main menu at the start
+
+        oVRPassthroughLayer.textureOpacity = 0f; // set the opacity to 0 to hide the passthrough layer
 
 
     }
@@ -196,45 +241,74 @@ public class GameModeManager : MonoBehaviour
     public void StartSimulationMode()
     {
         IsCalibrationMode = false;
-        titleGamePanel.text = "Simulation Mode";
         oVRPassthroughLayer.textureOpacity = 1f;
 
-        
-        gamePanel.SetActive(menuPanel.activeSelf);
+        calibrationModePanel.SetActive(false);
+        gameModePanel.SetActive(menuPanel.activeSelf);
         menuPanel.SetActive(!menuPanel.activeSelf);
 
     }
     public void StartCalibrationMode()
     {
         IsCalibrationMode = true;
-        titleGamePanel.text = "Calibration Mode";
         oVRPassthroughLayer.textureOpacity = 1f;
 
-        gamePanel.SetActive(menuPanel.activeSelf);
-        menuPanel.SetActive(!menuPanel.activeSelf);
+        calibrationModePanel.SetActive(true);
+        gameModePanel.SetActive(false);
+        menuPanel.SetActive(false);
         foreach (GameObject mrObject in MRObjects)
         {
             mrObject.SetActive(true);
         }
+        foreach (MeshRenderer stylusRenderer in stylusesRenders)
+        {
+            stylusRenderer.enabled = true;
+        }
+        controllerTip.gameObject.SetActive(true);
     }
 
+    public void ResetSimulation()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     public void EndSimulationMode()
     {
-      Application.Quit();
+        Application.Quit();
     }
 
     public void ToggleMenuPanel()
     {
-        gamePanel.SetActive(menuPanel.activeSelf);
+        gameModePanel.SetActive(menuPanel.activeSelf);
         menuPanel.SetActive(!menuPanel.activeSelf);
+        IsCalibrationMode = false;
+        // Enable the passthrough layer fpr the menu state
+        oVRPassthroughLayer.enabled = true;
+        oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
+        rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
+        //rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+        leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
+        //leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+        SwapMaterial(false);
+        foreach (GameObject vrObject in VRObjects)
+        {
+            vrObject.SetActive(false);
+        }
+        foreach (GameObject mrObject in MRObjects)
+        {
+            mrObject.SetActive(false);
+        }
+        foreach (MeshRenderer stylusRenderer in stylusesRenders)
+        {
+            stylusRenderer.enabled = false;
+        }
+        controllerTip.gameObject.SetActive(false); // Hide the controller tip 
+        // Toggle the passthrough layer opacity based on the menu state
         if (menuPanel.activeSelf)
         {
             oVRPassthroughLayer.textureOpacity = 0f;
         }
         else
         {
-            IsCalibrationMode = false; // after closing the menu, usec can be only in simulation mode
-            titleGamePanel.text = "Simulation Mode";
             oVRPassthroughLayer.textureOpacity = 1f;
         }
     }
