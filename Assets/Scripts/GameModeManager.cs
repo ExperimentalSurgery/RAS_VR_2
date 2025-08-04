@@ -258,7 +258,11 @@ public class GameModeManager : MonoBehaviour
         calibrationModePanel.SetActive(false);
         gameModePanel.SetActive(menuPanel.activeSelf);
         menuPanel.SetActive(!menuPanel.activeSelf);
-
+        foreach (GameObject mrObject in MRObjects)
+        {
+            mrObject.SetActive(false);
+        }
+        controllerTip.gameObject.SetActive(false);
     }
     public void StartCalibrationMode()
     {

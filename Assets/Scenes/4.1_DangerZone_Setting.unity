@@ -1664,8 +1664,6 @@ MonoBehaviour:
   - {fileID: 1541954572}
   - {fileID: 387015816}
   - {fileID: 912254249}
-  - {fileID: 335440533}
-  - {fileID: 1596291980}
   MRObjects:
   - {fileID: 4169327704917157316}
   - {fileID: 387015816}
@@ -5447,7 +5445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7547745676569409529, guid: 3cdf9095cedca0140aaecc23f296fdd6, type: 3}
       propertyPath: AllowRecenter
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7547745676569409529, guid: 3cdf9095cedca0140aaecc23f296fdd6, type: 3}
       propertyPath: controllerDrivenHandPosesType
