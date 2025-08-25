@@ -76,7 +76,7 @@ public class Deformator : MonoBehaviour
         RaycastHit rayInfoTail;
         int isInObject;
 
-        Vector3 surfacePos;
+        Vector3 surfacePos = new Vector3();
         Vector3 depthPos;
 
         bool hitTip = Physics.Raycast(new Ray(pointerTip.position, pointerDirZ.forward), out rayInfoTip, 3f, deformLayer);
@@ -86,13 +86,13 @@ public class Deformator : MonoBehaviour
         if (!hitTip && hitTail)
         {
             isInObject = 1;
-            surfacePos = rayInfoTail.point;
+            surfacePos += rayInfoTail.point;
         }
 
         else
         {
             isInObject = 0;
-            surfacePos= pointerTip.position;
+            surfacePos += pointerTip.position;
         }
 
         //Limit the max deform depth
@@ -114,6 +114,7 @@ public class Deformator : MonoBehaviour
         //Set the Pointer-Dependent Deformation Shader values
         if(pointerIndex == 1)
         {
+            Vector3 currentContactPosition =  deformMeshRenderer.sharedMaterial.GetVector("_SurfaceContactPosition1");
             deformMeshRenderer.sharedMaterial.SetVector("_SurfaceContactPosition1", surfacePos);
             deformMeshRenderer.sharedMaterial.SetVector("_DeformationPosition1", depthPos);
             deformMeshRenderer.sharedMaterial.SetFloat("_IsBeingDeformed1", isInObject);

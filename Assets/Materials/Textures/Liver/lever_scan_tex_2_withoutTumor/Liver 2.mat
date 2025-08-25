@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Liver 2
-  m_Shader: {fileID: -6465566751694194690, guid: a25a447917934c04897e7c119d2e23dc, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 71b8ed87658a580459718f91d845c99b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -114,8 +114,8 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DeformDepth1: 0.080528446
-    - _DeformDepth2: 0.09562223
+    - _DeformDepth1: 0.04278353
+    - _DeformDepth2: 0
     - _DeformRadius: 0.02
     - _DeformationColorStrength: 1
     - _DetailAlbedoMapScale: 1
@@ -127,7 +127,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _IsBeingDeformed1: 1
-    - _IsBeingDeformed2: 1
+    - _IsBeingDeformed2: 0
     - _MaxDepth: 10
     - _Metallic: 0
     - _OcclusionStrength: 1
@@ -147,12 +147,12 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DeformationColor: {r: 0, g: 0, b: 0, a: 1}
-    - _DeformationPosition1: {r: -1.2026696, g: 1.9713326, b: 0.9521759, a: 0}
-    - _DeformationPosition2: {r: -0.95039177, g: 1.9811484, b: 0.7150009, a: 0}
+    - _DeformationPosition1: {r: -0.4519738, g: 1.8224686, b: 0.63999695, a: 0}
+    - _DeformationPosition2: {r: -0.22865807, g: 1.8531934, b: 0.6310254, a: 0}
     - _Emission: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SurfaceContactPosition1: {r: -1.1893119, g: 2.005968, b: 0.8807142, a: 0}
-    - _SurfaceContactPosition2: {r: -1.0379862, g: 2.0193498, b: 0.7183894, a: 0}
+    - _SurfaceContactPosition1: {r: -0.4646087, g: 1.8156441, b: 0.5996954, a: 0}
+    - _SurfaceContactPosition2: {r: -0.22865807, g: 1.8531934, b: 0.6310254, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
