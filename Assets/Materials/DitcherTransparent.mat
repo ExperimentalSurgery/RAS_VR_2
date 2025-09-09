@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DitcherTransparent
-  m_Shader: {fileID: -6465566751694194690, guid: 7867f0dd74fa8684b87b8ac23c505478, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 713d47a1dae741442abc3c1b63a567d9, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -69,6 +69,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Mask:
+        m_Texture: {fileID: 2800000, guid: 71e670fb897ec0043b1687088eed5672, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -81,7 +85,15 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_2cc6c10b3fa84873909d95ecf8847116_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 71e670fb897ec0043b1687088eed5672, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_9aebde52202b4f66a9fceb6edf803ce3_Out_0_Texture2D:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -114,13 +126,14 @@ Material:
     - _DitherSize: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
+    - _Edge_Highlight_Power: 0.88
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _Opacity: 1.11
+    - _Opacity: 0.07
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -134,9 +147,10 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 1, g: 1, b: 1, a: 1}
+    - _AlbedoColor: {r: 1, g: 0.13679248, b: 0.13679248, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Edge_Color: {r: 0.35982257, g: 0.22574759, b: 0.8396226, a: 0}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
