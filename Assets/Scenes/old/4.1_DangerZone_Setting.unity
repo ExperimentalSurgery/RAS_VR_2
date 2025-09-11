@@ -5448,6 +5448,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7547745676569409529, guid: 3cdf9095cedca0140aaecc23f296fdd6, type: 3}
+      propertyPath: _trackingOriginType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547745676569409529, guid: 3cdf9095cedca0140aaecc23f296fdd6, type: 3}
+      propertyPath: usePositionTracking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547745676569409529, guid: 3cdf9095cedca0140aaecc23f296fdd6, type: 3}
       propertyPath: controllerDrivenHandPosesType
       value: 0
       objectReference: {fileID: 0}
@@ -55283,7 +55291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   persistenceFilePath: Calibration/SavedTransforms.txt
-  loadCalibrationAtStartup: 1
+  loadCalibrationAtStartup: 0
 --- !u!224 &1043258168932604413
 RectTransform:
   m_ObjectHideFlags: 0

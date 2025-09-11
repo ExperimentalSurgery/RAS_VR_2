@@ -4,9 +4,6 @@
     "m_ObjectId": "b3a1973b85a5450e809b60e7b94df1d8",
     "m_Properties": [
         {
-            "m_Id": "afccc3e678174f978dc2d22e51b4801c"
-        },
-        {
             "m_Id": "e8f3e4e571ee4aea8507ffce9b8bf839"
         },
         {
@@ -2909,34 +2906,6 @@
 }
 
 {
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
-    "m_ObjectId": "afccc3e678174f978dc2d22e51b4801c",
-    "m_Guid": {
-        "m_GuidSerialized": "a43acf3d-db02-4f3a-8281-97f67488b692"
-    },
-    "m_Name": "SnowScale",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "SnowScale",
-    "m_DefaultReferenceName": "_SnowScale",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": 50.0,
-    "m_FloatType": 0,
-    "m_RangeValues": {
-        "x": 0.0,
-        "y": 1.0
-    }
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.UVMaterialSlot",
     "m_ObjectId": "b04e878d28414a2cbb1dedb7c1723fad",
@@ -3430,8 +3399,8 @@
     "m_ObjectId": "cbd2f297d17d46cba432cefb01f04878",
     "m_Title": "Apply Dither Transparency Threshold",
     "m_Position": {
-        "x": -311.0000305175781,
-        "y": 1140.0001220703125
+        "x": -311.0,
+        "y": 1140.000244140625
     }
 }
 
@@ -3744,7 +3713,7 @@
     "m_Value": 1.0,
     "m_FloatType": 1,
     "m_RangeValues": {
-        "x": 0.05000000074505806,
+        "x": 0.0,
         "y": 10.0
     }
 }
@@ -3815,9 +3784,6 @@
         },
         {
             "m_Id": "06b3404afeb3404796681a6f2f37a882"
-        },
-        {
-            "m_Id": "afccc3e678174f978dc2d22e51b4801c"
         },
         {
             "m_Id": "e8f3e4e571ee4aea8507ffce9b8bf839"
