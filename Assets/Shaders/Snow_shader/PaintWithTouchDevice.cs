@@ -31,8 +31,9 @@ public class PaintWithTouchDevice : MonoBehaviour
         if(currentHapticPlugin == null) return;
       
         RaycastHit hit = new RaycastHit();
-        Ray ray = new Ray((currentHapticPlugin.VisualizationMesh.transform.position), collision.contacts[0].normal);
-       
+        //Ray ray = new Ray((currentHapticPlugin.VisualizationMesh.transform.position), collision.contacts[0].normal);
+        Ray ray = new Ray((collision.transform.GetChild(0).position), collision.contacts[0].normal);
+
         if (Physics.Raycast(ray, out hit))
         {
             drawMaterial.SetVector(name: "_Coordinates", value: new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
