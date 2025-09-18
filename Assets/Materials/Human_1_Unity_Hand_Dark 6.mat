@@ -33,22 +33,24 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pin
+  m_Name: Human_1_Unity_Hand_Dark 6
   m_Shader: {fileID: -6465566751694194690, guid: 89a6790c28795dd4987bb267c3d05338, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _BUILTIN_SURFACE_TYPE_TRANSPARENT
+  - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3002
   stringTagMap:
-    RenderType: Opaque
+    RenderType: Transparent
   disabledShaderPasses:
   - SHADOWCASTER
   - MOTIONVECTORS
+  - DepthOnly
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -106,7 +108,7 @@ Material:
     - _Blend: 0
     - _CastShadows: 0
     - _Cull: 2
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _EdgeHighlightPower: 1.1
     - _FadeSize: 1
     - _FadeStart: 10
@@ -121,11 +123,11 @@ Material:
     - _QueueControl: 1
     - _QueueOffset: 0
     - _Scale: 0.16
-    - _SrcBlend: 1
-    - _Surface: 0
+    - _SrcBlend: 5
+    - _Surface: 1
     - _TransitionSize: 0.1
     - _ZTest: 4
-    - _ZWrite: 1
+    - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
     - Color_d710c7c4aa1a4153a2a64167ef0bec76: {r: 0.2623709, g: 0.6187253, b: 0.8301887, a: 1}
@@ -138,14 +140,14 @@ Material:
     - Vector4_b4ecd630827d4a4eb3f21c6ac3664540: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 0.78039217}
     - _Color_1: {r: 0, g: 0, b: 0, a: 0.5803922}
-    - _EdgeColor: {r: 0.42352942, g: 0.06783336, b: 0, a: 0.50980395}
+    - _EdgeColor: {r: 0, g: 0.08110308, b: 0.42452824, a: 0.50980395}
     - _FadeCenter: {r: 1.32, g: 0, b: 6.72, a: 0}
     - _FadeScale: {r: 1, g: 1, b: 1, a: 0}
     - _FingerColor_1: {r: 1, g: 1, b: 1, a: 0}
     - _FingerColor_2: {r: 1, g: 1, b: 1, a: 0}
     - _FingerColor_3: {r: 1, g: 1, b: 1, a: 0}
     - _FingerColor_4: {r: 1, g: 1, b: 1, a: 0}
-    - _MainColor: {r: 0.5849056, g: 0.44184837, b: 0.11311853, a: 0.15686275}
+    - _MainColor: {r: 0.5872642, g: 0.6539342, b: 0.7830188, a: 0.15686275}
     - _Range: {r: 0.1, g: 1, b: 0, a: 0}
     - _ThumbColor: {r: 1, g: 1, b: 1, a: 0}
     - _Vector2: {r: 0.2, g: 0.88, b: 0, a: 0}
