@@ -10,9 +10,8 @@ public class GameModeManager : MonoBehaviour
     [SerializeField] bool isStiffnessSetting = false; // Flag to check if we are in stiffness setting mode
     public static GameModeManager Instance { get; private set; }
     [Header("UI")]
-    [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject gameModePanel;
-    [SerializeField] private GameObject calibrationModePanel;
+
 
     [Header("Passthrough mode settings")]
     [SerializeField] private OVRPassthroughLayer oVRPassthroughLayer;
@@ -87,7 +86,9 @@ public class GameModeManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+
+
+    private void OnDisable()
     {
         oVRPassthroughLayer.passthroughLayerResumed.RemoveListener(OnPassthroughLayerResumed);
     }
@@ -221,10 +222,6 @@ public class GameModeManager : MonoBehaviour
         // This method can be used to initialize the passthrough mode if needed
         isVirtualReality = false;
         IsCalibrationMode = false;
-        // Set the initial state of UI panels and passthrough layer
-        menuPanel.SetActive(true);
-        gameModePanel.SetActive(false);
-        calibrationModePanel.SetActive(false);
         oVRPassthroughLayer.enabled = true;
         rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
         rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
@@ -255,9 +252,6 @@ public class GameModeManager : MonoBehaviour
         IsCalibrationMode = false;
         oVRPassthroughLayer.textureOpacity = 1f;
 
-        calibrationModePanel.SetActive(false);
-        gameModePanel.SetActive(menuPanel.activeSelf);
-        menuPanel.SetActive(!menuPanel.activeSelf);
         foreach (GameObject mrObject in MRObjects)
         {
             mrObject.SetActive(false);
@@ -269,9 +263,6 @@ public class GameModeManager : MonoBehaviour
         IsCalibrationMode = true;
         oVRPassthroughLayer.textureOpacity = 1f;
 
-        calibrationModePanel.SetActive(true);
-        gameModePanel.SetActive(false);
-        menuPanel.SetActive(false);
         foreach (GameObject mrObject in MRObjects)
         {
             mrObject.SetActive(true);
@@ -297,40 +288,9 @@ public class GameModeManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void ToggleMenuPanel()
+    public void LoadMainMenuScene()
     {
-        gameModePanel.SetActive(menuPanel.activeSelf);
-        menuPanel.SetActive(!menuPanel.activeSelf);
-        IsCalibrationMode = false;
-        // Enable the passthrough layer for the menu state
-        oVRPassthroughLayer.enabled = true;
-        rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-        rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
-        leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-        leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
-        SwapMaterial(false);
-        foreach (GameObject vrObject in VRObjects)
-        {
-            vrObject.SetActive(false);
-        }
-        foreach (GameObject mrObject in MRObjects)
-        {
-            mrObject.SetActive(false);
-        }
-        foreach (MeshRenderer stylusRenderer in stylusesRenders)
-        {
-            stylusRenderer.enabled = false;
-        }
-        controllerTip.gameObject.SetActive(false); // Hide the controller tip 
-        // Toggle the passthrough layer opacity based on the menu state
-        if (menuPanel.activeSelf)
-        {
-            oVRPassthroughLayer.textureOpacity = 0f;
-        }
-        else
-        {
-            oVRPassthroughLayer.textureOpacity = 1f;
-        }
+        SceneManager.LoadScene(0);
     }
 
     public void SwapMaterial(bool isOn)

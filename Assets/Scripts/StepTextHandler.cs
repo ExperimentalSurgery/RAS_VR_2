@@ -13,7 +13,7 @@ public class StepTextHandler : MonoBehaviour
     [SerializeField]  string[] stepBodyTexts;
     [SerializeField] TMP_Text nextButton;
     int m_CurrentStepIndex = 0;
-    bool toLoadNextScene = false;
+    [SerializeField] private bool toLoadNextScene = false;
 
     private void Start()
     {
