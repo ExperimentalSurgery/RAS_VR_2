@@ -1,3 +1,4 @@
+using Oculus.Interaction;
 using UnityEngine;
 
 public class PaintWithTouchDevice : MonoBehaviour
@@ -19,13 +20,21 @@ public class PaintWithTouchDevice : MonoBehaviour
         splatMap = new RenderTexture(width: 4096, height: 4096, depth: 0, RenderTextureFormat.ARGBFloat); currentMaterial.SetTexture(name: "_SplatMap", splatMap);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (!collision.gameObject.transform.parent.transform.GetChild(0).GetComponent<HapticPlugin>()) return;
-        newHapticPlugin = collision.gameObject.transform.parent.transform.GetChild(0).GetComponent<HapticPlugin>();
+        if (!other.gameObject.transform.parent.transform.GetChild(0).GetComponent<HapticPlugin>()) return;
+        newHapticPlugin = other.gameObject.transform.parent.transform.GetChild(0).GetComponent<HapticPlugin>();
         if (newHapticPlugin == currentHapticPlugin) return;
         currentHapticPlugin = newHapticPlugin;
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (!collision.gameObject.transform.parent.transform.GetChild(0).GetComponent<HapticPlugin>()) return;
+    //    newHapticPlugin = collision.gameObject.transform.parent.transform.GetChild(0).GetComponent<HapticPlugin>();
+    //    if (newHapticPlugin == currentHapticPlugin) return;
+    //    currentHapticPlugin = newHapticPlugin;
+    //}
     private void OnCollisionStay(Collision collision)
     {
         if(currentHapticPlugin == null) return;

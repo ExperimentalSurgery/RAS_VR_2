@@ -10,6 +10,7 @@ public class CalibrationManager : MonoBehaviour
 {
     public Transform[] tooltips;
     public Transform tooltip;
+    public Color[] originalColorsForTips;
 
     [Header("Passthrough mode settings")]
     [SerializeField] private OVRPassthroughLayer oVRPassthroughLayer;
@@ -106,9 +107,30 @@ public class CalibrationManager : MonoBehaviour
         InitializePassthroughMode();
     }
 
+    private void Start()
+    {
+        foreach (Transform tip in tooltips)
+        {
+            originalColorsForTips = new Color[tooltips.Length];
+            Renderer rendererTip = tip.GetComponent<Renderer>();
+            originalColorsForTips[Array.IndexOf(tooltips, tip)] = rendererTip.sharedMaterial.color;
+        }
+    }
     private void OnDisable()
     {
         oVRPassthroughLayer.passthroughLayerResumed.RemoveListener(OnPassthroughLayerResumed);
+        RevertTipColors();
+    }
+
+
+    public void RevertTipColors()
+    {
+               foreach(Transform tip in tooltips)
+        {
+            Renderer rendererTip = tip.GetComponent<Renderer>();
+            rendererTip.sharedMaterial.color = originalColorsForTips[Array.IndexOf(tooltips, tip)];
+        }
+        SceneManager.LoadScene(0);
     }
 
     // 2) OnPassthroughLayerResumed is called once the layer is fully initialized and passthrough is visible
@@ -145,6 +167,7 @@ public class CalibrationManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        RevertTipColors();
         SceneManager.LoadScene(0);
     }
     public void CreateSourcePoint(int objectId)

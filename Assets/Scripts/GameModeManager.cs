@@ -9,9 +9,6 @@ public class GameModeManager : MonoBehaviour
 {
     [SerializeField] bool isStiffnessSetting = false; // Flag to check if we are in stiffness setting mode
     public static GameModeManager Instance { get; private set; }
-    [Header("UI")]
-    [SerializeField] private GameObject gameModePanel;
-
 
     [Header("Passthrough mode settings")]
     [SerializeField] private OVRPassthroughLayer oVRPassthroughLayer;
@@ -242,7 +239,7 @@ public class GameModeManager : MonoBehaviour
         }
         controllerTip.gameObject.SetActive(false); // Hide the controller tip in main menu at the start
 
-        oVRPassthroughLayer.textureOpacity = 0f; // set the opacity to 0 to hide the passthrough layer
+        oVRPassthroughLayer.textureOpacity = 1f; // set the opacity to 0 to hide the passthrough layer
 
 
     }
