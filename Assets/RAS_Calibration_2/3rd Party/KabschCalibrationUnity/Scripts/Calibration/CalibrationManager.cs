@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
 //using Valve.VR;
 
 public class CalibrationManager : MonoBehaviour
 {
     public Transform[] tooltips;
     public Transform tooltip;
+
+    [Header("Passthrough mode settings")]
+    [SerializeField] private OVRPassthroughLayer oVRPassthroughLayer;
+    [SerializeField] float timeForToggleEnabling = 1f;
+    [SerializeField] bool canToggle = true;
 
     [Space(10)] 
     
@@ -41,6 +47,7 @@ public class CalibrationManager : MonoBehaviour
 
 
     public Action OnCalibrationComplete;
+    private int objectId = 0;
 
     #region GETTER AND SETTER
 
@@ -79,7 +86,7 @@ public class CalibrationManager : MonoBehaviour
         {
             currentObjectToCalibrate = alignObjectsInScene[0];
             tooltip = tooltips[0];
-            ChangeColorOfPointer();
+            //ChangeColorOfPointer(0);
         }
 
         sourcePointTopParentInScene = new GameObject("SourcePoints");
@@ -91,6 +98,30 @@ public class CalibrationManager : MonoBehaviour
             sourcePointParents[i] = new GameObject(alignObjectsInScene[i].name + "Sources");
             sourcePointParents[i].transform.SetParent(sourcePointTopParentInScene.transform);
         }
+    }
+
+    private void OnEnable()
+    {
+        oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
+        InitializePassthroughMode();
+    }
+
+    private void OnDisable()
+    {
+        oVRPassthroughLayer.passthroughLayerResumed.RemoveListener(OnPassthroughLayerResumed);
+    }
+
+    // 2) OnPassthroughLayerResumed is called once the layer is fully initialized and passthrough is visible
+    private void OnPassthroughLayerResumed(OVRPassthroughLayer passthroughLayer)
+    {
+        // 3) Do something here after the passthrough layer has resumed
+    }
+
+    void InitializePassthroughMode()
+    {
+        Debug.Log("Initializing Passthrough Mode...");
+        oVRPassthroughLayer.textureOpacity = 1f; // set the opacity to 0 to hide the passthrough layer
+
     }
 
     void Update()
@@ -112,10 +143,12 @@ public class CalibrationManager : MonoBehaviour
         
     }
 
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
     public void CreateSourcePoint(int objectId)
     {
-        // if it is virtual reality, do not allow source point creation 
-        if (!GameModeManager.Instance.IsCalibrationMode) { return; }
         // if the objectId is not the same as the current object to calibrate, set it
         if (currentObjectToCalibrate != alignObjectsInScene[objectId])
         {
@@ -131,8 +164,6 @@ public class CalibrationManager : MonoBehaviour
 
     public void CreateTargetPoint(int objectId)
     {
-        // if it is virtual reality, do not allow target point creation 
-        if (!GameModeManager.Instance.IsCalibrationMode) { return; }
         // if the objectId is not the same as the current object to calibrate, set it
         if (currentObjectToCalibrate != alignObjectsInScene[objectId])
         {
@@ -218,8 +249,8 @@ public class CalibrationManager : MonoBehaviour
         if (objectId <= alignObjectsInScene.Length)
         {
             choiceIndex = objectId;
-            currentObjectToCalibrate = alignObjectsInScene[objectId];
-            tooltip = tooltips[objectId];
+            currentObjectToCalibrate = alignObjectsInScene[choiceIndex];
+            tooltip = tooltips[choiceIndex];
             Debug.Log("Set currentObjectToCalibrate to: " + currentObjectToCalibrate.name);
             ChangeColorOfPointer();
         }
@@ -247,13 +278,9 @@ public class CalibrationManager : MonoBehaviour
 
     public void ChangeColorOfPointer()
     {
-        int colorNumber = 0;
-        if (sourcePoints.Length != 0)
-        {
-            colorNumber = calibrationPointIndex;
-        }
+        int colorNumber = (sourcePoints.Length != 0) ? calibrationPointIndex : 0;
 
-        Renderer rendererRight = tooltips[0].GetComponent<Renderer>(); // to change color of controller pointer
+        Renderer rendererRight = tooltips[choiceIndex].GetComponent<Renderer>(); // to change color of controller pointer
         rendererRight.material = new Material(Shader.Find("UI/Unlit/Detail"));
         rendererRight.sharedMaterial.color = ColorOrder.GetColor(colorNumber);
     }

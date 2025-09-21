@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class SequenceManager_StiffnesSetting : MonoBehaviour
 {
-    [SerializeField] private readonly Image imageForFading;
+    [SerializeField] private Image imageForFading;
     [SerializeField] private readonly float loadingSpeed = 1;
     [SerializeField] private readonly float fadeSpeed = 1;
 
