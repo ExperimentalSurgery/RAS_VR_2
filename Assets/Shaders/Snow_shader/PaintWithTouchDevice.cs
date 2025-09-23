@@ -55,7 +55,8 @@ public class PaintWithTouchDevice : MonoBehaviour
         RaycastHit rayInfoTip = new RaycastHit();
         Vector3 surfacePos = new Vector3();
         // Shoot a ray from the brush tip forward
-        Ray ray = new Ray(tipTransform.position, tipTransform.forward);
+        Ray ray = new Ray(tipTransform.position, tipTransform.forward *-1);
+        Debug.DrawRay(ray.origin, ray.direction * 0.1f, Color.red, 5.0f);
         bool hitTip = Physics.Raycast(ray, out rayInfoTip);
 
         if (hitTip)
@@ -88,22 +89,22 @@ public class PaintWithTouchDevice : MonoBehaviour
     //private void OnCollisionStay(Collision collision)
     //{
     //    CalculatePaintedPoint();
-        //if (currentHapticPlugin == null) return;
+    //    if (currentHapticPlugin == null) return;
 
-        //RaycastHit hit = new RaycastHit();
-        ////Ray ray = new Ray((currentHapticPlugin.VisualizationMesh.transform.position), collision.contacts[0].normal);
-        //Ray ray = new Ray((collision.transform.GetChild(0).position), collision.GetContact(0).normal);
+    //    RaycastHit hit = new RaycastHit();
+    //    //Ray ray = new Ray((currentHapticPlugin.VisualizationMesh.transform.position), collision.contacts[0].normal);
+    //    Ray ray = new Ray((collision.transform.GetChild(0).position), collision.GetContact(0).normal);
 
-        //if (Physics.Raycast(ray, out hit))
-        //{
-        //    Debug.Log("Hit at texture coordinates: " + hit.textureCoord);
-        //    drawMaterial.SetVector(name: "_Coordinates", value: new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
-        //    drawMaterial.SetFloat(name: "_Strength", strength);
-        //    drawMaterial.SetFloat(name: "_Size", size);
-        //    RenderTexture temp = RenderTexture.GetTemporary(splatMap.width, splatMap.height, 0, RenderTextureFormat.ARGBFloat);
-        //    Graphics.Blit(splatMap, temp);
-        //    Graphics.Blit(temp, splatMap, drawMaterial);
-        //    RenderTexture.ReleaseTemporary(temp);
-        //}
+    //    if (Physics.Raycast(ray, out hit))
+    //    {
+    //        Debug.Log("Hit at texture coordinates: " + hit.textureCoord);
+    //        drawMaterial.SetVector(name: "_Coordinates", value: new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
+    //        drawMaterial.SetFloat(name: "_Strength", strength);
+    //        drawMaterial.SetFloat(name: "_Size", size);
+    //        RenderTexture temp = RenderTexture.GetTemporary(splatMap.width, splatMap.height, 0, RenderTextureFormat.ARGBFloat);
+    //        Graphics.Blit(splatMap, temp);
+    //        Graphics.Blit(temp, splatMap, drawMaterial);
+    //        RenderTexture.ReleaseTemporary(temp);
+    //    }
     //}
 }
