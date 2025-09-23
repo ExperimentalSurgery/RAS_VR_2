@@ -56,7 +56,7 @@ public class PaintWithTouchDevice : MonoBehaviour
         Vector3 surfacePos = new Vector3();
         // Shoot a ray from the brush tip forward
         Ray ray = new Ray(tipTransform.position, tipTransform.forward *-1);
-        Debug.DrawRay(ray.origin, ray.direction * 0.1f, Color.red, 5.0f);
+        Debug.DrawRay(ray.origin, ray.direction * 0.1f, Color.red, 1.0f);
         bool hitTip = Physics.Raycast(ray, out rayInfoTip);
 
         if (hitTip)
