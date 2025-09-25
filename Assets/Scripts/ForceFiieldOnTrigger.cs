@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class ForceFiieldOnTrigger : MonoBehaviour
 {
+    [Header("Assign in Inspector")]
+    [SerializeField] Transform hapticObject;
+    [SerializeField] private ForceFieldHandler forceFieldHandler;
     MeshRenderer meshRenderer;
 
     private void Awake()
@@ -15,6 +18,7 @@ public class ForceFiieldOnTrigger : MonoBehaviour
         {
             if (!meshRenderer.enabled)
             {
+                hapticObject.GetComponent<MeshCollider>().enabled = false;
                 meshRenderer.enabled = true; // Enable the renderer when a collision occurs
             }
             Debug.Log("Collision with haptic collider detected: " + other.gameObject.tag);
@@ -22,10 +26,12 @@ public class ForceFiieldOnTrigger : MonoBehaviour
     }
     private void OnTriggerExit(UnityEngine.Collider other)
     {
+        if(forceFieldHandler.isTouched) { return; }
         if (other.gameObject.tag == "HapticCollider_Right" || other.gameObject.tag == "HapticCollider_Left")
         {
             if (meshRenderer.enabled)
             {
+                hapticObject.GetComponent<MeshCollider>().enabled = true;
                 meshRenderer.enabled = false; // Disable the renderer when the collision ends
             }
             Debug.Log("Collision exit with haptic collider detected: " + other.gameObject.tag);

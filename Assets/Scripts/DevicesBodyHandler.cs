@@ -12,6 +12,9 @@ public enum Device
 }
 public class DevicesBodyHandler : MonoBehaviour
 {
+
+    [SerializeField] Collider triggerCollider;   // assign your trigger collider in Inspector
+
     [SerializeField] Renderer[] bodyMaterials;
     [SerializeField] GameObject rightTouchDevice;
     [SerializeField] GameObject leftTouchDevice;
@@ -19,18 +22,11 @@ public class DevicesBodyHandler : MonoBehaviour
     [SerializeField] Device device;
     [SerializeField] OVRHand handLeft;
     [SerializeField] OVRHand handRight;
-    //[SerializeField] OVRControllerInHandActiveState OVRControllerInHandActiveState_right;
-    //[SerializeField] OVRControllerInHandActiveState OVRControllerInHandActiveState_left;
     static bool isRightStylusUsed = false;
     static bool isLeftStylusUsed = false;
     static bool isStartedFadingIn = false;
-    bool isCalibrated = false;
     public int fadeValue = 0;
 
-    private void OnEnable()
-    {
-        ParentConstraintHandler.onCalibrated += ToggleDeviceBodyHandler;
-    }
 
 
     private void OnDisable()
@@ -41,23 +37,23 @@ public class DevicesBodyHandler : MonoBehaviour
     private void Start()
     {
         isStartedFadingIn = false;
+        CheckTriggerOnce();
     }
 
-    void ToggleDeviceBodyHandler(bool isCalibrated)
+    private void CheckTriggerOnce()
     {
-        this.isCalibrated = isCalibrated;
-        Debug.Log("isCalibrated: " + isCalibrated);
+        if (triggerCollider == null) { Debug.Log("triggerCollider == null"); return; }
+        if (!GetComponent<Collider>().bounds.Intersects(triggerCollider.bounds) )
+        {
+            HandleStylusOutside();
+        }
     }
+
 
     private void OnTriggerEnter(Collider other)
-    {
-        //if (!GameModeManager.Instance.isVirtualReality) //isCalibrated
-        //{
-        //    return;
-        //}
+    { 
         if (device == Device.RightDevice && other.gameObject.tag == "HapticCollider_Right" && isRightStylusUsed)
         {
-            //OVRControllerInHandActiveState_right.ShowState = OVRInput.InputDeviceShowState.ControllerInHandOrNoHand;
             handRight.m_showState = OVRInput.InputDeviceShowState.ControllerNotInHand;
             isRightStylusUsed = false;
             ToggleDevices(true, true);
@@ -72,7 +68,6 @@ public class DevicesBodyHandler : MonoBehaviour
         }
         else if (device == Device.LeftDevice && other.gameObject.tag == "HapticCollider_Left" && isLeftStylusUsed)
         {
-            //OVRControllerInHandActiveState_left.ShowState = OVRInput.InputDeviceShowState.ControllerInHandOrNoHand;
             handLeft.m_showState = OVRInput.InputDeviceShowState.ControllerNotInHand;
             isLeftStylusUsed = false;
             ToggleDevices(true, false);
@@ -86,15 +81,21 @@ public class DevicesBodyHandler : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        //if (!GameModeManager.Instance.isVirtualReality) //isCalibrated
-        //{
-        //    return;
-        //}
         if (device == Device.RightDevice && other.gameObject.tag == "HapticCollider_Right" && !isRightStylusUsed)
         {
+            HandleStylusOutside();
+        }
+        else if (device == Device.LeftDevice && other.gameObject.tag == "HapticCollider_Left" && !isLeftStylusUsed)
+        {
+            HandleStylusOutside();
+        }
+    }
 
-            //OVRControllerInHandActiveState_right.ShowState = OVRInput.InputDeviceShowState.NoHand;
-            //handRight.m_showState = OVRInput.InputDeviceShowState.NoHand;
+    public void HandleStylusOutside()
+    {
+        if(device == Device.RightDevice)
+        {
+
             isRightStylusUsed = true;
             ToggleDevices(false, true);
             if (!isLeftStylusUsed)
@@ -104,10 +105,8 @@ public class DevicesBodyHandler : MonoBehaviour
                     platform.SetActive(false);
             }
         }
-        else if (device == Device.LeftDevice && other.gameObject.tag == "HapticCollider_Left" && !isLeftStylusUsed)
+        else if(device == Device.LeftDevice)
         {
-            //OVRControllerInHandActiveState_left.ShowState = OVRInput.InputDeviceShowState.NoHand;
-            //handLeft.m_showState = OVRInput.InputDeviceShowState.NoHand;
             isLeftStylusUsed = true;
             ToggleDevices(false, false);
             if (!isRightStylusUsed)

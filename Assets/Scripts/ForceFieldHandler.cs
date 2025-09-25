@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ForceFieldHandler : MonoBehaviour
 {
+    public bool isTouched { get; private set; }
     MeshRenderer meshRenderer;
 
     private void Awake()
@@ -15,6 +16,7 @@ public class ForceFieldHandler : MonoBehaviour
         {
             if (!meshRenderer.enabled)
             {
+                isTouched = true;
                 meshRenderer.enabled = true; // Enable the renderer when a collision occurs
             }
             Debug.Log("Collision with haptic collider detected: " + other.gameObject.tag);
@@ -26,6 +28,7 @@ public class ForceFieldHandler : MonoBehaviour
         {
             if (meshRenderer.enabled)
             {
+                isTouched = false;
                 meshRenderer.enabled = false; // Disable the renderer when the collision ends
             }
             Debug.Log("Collision exit with haptic collider detected: " + other.gameObject.tag);

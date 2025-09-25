@@ -1578,6 +1578,7 @@ MonoBehaviour:
   - {fileID: 1985203600}
   - {fileID: 1287473603117379254}
   - {fileID: 391349961}
+  - {fileID: 1287473603117379254}
   MRObjects:
   - {fileID: 4169327704917157316}
   glowMaterial: {fileID: 2100000, guid: 2580da69fbc1f0145a79316151fa3ced, type: 2}
@@ -3773,6 +3774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcbe2d1f459bf2747ba80aab4cf6ade3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerCollider: {fileID: 1726081552}
   bodyMaterials:
   - {fileID: 6742587237575005366}
   - {fileID: 6064673278003671815}
@@ -10523,6 +10525,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HapticDevicesHandler
       objectReference: {fileID: 0}
+    - target: {fileID: 6446659289070713661, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009867996203747960, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 7050799057524733288, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: 'targetPoints.Array.data[0]'
       value: 
@@ -12935,6 +12945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcbe2d1f459bf2747ba80aab4cf6ade3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerCollider: {fileID: 1726081551}
   bodyMaterials:
   - {fileID: 6742587237575005366}
   - {fileID: 6064673278003671815}

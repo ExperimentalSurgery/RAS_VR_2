@@ -17,22 +17,22 @@ public class CalibrationManager : MonoBehaviour
     [SerializeField] float timeForToggleEnabling = 1f;
     [SerializeField] bool canToggle = true;
 
-    [Space(10)] 
-    
+    [Space(10)]
+
     // this is just to display the calibration process in the inspector
     [Header("Calibration points")]
-    [SerializeField] 
+    [SerializeField]
     private int calibrationPointIndex;
     [SerializeField]
     private Vector3[] sourcePoints;
     [SerializeField]
     private Vector3[] targetPoints;
-    
-    [Space(10)] 
+
+    [Space(10)]
     [Header("Currently selected object to align")]
     [SerializeField]
     private CalibrateObject currentObjectToCalibrate;
-    
+
     private string[] alignObjectChoices;
     [SerializeField]
     CalibrateObject[] alignObjectsInScene;
@@ -57,25 +57,25 @@ public class CalibrationManager : MonoBehaviour
         get => currentObjectToCalibrate;
         set => currentObjectToCalibrate = value;
     }
-    
+
     public string[] AlignObjectChoices
     {
         get => alignObjectChoices;
         set => alignObjectChoices = value;
     }
-    
+
     public CalibrateObject[] AlignObjectsInScene
     {
         get => alignObjectsInScene;
         set => alignObjectsInScene = value;
     }
-    
+
     public int ChoiceIndex
     {
         get => choiceIndex;
         set => choiceIndex = value;
     }
-    
+
     #endregion
 
     void Awake()
@@ -93,7 +93,7 @@ public class CalibrationManager : MonoBehaviour
         sourcePointTopParentInScene = new GameObject("SourcePoints");
         //targetPointTopParentInScene.transform.SetParent(GameObject.FindGameObjectWithTag("SteamVR").transform);
         sourcePointParents = new GameObject[alignObjectsInScene.Length];
-        
+
         for (int i = 0; i < alignObjectsInScene.Length; i++)
         {
             sourcePointParents[i] = new GameObject(alignObjectsInScene[i].name + "Sources");
@@ -104,7 +104,6 @@ public class CalibrationManager : MonoBehaviour
     private void OnEnable()
     {
         oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
-        InitializePassthroughMode();
     }
 
     private void Start()
@@ -114,6 +113,7 @@ public class CalibrationManager : MonoBehaviour
             originalColorsForTips = new Color[tooltips.Length];
             Renderer rendererTip = tip.GetComponent<Renderer>();
             originalColorsForTips[Array.IndexOf(tooltips, tip)] = rendererTip.sharedMaterial.color;
+            InitializePassthroughMode();
         }
     }
     private void OnDisable()
@@ -125,8 +125,9 @@ public class CalibrationManager : MonoBehaviour
 
     public void RevertTipColors()
     {
-               foreach(Transform tip in tooltips)
+        foreach (Transform tip in tooltips)
         {
+            if (tip == null) continue;
             Renderer rendererTip = tip.GetComponent<Renderer>();
             rendererTip.sharedMaterial.color = originalColorsForTips[Array.IndexOf(tooltips, tip)];
         }
@@ -153,7 +154,7 @@ public class CalibrationManager : MonoBehaviour
 
 
         //throw new Exception("No input method implemented yet.");
-        
+
         /*
         TODO: Add calibration input here, depending on VR system used - example is for SteamVR 1.0.        
         if (SteamVR_Input._default.inActions.InteractUI.GetStateDown(SteamVR_Input_Sources.RightHand))
@@ -162,12 +163,11 @@ public class CalibrationManager : MonoBehaviour
             ChangeColorOfPointer();
         }
         */
-        
+
     }
 
     public void LoadMainMenu()
     {
-        RevertTipColors();
         SceneManager.LoadScene(0);
     }
     public void CreateSourcePoint(int objectId)
@@ -208,7 +208,8 @@ public class CalibrationManager : MonoBehaviour
     }
 
     private Vector3 CreateDummySourcePoint(int number)
-    { switch (number % sourcePoints.Length)
+    {
+        switch (number % sourcePoints.Length)
         {
             // blue
             case 0:
@@ -231,7 +232,7 @@ public class CalibrationManager : MonoBehaviour
     }
 
     #region CUSTOM EDITOR UI
-    
+
     public string[] CreateCalibrationObjectsAsString(CalibrateObject[] input)
     {
         string[] result = new string[input.Length];
@@ -260,10 +261,10 @@ public class CalibrationManager : MonoBehaviour
         {
             if (transforms[i] != null)
             {
-                result[i] = transforms[i].position;    
+                result[i] = transforms[i].position;
             }
         }
-        
+
         return result;
     }
 
@@ -278,7 +279,7 @@ public class CalibrationManager : MonoBehaviour
             ChangeColorOfPointer();
         }
     }
-    
+
     public void ResetTargetPoints()
     {
         currentObjectToCalibrate.ResetAllTargetPoints();
@@ -303,10 +304,15 @@ public class CalibrationManager : MonoBehaviour
     {
         int colorNumber = (sourcePoints.Length != 0) ? calibrationPointIndex : 0;
 
-        Renderer rendererRight = tooltips[choiceIndex].GetComponent<Renderer>(); // to change color of controller pointer
+        Renderer rendererController = tooltips[0].GetComponent<Renderer>(); // to change color of controller pointer
+        rendererController.material = new Material(Shader.Find("UI/Unlit/Detail"));
+        rendererController.sharedMaterial.color = ColorOrder.GetColor(colorNumber);
+
+        if (choiceIndex == 0) { return; }
+        Renderer rendererRight = tooltips[choiceIndex].GetComponent<Renderer>(); // to change color of another pointer
         rendererRight.material = new Material(Shader.Find("UI/Unlit/Detail"));
         rendererRight.sharedMaterial.color = ColorOrder.GetColor(colorNumber);
     }
-    
+
     #endregion
 }

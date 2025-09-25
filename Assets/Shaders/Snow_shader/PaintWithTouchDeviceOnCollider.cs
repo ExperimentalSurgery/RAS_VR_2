@@ -4,7 +4,7 @@ using UnityEngine;
 public class PaintWithTouchDeviceOnCollider : MonoBehaviour
 {
     private HapticPlugin newHapticPlugin;
-    [SerializeField] private HapticPlugin currentHapticPlugin;
+    private HapticPlugin currentHapticPlugin;
     [SerializeField] private Shader drawShader;
     private RenderTexture splatMap;
     private Material currentMaterial, drawMaterial;
@@ -20,6 +20,7 @@ public class PaintWithTouchDeviceOnCollider : MonoBehaviour
         splatMap = new RenderTexture(width: 4096, height: 4096, depth: 0, RenderTextureFormat.ARGBFloat); currentMaterial.SetTexture(name: "_SplatMap", splatMap);
     }
 
+
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.gameObject.transform.parent.transform.GetChild(0).GetComponent<HapticPlugin>()) return;
@@ -33,11 +34,10 @@ public class PaintWithTouchDeviceOnCollider : MonoBehaviour
 
         RaycastHit hit = new RaycastHit();
         //Ray ray = new Ray((currentHapticPlugin.VisualizationMesh.transform.position), collision.contacts[0].normal);
-        Ray ray = new Ray((collision.transform.GetChild(0).position), collision.GetContact(0).normal);
-        Debug.DrawRay(ray.origin, ray.direction, Color.red, 1);
+        Ray ray = new Ray((collision.transform.GetChild(0).position), collision.contacts[0].normal);
+        Debug.DrawRay(ray.origin, ray.direction * 0.1f, Color.red, 1.0f);
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log("Hit at texture coordinates: " + hit.textureCoord);
             drawMaterial.SetVector(name: "_Coordinates", value: new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
             drawMaterial.SetFloat(name: "_Strength", strength);
             drawMaterial.SetFloat(name: "_Size", size);
@@ -47,11 +47,4 @@ public class PaintWithTouchDeviceOnCollider : MonoBehaviour
             RenderTexture.ReleaseTemporary(temp);
         }
     }
-
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    if (collision.gameObject.transform.parent.transform.GetChild(0).GetComponent<HapticPlugin>() != currentHapticPlugin) return;
-    //        currentHapticPlugin = null;
-    //        tipTransform = null;
-    //}
 }
