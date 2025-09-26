@@ -37,11 +37,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9b4213c202ccee74494498dfcb7eb08d, type: 3}
+        m_Texture: {fileID: 2800000, guid: dd69822cdf7b90545b0fe230642ecc71, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicMap:
-        m_Texture: {fileID: 2800000, guid: b03ec83145a4c874fb89ac97ab48eafc, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
@@ -49,11 +49,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: e587e110ad0ad6e4caea04fd5efc86dd, type: 3}
+        m_Texture: {fileID: 2800000, guid: c1a4902a02104e142a4323e8a605153b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PaintTex:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularMap:
+        m_Texture: {fileID: 2800000, guid: afacae142f8028c4982ccc6750d2a40a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SplatMap:
@@ -98,6 +102,7 @@ Material:
     - _QueueOffset: 0
     - _Smoothness: 0.5
     - _SnowScale: 63.57
+    - _SpecularStrength: 0.3
     - _VertexOffset: 0
     m_Colors:
     - _BrushColor: {r: 0.58165556, g: 0.5784977, b: 0.9811321, a: 1}
