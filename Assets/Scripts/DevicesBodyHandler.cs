@@ -27,56 +27,51 @@ public class DevicesBodyHandler : MonoBehaviour
     static bool isStartedFadingIn = false;
     public int fadeValue = 0;
 
-
+    //private void OnEnable()
+    //{
+    //    GameModeManager.Instance.onHapticEnabled += CheckTriggerOnce;
+    //}
 
     private void OnDisable()
     {
         FadeOut();
+        //GameModeManager.Instance.onHapticEnabled -= CheckTriggerOnce;
     }
 
     private void Start()
     {
         isStartedFadingIn = false;
-        CheckTriggerOnce();
     }
 
-    private void CheckTriggerOnce()
+    private void OnEnable()
+    {
+        CheckTriggerOnce();
+        Debug.Log("OnEnable - CheckTriggerOnce");
+    }
+
+    public void CheckTriggerOnce()
     {
         if (triggerCollider == null) { Debug.Log("triggerCollider == null"); return; }
-        if (!GetComponent<Collider>().bounds.Intersects(triggerCollider.bounds) )
+        if (!GetComponent<Collider>().bounds.Intersects(triggerCollider.bounds))
         {
             HandleStylusOutside();
+        }
+        else if (GetComponent<Collider>().bounds.Intersects(triggerCollider.bounds))
+        {
+            HandleStylusInside();
         }
     }
 
 
     private void OnTriggerEnter(Collider other)
-    { 
+    {
         if (device == Device.RightDevice && other.gameObject.tag == "HapticCollider_Right" && isRightStylusUsed)
         {
-            handRight.m_showState = OVRInput.InputDeviceShowState.ControllerNotInHand;
-            isRightStylusUsed = false;
-            ToggleDevices(true, true);
-
-            if (!isLeftStylusUsed)
-            {
-                ToggleBody(false);
-                if (platform != null)
-                    platform.SetActive(true);
-            }
-
+            HandleStylusInside();
         }
         else if (device == Device.LeftDevice && other.gameObject.tag == "HapticCollider_Left" && isLeftStylusUsed)
         {
-            handLeft.m_showState = OVRInput.InputDeviceShowState.ControllerNotInHand;
-            isLeftStylusUsed = false;
-            ToggleDevices(true, false);
-            if (!isRightStylusUsed)
-            {
-                ToggleBody(false);
-                if (platform != null)
-                    platform.SetActive(true);
-            }
+            HandleStylusInside();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -91,9 +86,36 @@ public class DevicesBodyHandler : MonoBehaviour
         }
     }
 
+    public void HandleStylusInside()
+    {
+        if (device == Device.RightDevice)
+        {
+            isRightStylusUsed = false;
+            ToggleDevices(true, true);
+
+            if (!isLeftStylusUsed)
+            {
+                ToggleBody(false);
+                if (platform != null)
+                    platform.SetActive(true);
+            }
+        }
+        else if (device == Device.LeftDevice)
+        {
+            isLeftStylusUsed = false;
+            ToggleDevices(true, false);
+            if (!isRightStylusUsed)
+            {
+                ToggleBody(false);
+                if (platform != null)
+                    platform.SetActive(true);
+            }
+        }
+
+    }
     public void HandleStylusOutside()
     {
-        if(device == Device.RightDevice)
+        if (device == Device.RightDevice)
         {
 
             isRightStylusUsed = true;
@@ -105,7 +127,7 @@ public class DevicesBodyHandler : MonoBehaviour
                     platform.SetActive(false);
             }
         }
-        else if(device == Device.LeftDevice)
+        else if (device == Device.LeftDevice)
         {
             isLeftStylusUsed = true;
             ToggleDevices(false, false);

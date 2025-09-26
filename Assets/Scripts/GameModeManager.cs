@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameModeManager : MonoBehaviour
 {
@@ -36,8 +37,8 @@ public class GameModeManager : MonoBehaviour
     [SerializeField] HapticPlugin hapticPluginR;
     [SerializeField] HapticPlugin hapticPluginL;
 
-    [Header("Cameras")]
-    [SerializeField] Camera[] cameras;
+    public event Action<bool> onHapticEnabled;
+
 
     private void Awake()
     {
@@ -68,11 +69,6 @@ public class GameModeManager : MonoBehaviour
             StartSimulationMode();
         }
 
-    }
-
-    private void Start()
-    {
-        cameras = FindObjectsByType<Camera>(FindObjectsInactive.Include, FindObjectsSortMode.None);
     }
 
     private void Update()
@@ -114,6 +110,8 @@ public class GameModeManager : MonoBehaviour
             {
                 rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
                 leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
+                rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = LayerMask.GetMask("FatTissue");
+                leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = LayerMask.GetMask("FatTissue");
                 SwapMaterial(true);
                 StartCoroutine(EnableQuickVibration());
             }
@@ -140,10 +138,8 @@ public class GameModeManager : MonoBehaviour
         {
             oVRPassthroughLayer.enabled = true;
             oVRPassthroughLayer.textureOpacity = 1f;
-            rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-            rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
-            leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-            leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+            rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue");
+            leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue");
             SwapMaterial(false);
             foreach (GameObject vrObject in VRObjects)
             {
@@ -194,24 +190,19 @@ public class GameModeManager : MonoBehaviour
             {
                 rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
                 leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
-                //if (!isStiffnessSetting) {
-                    rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = LayerMask.GetMask("FatTissue");
-                    leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = LayerMask.GetMask("FatTissue");
-                rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = LayerMask.GetMask("Deform");
-                leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = LayerMask.GetMask("Deform");
-                //}
+                rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = LayerMask.GetMask("FatTissue");
+                leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = LayerMask.GetMask("FatTissue");
                 SwapMaterial(true);
                 StartCoroutine(EnableQuickVibration());
+                onHapticEnabled?.Invoke(true);
+
             }
             else
             {
-                rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-                rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
-                rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("FatTissue");
-                leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-                leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
-                leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("FatTissue");
+                rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue");
+                leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue");
                 SwapMaterial(false);
+                onHapticEnabled?.Invoke(false);
             }
             Debug.Log("Haptic feedback toggled: " + isHapticFeedbackEnabled);
         }
@@ -228,10 +219,8 @@ public class GameModeManager : MonoBehaviour
         isVirtualReality = false;
         IsCalibrationMode = false;
         oVRPassthroughLayer.enabled = true;
-        rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-        rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
-        leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~0;
-        leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform");
+        rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue");
+        leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue");
         SwapMaterial(false);
         foreach (GameObject vrObject in VRObjects)
         {

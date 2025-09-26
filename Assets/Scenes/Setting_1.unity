@@ -1590,7 +1590,6 @@ MonoBehaviour:
   isVirtualReality: 1
   hapticPluginR: {fileID: 1726081554}
   hapticPluginL: {fileID: 1726081553}
-  cameras: []
 --- !u!4 &163138131
 Transform:
   m_ObjectHideFlags: 0
@@ -10521,6 +10520,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4599576355533240924, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 2147485599
+      objectReference: {fileID: 0}
     - target: {fileID: 6105449159498312269, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: m_Name
       value: HapticDevicesHandler
@@ -10549,6 +10552,10 @@ PrefabInstance:
       propertyPath: 'targetPoints.Array.data[3]'
       value: 
       objectReference: {fileID: 399909813}
+    - target: {fileID: 7392709849697301038, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 2147485631
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -75575,6 +75582,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: d8b2898293c9d6b4d808a46352b33850, type: 2}
+    - target: {fileID: 6550918208599233036, guid: 0a9036023fb4903489bc25833783a0c0, type: 3}
+      propertyPath: hStiffness
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 7024696918738121650, guid: 0a9036023fb4903489bc25833783a0c0, type: 3}
       propertyPath: m_Name
       value: Liver_4.0

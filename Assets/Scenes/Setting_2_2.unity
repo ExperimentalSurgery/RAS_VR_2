@@ -1522,7 +1522,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3821524856570342930, guid: 6d847fdbe6d421c49bcda190dc374b5a, type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3821524856570342930, guid: 6d847fdbe6d421c49bcda190dc374b5a, type: 3}
       propertyPath: m_IsActive
@@ -1538,7 +1538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7254749035122278168, guid: 6d847fdbe6d421c49bcda190dc374b5a, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7573341479535354425, guid: 6d847fdbe6d421c49bcda190dc374b5a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1583,7 +1583,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7254749035122278168, guid: 6d847fdbe6d421c49bcda190dc374b5a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1887607215}
+    - targetCorrespondingSourceObject: {fileID: 7254749035122278168, guid: 6d847fdbe6d421c49bcda190dc374b5a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1887607214}
   m_SourcePrefab: {fileID: 100100000, guid: 6d847fdbe6d421c49bcda190dc374b5a, type: 3}
 --- !u!4 &127354125 stripped
 Transform:
@@ -1657,7 +1663,6 @@ MonoBehaviour:
   isVirtualReality: 1
   hapticPluginR: {fileID: 1864946861}
   hapticPluginL: {fileID: 1864946860}
-  cameras: []
 --- !u!4 &163138131
 Transform:
   m_ObjectHideFlags: 0
@@ -8852,6 +8857,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449102258}
   m_Mesh: {fileID: 5822954433107527271, guid: d154708137f93ae47b74acf6bc023b70, type: 3}
+--- !u!1 &1470844110 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7254749035122278168, guid: 6d847fdbe6d421c49bcda190dc374b5a, type: 3}
+  m_PrefabInstance: {fileID: 127354124}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1476155398
 GameObject:
   m_ObjectHideFlags: 0
@@ -11782,6 +11792,62 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8147685759693567616, guid: 6d847fdbe6d421c49bcda190dc374b5a, type: 3}
   m_PrefabInstance: {fileID: 127354124}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1887607214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470844110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3bb6e69efc5c542a6334e4c0532314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialID: 0
+  bGrabbing: 0
+  hMass: 0
+  hStiffness: 0.2
+  hDamping: 0
+  hImpulseD: 0
+  hViscosity: 0
+  hFrictionS: 0
+  hFrictionD: 0
+  hConstForceDir: {x: 0, y: 0, z: 0}
+  hConstForceMag: 0
+  UseContactNormalCF: 0
+  ContactNormalInverseCF: 0
+  hSpringDir: {x: 0, y: 0, z: 0}
+  SpringAnchorObj: {fileID: 0}
+  hSpringMag: 0
+  hPopthAbs: 0
+--- !u!54 &1887607215
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470844110}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 3584
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1914558351
 GameObject:
   m_ObjectHideFlags: 0
@@ -13270,6 +13336,18 @@ PrefabInstance:
       propertyPath: hapticObject
       value: 
       objectReference: {fileID: 1887607209}
+    - target: {fileID: 7029116109241768214, guid: d37ab8cb79531dc4eb0686d7e040814d, type: 3}
+      propertyPath: hStiffness
+      value: 0.214
+      objectReference: {fileID: 0}
+    - target: {fileID: 7253600696663628985, guid: d37ab8cb79531dc4eb0686d7e040814d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294789757717159122, guid: d37ab8cb79531dc4eb0686d7e040814d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7324252875618173555, guid: d37ab8cb79531dc4eb0686d7e040814d, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -13278,6 +13356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DangerZone_HumanBody_AbdomenAnatomy
       objectReference: {fileID: 0}
+    - target: {fileID: 9198895908191141228, guid: d37ab8cb79531dc4eb0686d7e040814d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c8d04d75beb333842af1c535a25b12ff, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
