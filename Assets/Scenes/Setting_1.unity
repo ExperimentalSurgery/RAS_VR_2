@@ -4207,19 +4207,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 857850322403940828, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 857850322403940828, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 857850322403940828, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 184
       objectReference: {fileID: 0}
     - target: {fileID: 857850322403940828, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -159.6
       objectReference: {fileID: 0}
     - target: {fileID: 1127744823858470802, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4257,6 +4257,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1502327234608507047, guid: f575d051c0e7df64e96181432957a138, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2338733171778525068, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4272,6 +4276,10 @@ PrefabInstance:
     - target: {fileID: 2338733171778525068, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353874871074415395, guid: f575d051c0e7df64e96181432957a138, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2428989804063325390, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4321,61 +4329,106 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3325236189579494955, guid: f575d051c0e7df64e96181432957a138, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3670067478851398295, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3670067478851398295, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3670067478851398295, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 3670067478851398295, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 5633310942344249034, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_Name
       value: UISet
       objectReference: {fileID: 0}
+    - target: {fileID: 5728491895591742227, guid: f575d051c0e7df64e96181432957a138, type: 3}
+      propertyPath: m_text
+      value: 'Detecting Tissue Stiffness '
+      objectReference: {fileID: 0}
     - target: {fileID: 6984435275726857821, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6984435275726857821, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6984435275726857821, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 184
       objectReference: {fileID: 0}
     - target: {fileID: 6984435275726857821, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -85.8
       objectReference: {fileID: 0}
     - target: {fileID: 7308432580026832721, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7308432580026832721, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7308432580026832721, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 7308432580026832721, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 7308432580026832721, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381992228451904013, guid: f575d051c0e7df64e96181432957a138, type: 3}
+      propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381992228451904013, guid: f575d051c0e7df64e96181432957a138, type: 3}
+      propertyPath: toLoadNextScene
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381992228451904013, guid: f575d051c0e7df64e96181432957a138, type: 3}
+      propertyPath: stepBodyTexts.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381992228451904013, guid: f575d051c0e7df64e96181432957a138, type: 3}
+      propertyPath: 'stepBodyTexts.Array.data[0]'
+      value: Hold one stylus in each hand and gently explore the surface of the physical
+        liver model to become familiar with its shape and texture.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381992228451904013, guid: f575d051c0e7df64e96181432957a138, type: 3}
+      propertyPath: 'stepBodyTexts.Array.data[1]'
+      value: Once finished, set aside the physical liver model and platform. Then,
+        press the light button on either stylus to activate virtual reality mode.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381992228451904013, guid: f575d051c0e7df64e96181432957a138, type: 3}
+      propertyPath: 'stepBodyTexts.Array.data[2]'
+      value: Use the stylus to interact with the virtual liver model. Observe how
+        the surface visually deforms in response to your movements.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381992228451904013, guid: f575d051c0e7df64e96181432957a138, type: 3}
+      propertyPath: 'stepBodyTexts.Array.data[3]'
+      value: Press the dark button on the stylus to activate haptic feedback. You
+        can now feel the virtual liver and compare its tactile response to the physical
+        model.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381992228451904013, guid: f575d051c0e7df64e96181432957a138, type: 3}
+      propertyPath: 'stepLabelTexts.Array.data[0]'
+      value: 'Detecting Tissue Stiffness '
       objectReference: {fileID: 0}
     - target: {fileID: 8282992574521031003, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4411,51 +4464,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8904260279086874429, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8904260279086874429, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8904260279086874429, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 154
       objectReference: {fileID: 0}
     - target: {fileID: 8904260279086874429, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 9110234171714813304, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9110234171714813304, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9110234171714813304, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 9110234171714813304, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 9126780887664318775, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9126780887664318775, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9126780887664318775, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9126780887664318775, guid: f575d051c0e7df64e96181432957a138, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -52,13 +52,22 @@ public class DevicesBodyHandler : MonoBehaviour
     public void CheckTriggerOnce()
     {
         if (triggerCollider == null) { Debug.Log("triggerCollider == null"); return; }
+        Debug.Log("CheckTriggerOnce");
         if (!GetComponent<Collider>().bounds.Intersects(triggerCollider.bounds))
         {
             HandleStylusOutside();
+            Debug.Log("HandleStylusOutside");
+            ToggleBody(true);
+            if (platform != null)
+                platform.SetActive(false);
         }
         else if (GetComponent<Collider>().bounds.Intersects(triggerCollider.bounds))
         {
             HandleStylusInside();
+            Debug.Log("HandleStylusInside");
+            ToggleBody(false);
+            if (platform != null)
+                platform.SetActive(true);
         }
     }
 

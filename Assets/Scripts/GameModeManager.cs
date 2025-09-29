@@ -83,6 +83,8 @@ public class GameModeManager : MonoBehaviour
 
     private void OnDisable()
     {
+        oVRPassthroughLayer.textureOpacity = 0f;
+        InitializePassthroughMode();
         oVRPassthroughLayer.passthroughLayerResumed.RemoveListener(OnPassthroughLayerResumed);
     }
 
