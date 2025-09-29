@@ -10639,19 +10639,7 @@ MonoBehaviour:
   Events:
     OnClickButton1:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 9171841333746091440}
-          m_TargetAssemblyTypeName: CalibrationManager, Assembly-CSharp
-          m_MethodName: CreateSourcePoint
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
     OnReleaseButton1:
       m_PersistentCalls:
         m_Calls: []
@@ -10661,14 +10649,14 @@ MonoBehaviour:
     OnClickButton2:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: GameModeManager, Assembly-CSharp
-          m_MethodName: ToggleGameMode
-          m_Mode: 1
+        - m_Target: {fileID: 9171841333746091440}
+          m_TargetAssemblyTypeName: CalibrationManager, Assembly-CSharp
+          m_MethodName: CreateSourcePoint
+          m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: 2
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -12193,6 +12181,15 @@ MonoBehaviour:
   Events:
     OnClickButton1:
       m_PersistentCalls:
+        m_Calls: []
+    OnReleaseButton1:
+      m_PersistentCalls:
+        m_Calls: []
+    OnHoldButton1:
+      m_PersistentCalls:
+        m_Calls: []
+    OnClickButton2:
+      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 9171841333746091440}
           m_TargetAssemblyTypeName: CalibrationManager, Assembly-CSharp
@@ -12205,27 +12202,6 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 2
-    OnReleaseButton1:
-      m_PersistentCalls:
-        m_Calls: []
-    OnHoldButton1:
-      m_PersistentCalls:
-        m_Calls: []
-    OnClickButton2:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: GameModeManager, Assembly-CSharp
-          m_MethodName: ToggleGameMode
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
           m_CallState: 2
     OnReleaseButton2:
       m_PersistentCalls:
@@ -75283,6 +75259,7 @@ MonoBehaviour:
   - {fileID: 1476155400}
   - {fileID: 506851023}
   - {fileID: 709612819}
+  choiceIndex: 0
   sourcePointParents: []
   calibrationDistanceError: 0
 --- !u!1 &9173160726837659131

@@ -83,15 +83,15 @@ public class GameModeManager : MonoBehaviour
 
     private void OnDisable()
     {
-        oVRPassthroughLayer.textureOpacity = 0f;
         InitializePassthroughMode();
         oVRPassthroughLayer.passthroughLayerResumed.RemoveListener(OnPassthroughLayerResumed);
     }
 
+
     // 2) OnPassthroughLayerResumed is called once the layer is fully initialized and passthrough is visible
     private void OnPassthroughLayerResumed(OVRPassthroughLayer passthroughLayer)
     {
-        // 3) Do something here after the passthrough layer has resumed
+        // 3) Do something here after the passthrough layer has resumed 
     }
 
     public void ToggleGameMode()
@@ -217,6 +217,11 @@ public class GameModeManager : MonoBehaviour
     void InitializePassthroughMode()
     {
         Debug.Log("Initializing Passthrough Mode...");
+        if (oVRPassthroughLayer == null)
+        {
+            Debug.LogError("OVRPassthroughLayer reference is missing!");
+            return;
+        }
         // This method can be used to initialize the passthrough mode if needed
         isVirtualReality = false;
         IsCalibrationMode = false;

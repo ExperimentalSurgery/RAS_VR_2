@@ -22,7 +22,7 @@ public class CalibrationManager : MonoBehaviour
     // this is just to display the calibration process in the inspector
     [Header("Calibration points")]
     [SerializeField]
-    private int calibrationPointIndex;
+    int calibrationPointIndex;
     [SerializeField]
     private Vector3[] sourcePoints;
     [SerializeField]
@@ -37,7 +37,7 @@ public class CalibrationManager : MonoBehaviour
     [SerializeField]
     CalibrateObject[] alignObjectsInScene;
 
-    private int choiceIndex;
+    public int choiceIndex;
     private GameObject sourcePointTopParentInScene;
 
     [SerializeField] GameObject[] sourcePointParents;
@@ -113,8 +113,8 @@ public class CalibrationManager : MonoBehaviour
             originalColorsForTips = new Color[tooltips.Length];
             Renderer rendererTip = tip.GetComponent<Renderer>();
             originalColorsForTips[Array.IndexOf(tooltips, tip)] = rendererTip.sharedMaterial.color;
-            InitializePassthroughMode();
         }
+        InitializePassthroughMode();
     }
     private void OnDisable()
     {
@@ -143,6 +143,7 @@ public class CalibrationManager : MonoBehaviour
     void InitializePassthroughMode()
     {
         Debug.Log("Initializing Passthrough Mode...");
+        oVRPassthroughLayer.enabled = true;
         oVRPassthroughLayer.textureOpacity = 1f; // set the opacity to 0 to hide the passthrough layer
 
     }
@@ -249,6 +250,7 @@ public class CalibrationManager : MonoBehaviour
     {
         calibrationDistanceError = currentObjectToCalibrate.calibrationDistanceError;
         calibrationPointIndex = currentObjectToCalibrate.calibrationPointIndex;
+        Debug.Log("calibrationPointIndex: " + currentObjectToCalibrate + ": " + currentObjectToCalibrate.calibrationPointIndex);
         sourcePoints = GetVectorsFromTransforms(currentObjectToCalibrate.sourcePoints);
         targetPoints = GetVectorsFromTransforms(currentObjectToCalibrate.targetPoints);
     }
@@ -303,6 +305,8 @@ public class CalibrationManager : MonoBehaviour
     public void ChangeColorOfPointer()
     {
         int colorNumber = (sourcePoints.Length != 0) ? calibrationPointIndex : 0;
+        Debug.Log("colorNumber: " + colorNumber);
+        //int colorNumber = calibrationPointIndex;
 
         Renderer rendererController = tooltips[0].GetComponent<Renderer>(); // to change color of controller pointer
         rendererController.material = new Material(Shader.Find("UI/Unlit/Detail"));
