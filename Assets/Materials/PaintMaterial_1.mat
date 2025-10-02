@@ -37,7 +37,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9b4213c202ccee74494498dfcb7eb08d, type: 3}
+        m_Texture: {fileID: 2800000, guid: dd69822cdf7b90545b0fe230642ecc71, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicMap:
@@ -49,10 +49,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: e587e110ad0ad6e4caea04fd5efc86dd, type: 3}
+        m_Texture: {fileID: 2800000, guid: c1a4902a02104e142a4323e8a605153b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PaintTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -87,18 +91,19 @@ Material:
     - _DeformDepth2: 0
     - _DeformRadius: 1
     - _DeformationColorStrength: 0
-    - _Dither_Size: 1.3
+    - _Dither_Size: 0
     - _IsBeingDeformed1: 0
     - _IsBeingDeformed2: 0
     - _MaxDepth: 1
     - _Metallic: 0
     - _NormalMapStrength: 1
-    - _Opacity: 2
+    - _Opacity: 1.1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 0.5
     - _SnowScale: 63.57
-    - _VertexOffset: 0
+    - _SpecularStrength: 0
+    - _VertexOffset: 0.0005
     m_Colors:
     - _BrushColor: {r: 0.58165556, g: 0.5784977, b: 0.9811321, a: 1}
     - _BrushUV: {r: 0.72734153, g: 0.38458306, b: 0.05, a: 0}

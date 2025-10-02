@@ -119,7 +119,7 @@ public class CalibrationManager : MonoBehaviour
     private void OnDisable()
     {
         oVRPassthroughLayer.passthroughLayerResumed.RemoveListener(OnPassthroughLayerResumed);
-        RevertTipColors();
+        //RevertTipColors();
     }
 
 

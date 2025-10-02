@@ -1560,9 +1560,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStiffnessSetting: 1
-  menuPanel: {fileID: 64955138}
-  gameModePanel: {fileID: 227787466}
-  calibrationModePanel: {fileID: 2081789121}
   oVRPassthroughLayer: {fileID: 1898261675043310964}
   timeForToggleEnabling: 1
   canToggle: 1
@@ -1606,7 +1603,6 @@ MonoBehaviour:
   isVirtualReality: 1
   hapticPluginR: {fileID: 1510442269}
   hapticPluginL: {fileID: 1354850131}
-  cameras: []
 --- !u!4 &163138131
 Transform:
   m_ObjectHideFlags: 0
@@ -2902,11 +2898,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltips: []
   tooltip: {fileID: 163339213}
+  originalColorsForTips: []
+  oVRPassthroughLayer: {fileID: 0}
+  timeForToggleEnabling: 1
+  canToggle: 1
   calibrationPointIndex: 0
   sourcePoints: []
   targetPoints: []
   currentObjectToCalibrate: {fileID: 709612819}
   alignObjectsInScene: []
+  choiceIndex: 0
   sourcePointParents: []
   calibrationDistanceError: 0
 --- !u!1001 &334077649
@@ -4298,6 +4299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcbe2d1f459bf2747ba80aab4cf6ade3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerCollider: {fileID: 0}
   bodyMaterials:
   - {fileID: 6742587237575005366}
   - {fileID: 6064673278003671815}
@@ -5569,11 +5571,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltips: []
   tooltip: {fileID: 1272707046}
+  originalColorsForTips: []
+  oVRPassthroughLayer: {fileID: 0}
+  timeForToggleEnabling: 1
+  canToggle: 1
   calibrationPointIndex: 0
   sourcePoints: []
   targetPoints: []
   currentObjectToCalibrate: {fileID: 506851023}
   alignObjectsInScene: []
+  choiceIndex: 0
   sourcePointParents: []
   calibrationDistanceError: 0
 --- !u!1 &594025719
@@ -7680,6 +7687,7 @@ MonoBehaviour:
     Start tracing the surface of the liver from the left side. Take a moment to perceive
     the existing stiffness and resistance quality of the healthy tissue.
   nextButton: {fileID: 0}
+  toLoadNextScene: 0
 --- !u!114 &768933084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9952,6 +9960,71 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108817131}
   m_Mesh: {fileID: -4225062493216451140, guid: 26cfb443b66aa144e87701ea19523cfa, type: 3}
+--- !u!1001 &1112455102
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1401309923331270454, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_Name
+      value: SphereWithRenderTexture (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401309923331270454, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549441666632558886, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 892087127}
+    - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.37600002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.85789996
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.513
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.00000003185922
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.00000002992788
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7288534
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.6846698
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 86.419
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f360049d46d29194f94e439b6606167b, type: 3}
 --- !u!1 &1116629087
 GameObject:
   m_ObjectHideFlags: 0
@@ -10650,6 +10723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d8440feb4a7fe54caed196d7901e49b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imageForFading: {fileID: 0}
 --- !u!4 &1159113473
 Transform:
   m_ObjectHideFlags: 0
@@ -23448,6 +23522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcbe2d1f459bf2747ba80aab4cf6ade3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerCollider: {fileID: 0}
   bodyMaterials:
   - {fileID: 6742587237575005366}
   - {fileID: 6064673278003671815}
@@ -59931,25 +60006,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 745869342045159452, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -217638318533967447, guid: 8ae5af2a2b771024b9dee8c02c9609c8, type: 3}
     - target: {fileID: 1401309923331270454, guid: f360049d46d29194f94e439b6606167b, type: 3}
       propertyPath: m_Name
       value: SphereWithRenderTexture
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401309923331270454, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1549441666632558886, guid: f360049d46d29194f94e439b6606167b, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 892087127}
+    - target: {fileID: 6718247516633255198, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -217638318533967447, guid: 8ae5af2a2b771024b9dee8c02c9609c8, type: 3}
+    - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 47.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 47.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 47.17
+      objectReference: {fileID: 0}
     - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.37600002
+      value: -0.41
       objectReference: {fileID: 0}
     - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.85789996
+      value: 1.27
       objectReference: {fileID: 0}
     - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.513
+      value: -0.4813
       objectReference: {fileID: 0}
     - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -59978,6 +60077,10 @@ PrefabInstance:
     - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117199589953031032, guid: f360049d46d29194f94e439b6606167b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -102917,6 +103020,10 @@ MonoBehaviour:
   - {fileID: 2090466549}
   - {fileID: 1302453415}
   tooltip: {fileID: 1696464079800314978}
+  originalColorsForTips: []
+  oVRPassthroughLayer: {fileID: 0}
+  timeForToggleEnabling: 1
+  canToggle: 1
   calibrationPointIndex: 0
   sourcePoints: []
   targetPoints: []
@@ -102925,6 +103032,7 @@ MonoBehaviour:
   - {fileID: 1476155400}
   - {fileID: 506851023}
   - {fileID: 709612819}
+  choiceIndex: 0
   sourcePointParents: []
   calibrationDistanceError: 0
 --- !u!1 &9173160726837659131
@@ -103316,6 +103424,7 @@ SceneRoots:
   - {fileID: 892087128}
   - {fileID: 1871835272}
   - {fileID: 3956281922477523312}
+  - {fileID: 1112455102}
   - {fileID: 1212495809}
   - {fileID: 8357187775983115660}
   - {fileID: 2971321823735725346}

@@ -17,7 +17,8 @@ public class PaintWithTouchDeviceOnCollider : MonoBehaviour
         drawMaterial = new Material(drawShader);
         drawMaterial.SetVector(name: "_Color", (Vector4)Color.red);
         currentMaterial = GetComponent<MeshRenderer>().material;
-        splatMap = new RenderTexture(width: 4096, height: 4096, depth: 0, RenderTextureFormat.ARGBFloat); currentMaterial.SetTexture(name: "_SplatMap", splatMap);
+        splatMap = new RenderTexture(width: 4096, height: 4096, depth: 16, RenderTextureFormat.R8); 
+        currentMaterial.SetTexture(name: "_SplatMap", splatMap);
     }
 
 
@@ -39,6 +40,7 @@ public class PaintWithTouchDeviceOnCollider : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             drawMaterial.SetVector(name: "_Coordinates", value: new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
+            Debug.Log("Hit texture coordinates: " + hit.textureCoord);
             drawMaterial.SetFloat(name: "_Strength", strength);
             drawMaterial.SetFloat(name: "_Size", size);
             RenderTexture temp = RenderTexture.GetTemporary(splatMap.width, splatMap.height, 0, RenderTextureFormat.ARGBFloat);
