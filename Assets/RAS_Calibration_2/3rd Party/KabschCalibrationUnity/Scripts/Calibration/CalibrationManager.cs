@@ -282,9 +282,20 @@ public class CalibrationManager : MonoBehaviour
         }
     }
 
+
+    public void ResetAllTargetPoints()
+    {
+        alignObjectsInScene[0].ResetAllTargetPoints();
+        alignObjectsInScene[1].calibrationPointIndex = 0;
+        alignObjectsInScene[2].calibrationPointIndex = 0;
+
+
+    }
+
     public void ResetTargetPoints()
     {
         currentObjectToCalibrate.ResetAllTargetPoints();
+   
     }
 
     public void ResetLastTargetPoint()
