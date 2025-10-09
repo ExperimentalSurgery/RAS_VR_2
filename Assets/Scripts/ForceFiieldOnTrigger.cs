@@ -19,6 +19,7 @@ public class ForceFiieldOnTrigger : MonoBehaviour
             if (!meshRenderer.enabled)
             {
                 hapticObject.GetComponent<MeshCollider>().enabled = false;
+                hapticObject.GetComponent<CapsuleCollider>().enabled = false;
                 meshRenderer.enabled = true; // Enable the renderer when a collision occurs
             }
             Debug.Log("Collision with haptic collider detected: " + other.gameObject.tag);
@@ -32,6 +33,7 @@ public class ForceFiieldOnTrigger : MonoBehaviour
             if (meshRenderer.enabled)
             {
                 hapticObject.GetComponent<MeshCollider>().enabled = true;
+                hapticObject.GetComponent<CapsuleCollider>().enabled = true;
                 meshRenderer.enabled = false; // Disable the renderer when the collision ends
             }
             Debug.Log("Collision exit with haptic collider detected: " + other.gameObject.tag);
