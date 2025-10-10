@@ -58,7 +58,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 60d2fbfff78c51043a86ad4fadae074a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SplatMap:
@@ -97,14 +97,14 @@ Material:
     - _IsBeingDeformed2: 0
     - _MaxDepth: 1
     - _Metallic: 0
-    - _NormalMapStrength: 1
+    - _NormalMapStrength: 0
     - _Opacity: 1.1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 0.5
     - _SnowScale: 63.57
-    - _SpecularStrength: 0
-    - _VertexOffset: -0.001
+    - _SpecularStrength: 0.1
+    - _VertexOffset: -0.0003
     m_Colors:
     - _BrushColor: {r: 0.58165556, g: 0.5784977, b: 0.9811321, a: 1}
     - _BrushUV: {r: 0.72734153, g: 0.38458306, b: 0.05, a: 0}

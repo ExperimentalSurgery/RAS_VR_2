@@ -57,6 +57,10 @@ public class GameModeManager : MonoBehaviour
     {
         oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
         IsCalibrationMode = false;
+    }
+
+    private void Start()
+    {
         // Initialize the passthrough mode when the script is enabled
         if (isStiffnessSetting)
         {
@@ -226,8 +230,10 @@ public class GameModeManager : MonoBehaviour
         isVirtualReality = false;
         IsCalibrationMode = false;
         oVRPassthroughLayer.enabled = true;
-        rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue");
-        leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue");
+
+        if (rightStylusCollider != null) { rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue"); }
+
+        if (leftStylusCollider != null) { leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue"); }
         SwapMaterial(false);
         foreach (GameObject vrObject in VRObjects)
         {
