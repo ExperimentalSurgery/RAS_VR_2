@@ -18,7 +18,7 @@ public class ForceFiieldOnTrigger : MonoBehaviour
         {
             if (!meshRenderer.enabled)
             {
-                //hapticObject.GetComponent<MeshCollider>().enabled = false;
+                hapticObject.GetComponent<MeshCollider>().enabled = false;
                 hapticObject.GetComponent<CapsuleCollider>().enabled = false;
                 foreach (var sphereCollider in hapticObject.GetComponents<SphereCollider>())
                 {
@@ -36,7 +36,7 @@ public class ForceFiieldOnTrigger : MonoBehaviour
         {
             if (meshRenderer.enabled)
             {
-                //hapticObject.GetComponent<MeshCollider>().enabled = true;
+                hapticObject.GetComponent<MeshCollider>().enabled = true;
                 hapticObject.GetComponent<CapsuleCollider>().enabled = true;
                 foreach (var sphereCollider in hapticObject.GetComponents<SphereCollider>())
                 {
