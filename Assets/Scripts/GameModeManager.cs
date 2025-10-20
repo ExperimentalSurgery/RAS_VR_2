@@ -254,7 +254,8 @@ public class GameModeManager : MonoBehaviour
         SwapMaterial(false);
         foreach (GameObject vrObject in VRObjects)
         {
-            vrObject.SetActive(false);
+            if (vrObject != null)
+                vrObject.SetActive(false);
         }
         foreach (GameObject mrObject in MRObjects)
         {
