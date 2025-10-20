@@ -32,6 +32,9 @@ public class GameModeManager : MonoBehaviour
     [SerializeField] Collider rightStylusCollider;
     [SerializeField] Collider leftStylusCollider;
     public bool isVirtualReality = false;
+    [SerializeField] bool isSetting_2_3 = false;
+    [SerializeField] Transform hapticObject;
+    [SerializeField] bool haptocObjectHasMeshColliders = false;
 
     [Header("Vibration Settings")]
     [SerializeField] HapticPlugin hapticPluginR;
@@ -198,6 +201,13 @@ public class GameModeManager : MonoBehaviour
                 leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
                 rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = LayerMask.GetMask("FatTissue");
                 leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = LayerMask.GetMask("FatTissue");
+                if(isSetting_2_3 && haptocObjectHasMeshColliders)
+                {
+                    foreach (var collider in hapticObject.GetComponents<MeshCollider>())
+                    {
+                        collider.enabled = false;
+                    }
+                }
                 SwapMaterial(true);
                 StartCoroutine(EnableQuickVibration());
                 onHapticEnabled?.Invoke(true);
@@ -207,6 +217,13 @@ public class GameModeManager : MonoBehaviour
             {
                 rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue");
                 leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue");
+                if (isSetting_2_3 && haptocObjectHasMeshColliders)
+                {
+                    foreach (var collider in hapticObject.GetComponents<MeshCollider>())
+                    {
+                        collider.enabled = false;
+                    }
+                }
                 SwapMaterial(false);
                 onHapticEnabled?.Invoke(false);
             }

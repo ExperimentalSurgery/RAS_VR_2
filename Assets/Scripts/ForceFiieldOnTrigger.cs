@@ -4,6 +4,8 @@ public class ForceFiieldOnTrigger : MonoBehaviour
 {
     [Header("Assign in Inspector")]
     [SerializeField] Transform hapticObject;
+    [SerializeField] bool haptocObjectHasMeshColliders = false;
+    [SerializeField] bool haptocObjectHasCapsuleColliders = false;
     [SerializeField] private ForceFieldHandler forceFieldHandler;
     MeshRenderer meshRenderer;
 
@@ -18,12 +20,20 @@ public class ForceFiieldOnTrigger : MonoBehaviour
         {
             if (!meshRenderer.enabled)
             {
-                hapticObject.GetComponent<MeshCollider>().enabled = false;
-                hapticObject.GetComponent<CapsuleCollider>().enabled = false;
-                foreach (var sphereCollider in hapticObject.GetComponents<SphereCollider>())
+                if (haptocObjectHasMeshColliders)
                 {
-                    sphereCollider.enabled = false;
+                    foreach (var collider in hapticObject.GetComponents<MeshCollider>())
+                    {
+                        collider.enabled = false;
+                    }
                 }
+                else if (haptocObjectHasCapsuleColliders)
+                {
+                    foreach (var collider in hapticObject.GetComponents<CapsuleCollider>())
+                    {
+                        collider.enabled = false;
+                    }
+                }       
                 meshRenderer.enabled = true; // Enable the renderer when a collision occurs
             }
             Debug.Log("Collision with haptic collider detected: " + other.gameObject.tag);
@@ -36,11 +46,19 @@ public class ForceFiieldOnTrigger : MonoBehaviour
         {
             if (meshRenderer.enabled)
             {
-                hapticObject.GetComponent<MeshCollider>().enabled = true;
-                hapticObject.GetComponent<CapsuleCollider>().enabled = true;
-                foreach (var sphereCollider in hapticObject.GetComponents<SphereCollider>())
+                if (haptocObjectHasMeshColliders)
                 {
-                    sphereCollider.enabled = true;
+                    foreach (var collider in hapticObject.GetComponents<MeshCollider>())
+                    {
+                        collider.enabled = true;
+                    }
+                }
+                else if (haptocObjectHasCapsuleColliders)
+                {
+                    foreach (var collider in hapticObject.GetComponents<CapsuleCollider>())
+                    {
+                        collider.enabled = true;
+                    }
                 }
                 meshRenderer.enabled = false; // Disable the renderer when the collision ends
             }
