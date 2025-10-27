@@ -320,6 +320,11 @@ public class GameModeManager : MonoBehaviour
 
     public void SwapMaterial(bool isOn)
     {
+        if(rightStylus.material == null || leftStylus.material == null)
+        {
+            return;
+        }
+
         if (isOn)
         {
             rightStylus.material = glowMaterial;

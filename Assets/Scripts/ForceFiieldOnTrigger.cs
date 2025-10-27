@@ -13,7 +13,34 @@ public class ForceFiieldOnTrigger : MonoBehaviour
     {
         meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.enabled = false;
+        GameModeManager.Instance.onHapticEnabled += HandleHapticEnabled;
     }
+
+    private void HandleHapticEnabled(bool isEnabled)
+    {
+        if (!isEnabled)
+        {
+            if (haptocObjectHasMeshColliders)
+            {
+                foreach (var collider in hapticObject.GetComponents<MeshCollider>())
+                {
+                    collider.enabled = true;
+                }
+            }
+            else if (haptocObjectHasCapsuleColliders)
+            {
+                foreach (var collider in hapticObject.GetComponents<CapsuleCollider>())
+                {
+                    collider.enabled = true;
+                }
+            }
+            meshRenderer.enabled = false; // Disable the renderer when haptics are disabled
+        }
+        else
+        {
+            // Optionally handle enabling haptics if needed
+        }
+    }   
     private void OnTriggerEnter(UnityEngine.Collider other)
     {
         if (other.gameObject.tag == "HapticCollider_Right" || other.gameObject.tag == "HapticCollider_Left")
