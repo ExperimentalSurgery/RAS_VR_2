@@ -259,7 +259,8 @@ public class GameModeManager : MonoBehaviour
         }
         foreach (GameObject mrObject in MRObjects)
         {
-            mrObject.SetActive(false);
+            if (mrObject != null)
+                mrObject.SetActive(false);
         }
         foreach (MeshRenderer stylusRenderer in stylusesRenders)
         {
