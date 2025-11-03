@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.SceneManagement;
-//using Valve.VR;
+using TMPro;
+
 
 public class CalibrationManager : MonoBehaviour
 {
@@ -250,10 +251,13 @@ public class CalibrationManager : MonoBehaviour
     {
         calibrationDistanceError = currentObjectToCalibrate.calibrationDistanceError;
         calibrationPointIndex = currentObjectToCalibrate.calibrationPointIndex;
+        
         Debug.Log("calibrationPointIndex: " + currentObjectToCalibrate + ": " + currentObjectToCalibrate.calibrationPointIndex);
         sourcePoints = GetVectorsFromTransforms(currentObjectToCalibrate.sourcePoints);
         targetPoints = GetVectorsFromTransforms(currentObjectToCalibrate.targetPoints);
     }
+
+
 
     private Vector3[] GetVectorsFromTransforms(Transform[] transforms)
     {
