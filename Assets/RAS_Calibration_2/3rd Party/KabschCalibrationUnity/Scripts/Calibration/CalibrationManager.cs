@@ -77,6 +77,11 @@ public class CalibrationManager : MonoBehaviour
         set => choiceIndex = value;
     }
 
+    public int CalibrationPointIndex
+    {
+        get => calibrationPointIndex;
+    }
+
     #endregion
 
     void Awake()
