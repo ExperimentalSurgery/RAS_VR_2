@@ -25,7 +25,7 @@ public class InstructionsHandler : MonoBehaviour
     void SelectInstruction()
     {
         uiIndex = calibrationManager.CalibrationPointIndex;
-        indexText.text= uiIndex.ToString();
+        indexText.text = "Next socket: " + (uiIndex + 1).ToString();
         if (calibrationManager == null) return;
 
         if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[0])
@@ -67,5 +67,5 @@ public class InstructionsHandler : MonoBehaviour
             }
         }
     }
-  
+
 }
