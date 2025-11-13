@@ -33,6 +33,7 @@ Material:
     - _BorderWidth: 2.5
     - _ColorMask: 15
     - _CullMode: 0
+    - _Interpolator: 1
     - _Stencil: 0
     - _StencilComp: 0
     - _StencilOp: 0
@@ -43,12 +44,13 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _BorderColorA: {r: 0.32941177, g: 0.32941177, b: 0.32941177, a: 1}
-    - _BorderColorB: {r: 0.14117648, g: 0.14117648, b: 0.14117648, a: 1}
-    - _BorderLine: {r: -1, g: 1, b: -0.4, a: -1.59}
+    - _BorderColorB: {r: 0.1411764, g: 0.1411764, b: 0.1411764, a: 1}
+    - _BorderLine: {r: 0.5, g: 1, b: 0.5, a: -1.59}
     - _BorderRadius: {r: 0, g: 0, b: 0, a: 0}
     - _CenterOffset: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorA: {r: 0.15294118, g: 0.15294118, b: 0.15294118, a: 1}
-    - _ColorB: {r: 0.25490198, g: 0.25490198, b: 0.25490198, a: 1}
-    - _Line: {r: 1, g: -0.9, b: 0.5, a: 1.87}
+    - _ColorA: {r: 0.15294114, g: 0.15294114, b: 0.15294114, a: 0.9019608}
+    - _ColorB: {r: 0.25490192, g: 0.25490192, b: 0.25490192, a: 1}
+    - _Line: {r: 0.5, g: -1, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
