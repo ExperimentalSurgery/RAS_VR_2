@@ -31,6 +31,8 @@ public class CalibrationManager : MonoBehaviour
 
     [Space(10)]
     [Header("Currently selected object to align")]
+    [SerializeField] 
+    private bool canCalibrate = false;
     [SerializeField]
     private CalibrateObject currentObjectToCalibrate;
 
@@ -53,6 +55,22 @@ public class CalibrationManager : MonoBehaviour
 
     #region GETTER AND SETTER
 
+    public bool CanCalibrate
+    {
+        get
+        {
+            if (currentObjectToCalibrate != null)
+            {
+                return canCalibrate;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        set => canCalibrate = value;
+    }
     public CalibrateObject ObjectToCalibrate
     {
         get => currentObjectToCalibrate;
@@ -156,6 +174,7 @@ public class CalibrationManager : MonoBehaviour
 
     void Update()
     {
+        if (!CanCalibrate) return;
         FetchSourceAndTargetPointsToDisplay();
         ChangeColorOfPointer();
 
@@ -179,6 +198,7 @@ public class CalibrationManager : MonoBehaviour
     }
     public void CreateSourcePoint(int objectId)
     {
+        if (!CanCalibrate) return;
         // if the objectId is not the same as the current object to calibrate, set it
         if (currentObjectToCalibrate != alignObjectsInScene[objectId])
         {
@@ -194,14 +214,17 @@ public class CalibrationManager : MonoBehaviour
 
     public void CreateTargetPoint(int objectId)
     {
+        if (!CanCalibrate) return;
         // if the objectId is not the same as the current object to calibrate, set it
         if (currentObjectToCalibrate != alignObjectsInScene[objectId])
         {
             SetCallibrationObject(objectId);
         }
         Debug.Log("AddTargetPoint " + tooltip.position);
+        Debug.Log("can calibrate " + CanCalibrate);
         Debug.Log("ChoiceIndex: " + choiceIndex);
         currentObjectToCalibrate.AddTargetPoint(tooltip.position, sourcePointParents[choiceIndex].transform, choiceIndex);
+
         ChangeColorOfPointer();
         OnCalibrationComplete?.Invoke();
         SaveCalibrationToFile();

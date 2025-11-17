@@ -139,6 +139,7 @@ public class CalibrateObject : MonoBehaviour
             Debug.Log("calibrate Object: " + calibrationPointIndex + " / " + sourcePoints.Length);
         }
 
+       
     }
 
     public void Calibrate()
