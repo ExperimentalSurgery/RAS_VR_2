@@ -139,6 +139,7 @@ public class CalibrationManager : MonoBehaviour
             originalColorsForTips[Array.IndexOf(tooltips, tip)] = rendererTip.sharedMaterial.color;
         }
         InitializePassthroughMode();
+        ResetAllTargetPoints();
     }
     private void OnDisable()
     {
@@ -196,6 +197,17 @@ public class CalibrationManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void PressButtonRight()
+    {
+        Debug.Log("PRESS Button RIGHT");
+    }
+
+    public void PressButtonLeft()
+    {
+        Debug.Log("PRESS Button LEFT");
+    }
+
     public void CreateSourcePoint(int objectId)
     {
         if (!CanCalibrate) return;

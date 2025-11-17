@@ -29,6 +29,11 @@ public class InstructionsHandler : MonoBehaviour
     private bool wasLeftStylusCalibrated = false;
     public Action OnCompletedCalibration;
     #region GETTER AND SETTER
+
+    public bool WasConsoleCalibrated
+    {
+        get { return wasConsoleCalibrated; }
+    }
     public bool WasRightStylusActivated
     {
         get { return wasRightStylusActivated; }
@@ -63,6 +68,9 @@ public class InstructionsHandler : MonoBehaviour
     {
         dynamicUI.SetActive(true);
         staticUI.SetActive(false);
+        indexText.text = "Next socket: " + 0;
+        uiInstructionsText.text = "Read instructions before calibrating.";
+        calibrationManager.CanCalibrate = true;
     }
 
 

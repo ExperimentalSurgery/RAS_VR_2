@@ -9,6 +9,8 @@ public class Devices_Trigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(!instructionsHandler.WasConsoleCalibrated) 
+            return;
         if(device == Device.RightDevice && other.gameObject.tag == "HapticCollider_Right")
         {
             instructionsHandler.WasRightStylusActivated = false;
@@ -23,7 +25,10 @@ public class Devices_Trigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(device == Device.RightDevice && other.gameObject.tag == "HapticCollider_Right")
+        if (!instructionsHandler.WasConsoleCalibrated)
+            return;
+
+        if (device == Device.RightDevice && other.gameObject.tag == "HapticCollider_Right")
         {
             instructionsHandler.WasRightStylusActivated = true;
             instructionsHandler.DisplayFirstInstrictionForStylus(true);
