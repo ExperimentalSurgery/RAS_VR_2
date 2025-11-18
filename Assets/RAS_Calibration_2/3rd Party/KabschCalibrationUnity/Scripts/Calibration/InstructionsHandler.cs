@@ -70,7 +70,6 @@ public class InstructionsHandler : MonoBehaviour
         staticUI.SetActive(false);
         indexText.text = "Next socket: " + 0;
         uiInstructionsText.text = "Read instructions before calibrating.";
-        calibrationManager.CanCalibrate = true;
     }
 
 
@@ -132,12 +131,8 @@ public class InstructionsHandler : MonoBehaviour
 
         if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[1]) // right stylus
         {
-            if (wasRightStylusActivated == false)
-            {
-                return;
-            }
-
-            if (!wasConsoleCalibrated && wasRightStylusActivated)
+      
+            if (!wasConsoleCalibrated)
             {
                 uiInstructionsText.text = instructions[2];
                 return;
@@ -173,11 +168,7 @@ public class InstructionsHandler : MonoBehaviour
 
         if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[2]) // left stylus
         {
-            if (wasLeftStylusActivated == false)
-            {
-                return;
-            }
-            if (!wasConsoleCalibrated && wasLeftStylusActivated)
+            if (!wasConsoleCalibrated)
             {
                 uiInstructionsText.text = instructions[2];
                 return;
@@ -210,6 +201,14 @@ public class InstructionsHandler : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void ResetUI()
+    {
+
+        dynamicUI.SetActive(true);
+        staticUI.SetActive(false);
+        SelectInstruction();
     }
 
     void ToggleUI()

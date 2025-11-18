@@ -1,10 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using UnityEngine.SceneManagement;
-using TMPro;
+using UnityEngine.Serialization;
 
 
 public class CalibrationManager : MonoBehaviour
@@ -51,7 +52,8 @@ public class CalibrationManager : MonoBehaviour
 
 
     public Action OnCalibrationComplete;
-    private int objectId = 0;
+    private bool isCreatingSourcePoint = false;
+
 
     #region GETTER AND SETTER
 
@@ -224,6 +226,25 @@ public class CalibrationManager : MonoBehaviour
         SaveCalibrationToFile();
     }
 
+
+    public void TryCreateDelayedSourcePoint(int objectId)
+    {
+        // Block if already in the middle of creating one
+        if (isCreatingSourcePoint) return;
+
+        StartCoroutine(CreateSourcePointDelayed(objectId));
+    }
+
+    private IEnumerator CreateSourcePointDelayed(int objectId)
+    {
+        isCreatingSourcePoint = true;
+        CreateSourcePoint(objectId);
+        //small delay to debounce / avoid double-press
+        yield return new WaitForSeconds(1f);
+        isCreatingSourcePoint = false;
+    }
+
+
     public void CreateTargetPoint(int objectId)
     {
         if (!CanCalibrate) return;
@@ -332,7 +353,7 @@ public class CalibrationManager : MonoBehaviour
         alignObjectsInScene[0].ResetAllTargetPoints();
         alignObjectsInScene[1].calibrationPointIndex = 0;
         alignObjectsInScene[2].calibrationPointIndex = 0;
-
+        GetComponent<InstructionsHandler>().ResetUI();
 
     }
 
