@@ -7,19 +7,27 @@ using UnityEngine.SceneManagement;
 
 public class StepTextHandler : MonoBehaviour
 {
-    [SerializeField]  TextMeshProUGUI textLabelObject;
-    [SerializeField]  TextMeshProUGUI textBodyObject;
-    [SerializeField]  string[] stepLabelTexts;
-    [SerializeField]  string[] stepBodyTexts;
+    [SerializeField] TextMeshProUGUI textLabelObject;
+    [SerializeField] TextMeshProUGUI textBodyObject;
+    [SerializeField] string[] stepLabelTexts;
+    //[SerializeField] string[] stepBodyTexts;
     [SerializeField] TMP_Text nextButton;
     int m_CurrentStepIndex = 0;
     [SerializeField] private bool toLoadNextScene = false;
 
     private void Start()
     {
-        NextStiffnessSetting();
+        NextSetting();
     }
-    public void NextStiffnessSetting()
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            NextSetting();
+        }
+    }
+    public void NextSetting()
     {
         // If we are at the last step and the button is clicked, load the next scene
         if (toLoadNextScene)
@@ -30,28 +38,11 @@ public class StepTextHandler : MonoBehaviour
         //label
         textLabelObject.text = stepLabelTexts[m_CurrentStepIndex];
         // body
-        textBodyObject.text = stepBodyTexts[m_CurrentStepIndex];
+        //textBodyObject.text = stepBodyTexts[m_CurrentStepIndex];
 
-        if(m_CurrentStepIndex >= stepBodyTexts.Length - 1)
-        {
-            nextButton.text = "Load next scene";
-            toLoadNextScene = true;
-        }
-        else
-        {
-            m_CurrentStepIndex++;
-        }
+        m_CurrentStepIndex = (m_CurrentStepIndex + 1) % stepLabelTexts.Length;
     }
 
-    public void NextDangerZoneSetting()
-    {
-        //label
-        textLabelObject.text = stepLabelTexts[m_CurrentStepIndex];
-        // body
-        textBodyObject.text = stepBodyTexts[m_CurrentStepIndex];
-
-        m_CurrentStepIndex = (m_CurrentStepIndex + 1) % stepBodyTexts.Length;
-    }
 
     void LoadNextScene()
     {
