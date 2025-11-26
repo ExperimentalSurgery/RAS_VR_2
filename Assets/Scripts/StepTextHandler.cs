@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Linq;
 
 public class StepTextHandler : MonoBehaviour
 {
@@ -16,8 +17,10 @@ public class StepTextHandler : MonoBehaviour
     [SerializeField] GameObject[] stepArrows;
     //[SerializeField] string[] stepBodyTexts;
     [SerializeField] TMP_Text nextButton;
+    int m_StepIndex = 0;
     int m_CurrentStepIndex = 0;
     [SerializeField] private bool toLoadNextScene = false;
+    List<Renderer> allArrowRenders = new List<Renderer>();
 
     private void Start()
     {
@@ -25,7 +28,6 @@ public class StepTextHandler : MonoBehaviour
         {
             arrow.SetActive(false);
         }
-        NextSetting();
     }
 
     private void Update()
@@ -44,12 +46,12 @@ public class StepTextHandler : MonoBehaviour
         }
 
         //label
-        textLabelObject.text = stepLabelTexts[m_CurrentStepIndex];
+        textLabelObject.text = stepLabelTexts[m_StepIndex];
         // body
         //textBodyObject.text = stepBodyTexts[m_CurrentStepIndex];
         SelectArrows();
 
-        m_CurrentStepIndex = (m_CurrentStepIndex + 1) % stepLabelTexts.Length;
+        m_StepIndex = (m_StepIndex + 1) % stepLabelTexts.Length;
     }
 
 
@@ -63,91 +65,79 @@ public class StepTextHandler : MonoBehaviour
 
     void SelectArrows()
     {
-        switch (m_CurrentStepIndex)
+        StopAllCoroutines();
+        foreach (var arrow in stepArrows)
+        {
+            arrow.SetActive(false);
+        }
+        if (allArrowRenders != null)
+        {
+            foreach (var rend in allArrowRenders)
+            {
+                Color c = rend.material.color;
+                c.a = 1f;
+                rend.material.color = c;
+            }
+        }  
+        switch (m_StepIndex)
         {
             case 0:
-                foreach (var arrow in stepArrows)
-                {
-                    arrow.SetActive(false);
-                }
+                m_CurrentStepIndex = 0;
                 stepArrows[0].SetActive(true);
                 var renderers_0 = stepArrows[0].GetComponentsInChildren<Renderer>();
+                allArrowRenders.AddRange(renderers_0);
                 StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_0), 1.5f));
                 break;
             case 1:
-                foreach (var arrow in stepArrows)
-                {
-                    arrow.SetActive(false);
-                }
+                m_CurrentStepIndex = 1;
                 stepArrows[1].SetActive(true);
                 var renderers_1 = stepArrows[1].GetComponentsInChildren<Renderer>();
+                allArrowRenders.AddRange(renderers_1);
                 StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_1), 1.5f));
                 break;
             case 2:
-                foreach (var arrow in stepArrows)
-                {
-                    arrow.SetActive(false);
-                }
+                m_CurrentStepIndex = 2;
                 stepArrows[2].SetActive(true);
+                var renderers_2 = stepArrows[2].GetComponentsInChildren<Renderer>();
+                allArrowRenders.AddRange(renderers_2);
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_2), 1.5f));
                 break;
             case 3:
-                foreach (var arrow in stepArrows)
-                {
-                    arrow.SetActive(false);
-                }
+                m_CurrentStepIndex = 3;
                 stepArrows[3].SetActive(true);
                 stepArrows[4].SetActive(true);
+                var renderers_3 = stepArrows[3].GetComponentsInChildren<Renderer>();
+                var renderers_4 = stepArrows[4].GetComponentsInChildren<Renderer>();
+                var renderersList_3_4 = renderers_3.Concat(renderers_4).ToArray();
+                allArrowRenders.AddRange(renderersList_3_4);
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderersList_3_4), 1.5f));
                 break;
             case 4:
-                foreach (var arrow in stepArrows)
-                {
-                    arrow.SetActive(false);
-                }
                 stepArrows[5].SetActive(true);
+                var renderers_5 = stepArrows[5].GetComponentsInChildren<Renderer>();
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_5), 1.5f));
                 break;
             case 5:
-                foreach (var arrow in stepArrows)
-                {
-                    arrow.SetActive(false);
-                }
+                m_CurrentStepIndex = 5;
                 stepArrows[6].SetActive(true);
                 stepArrows[7].SetActive(true);
+                var renderers_6 = stepArrows[6].GetComponentsInChildren<Renderer>();
+                var renderers_7 = stepArrows[7].GetComponentsInChildren<Renderer>();
+                var renderersList_6_7 = renderers_6.Concat(renderers_7).ToArray();
+                allArrowRenders.AddRange(renderersList_6_7);
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderersList_6_7), 1.5f));
                 break;
             case 6:
-                foreach (var arrow in stepArrows)
-                {
-                    arrow.SetActive(false);
-                }
+                m_CurrentStepIndex = 6;
                 stepArrows[8].SetActive(true);
+                var renderers_8 = stepArrows[8].GetComponentsInChildren<Renderer>();
+                allArrowRenders.AddRange(renderers_8);
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_8), 1.5f));
                 break;
             default:
                 break;
         }
     }
-
-    //public IEnumerator FadeOutMaterial(Material mat, float duration)
-    //{
-    //    // Aktuellen Farbwert speichern
-    //    Color startColor = mat.color;
-    //    Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
-
-    //    float t = 0f;
-
-    //    while (t < duration)
-    //    {
-    //        t += Time.deltaTime;
-    //        float normalized = t / duration;
-
-    //        // Alpha interpolieren
-    //        mat.color = Color.Lerp(startColor, endColor, normalized);
-
-    //        yield return null;
-    //    }
-
-    //    // Sicherheit: Alpha am Ende auf 0 setzen
-    //    mat.color = endColor;
-    //}
-
     public IEnumerator FadeOutObjects(List<Renderer> renderers, float duration)
     {
         yield return new WaitForSeconds(1);
@@ -182,6 +172,52 @@ public class StepTextHandler : MonoBehaviour
         {
             Color c = mat.color;
             c.a = 0f;
+            mat.color = c;
+        }
+    }
+
+
+    public IEnumerator FadeInObjects(List<Renderer> renderers, float duration)
+    {
+        // Materialien einsammeln
+        List<Material> mats = new List<Material>();
+        foreach (var rend in renderers)
+        {
+            foreach (var mat in rend.materials)
+            {
+                mats.Add(mat);
+            }
+        }
+
+        // Alpha zu Beginn auf 0 setzen
+        foreach (var mat in mats)
+        {
+            Color c = mat.color;
+            c.a = 0f;
+            mat.color = c;
+        }
+
+        float t = 0f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float normalized = t / duration;
+
+            foreach (var mat in mats)
+            {
+                Color c = mat.color;
+                c.a = Mathf.Lerp(0f, 1f, normalized);
+                mat.color = c;
+            }
+
+            yield return null;
+        }
+
+        // Sicherheit: Alpha am Ende auf 1 setzen
+        foreach (var mat in mats)
+        {
+            Color c = mat.color;
+            c.a = 1f;
             mat.color = c;
         }
     }

@@ -117,17 +117,17 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
     - _DstBlendAlpha: 0
-    - _EdgeHighlightPower: 0.62
+    - _EdgeHighlightPower: 0.6
     - _EnvironmentReflections: 1
-    - _FadeSize: 77.92
-    - _FadeStart: 8.05
+    - _FadeSize: 5
+    - _FadeStart: 50
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossinessSource: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NoiseScale: 2500
-    - _NoiseStrength: 1.5
+    - _NoiseScale: 2000
+    - _NoiseStrength: 55
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 1
@@ -149,7 +149,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 0.3882353}
     - _Color: {r: 1, g: 1, b: 1, a: 0.78039217}
-    - _EdgeColor: {r: 0.509434, g: 0.29311478, b: 0.15138839, a: 1}
+    - _EdgeColor: {r: 0.62264144, g: 0.45573217, b: 0.07929861, a: 0.36078432}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FadeCenter: {r: 1, g: -11.4, b: 30, a: 0}
     - _FadeScale: {r: 1, g: 0.01, b: 0.0003, a: 0}
@@ -157,7 +157,7 @@ Material:
     - _FingerColor_2: {r: 1, g: 1, b: 1, a: 0}
     - _FingerColor_3: {r: 1, g: 1, b: 1, a: 0}
     - _FingerColor_4: {r: 1, g: 1, b: 1, a: 0}
-    - _MainColor: {r: 0.7924528, g: 0.6060079, b: 0.19063717, a: 0.92941177}
+    - _MainColor: {r: 0.7924528, g: 0.6060079, b: 0.19063711, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _ThumbColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
