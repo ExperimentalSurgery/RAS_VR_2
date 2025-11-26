@@ -5,7 +5,9 @@ public class InstructionsHandler : MonoBehaviour
 {
     [Header("UI Elements")]
     [SerializeField]
-    GameObject dynamicUI;
+    GameObject dynamicUI_instructions;
+    [SerializeField]
+    GameObject dynamicUI_updatedText;
     [SerializeField]
     GameObject staticUI;
     [SerializeField]
@@ -66,7 +68,8 @@ public class InstructionsHandler : MonoBehaviour
 
     void Start()
     {
-        dynamicUI.SetActive(true);
+        dynamicUI_instructions.SetActive(true);
+        dynamicUI_updatedText.SetActive(false);
         staticUI.SetActive(false);
         indexText.text = "Next socket: " + 0;
         uiInstructionsText.text = "Read instructions before calibrating.";
@@ -206,14 +209,14 @@ public class InstructionsHandler : MonoBehaviour
     public void ResetUI()
     {
 
-        dynamicUI.SetActive(true);
+        dynamicUI_instructions.SetActive(true);
         staticUI.SetActive(false);
         SelectInstruction();
     }
 
     void ToggleUI()
     {
-        dynamicUI.SetActive(!dynamicUI.activeSelf);
+        dynamicUI_instructions.SetActive(!dynamicUI_instructions.activeSelf);
         staticUI.SetActive(!staticUI.activeSelf);
     }
 

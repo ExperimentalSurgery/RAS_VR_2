@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class SequenceHandler : MonoBehaviour
 {
+    [SerializeField]
+    GameObject dynamicUI_updatedText;
+
     [Serializable]
     class SequencStep
     {
@@ -32,6 +35,8 @@ public class SequenceHandler : MonoBehaviour
         if (m_CurrentStepIndex == 0)
         {
             onFinishedReading?.Invoke();
+            dynamicUI_updatedText.SetActive(true);
+            this.gameObject.SetActive(false);
         }
         m_StepList[m_CurrentStepIndex].stepObject.SetActive(true);
         m_StepButtonTextField.text = m_StepList[m_CurrentStepIndex].buttonText;
