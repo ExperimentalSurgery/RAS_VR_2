@@ -724,7 +724,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 680717015}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SequenceHandler, Assembly-CSharp
         m_MethodName: Previous
         m_Mode: 1
@@ -10353,7 +10353,6 @@ GameObject:
   - component: {fileID: 680717013}
   - component: {fileID: 680717012}
   - component: {fileID: 680717011}
-  - component: {fileID: 680717015}
   m_Layer: 31
   m_Name: CanvasRoot
   m_TagString: Untagged
@@ -10484,41 +10483,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &680717015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 680717008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b2dd9ece21e94c4f864005ecfa75fd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicUI_updatedText: {fileID: 806197588}
-  m_StepButtonTextField: {fileID: 830923165}
-  m_StepList:
-  - stepObject: {fileID: 366933464200330749}
-    buttonText: Continue
-  - stepObject: {fileID: 1228965482}
-    buttonText: Continue
-  - stepObject: {fileID: 2003784582}
-    buttonText: Continue
-  - stepObject: {fileID: 1010959378}
-    buttonText: Continue
-  - stepObject: {fileID: 288854042}
-    buttonText: Continue
-  - stepObject: {fileID: 500085845}
-    buttonText: Continue
-  - stepObject: {fileID: 1847595497}
-    buttonText: Continue
-  - stepObject: {fileID: 1228442151}
-    buttonText: Continue
-  - stepObject: {fileID: 1253296446}
-    buttonText: Continue
-  - stepObject: {fileID: 1483422927}
-    buttonText: Start calibration
 --- !u!1 &683658021
 GameObject:
   m_ObjectHideFlags: 0
@@ -13207,7 +13171,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 8
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -24050,7 +24014,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 680717015}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SequenceHandler, Assembly-CSharp
         m_MethodName: Next
         m_Mode: 1
@@ -36594,7 +36558,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: go back
+  m_text: Back
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4257e7bc4b96a8c4ebc08ccf25f73c38, type: 2}
   m_sharedMaterial: {fileID: -6087167562251666460, guid: 4257e7bc4b96a8c4ebc08ccf25f73c38, type: 2}
@@ -36627,7 +36591,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 8
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -65959,6 +65923,7 @@ GameObject:
   - component: {fileID: 7906958636480763526}
   - component: {fileID: 6297223088368971618}
   - component: {fileID: 9015838625420687576}
+  - component: {fileID: 9015838625420687577}
   m_Layer: 31
   m_Name: UI_dynamic_instructions
   m_TagString: Untagged
@@ -91477,6 +91442,42 @@ MonoBehaviour:
   m_MinAngleAllowed: 0.1
   m_MaxAngleAllowed: 5
   m_TimeUntilThresholdReachesMaxAngle: 3
+--- !u!114 &9015838625420687577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4895454297409859614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b2dd9ece21e94c4f864005ecfa75fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dynamicUI_updatedText: {fileID: 806197588}
+  childUI: {fileID: 1431236257}
+  m_StepButtonTextField: {fileID: 830923165}
+  m_StepList:
+  - stepObject: {fileID: 366933464200330749}
+    buttonText: Continue
+  - stepObject: {fileID: 1228965482}
+    buttonText: Continue
+  - stepObject: {fileID: 2003784582}
+    buttonText: Continue
+  - stepObject: {fileID: 1010959378}
+    buttonText: Continue
+  - stepObject: {fileID: 288854042}
+    buttonText: Continue
+  - stepObject: {fileID: 500085845}
+    buttonText: Continue
+  - stepObject: {fileID: 1847595497}
+    buttonText: Continue
+  - stepObject: {fileID: 1228442151}
+    buttonText: Continue
+  - stepObject: {fileID: 1253296446}
+    buttonText: Continue
+  - stepObject: {fileID: 1483422927}
+    buttonText: Start calibration
 --- !u!1 &9017009889441910089
 GameObject:
   m_ObjectHideFlags: 0
@@ -92621,7 +92622,7 @@ MonoBehaviour:
   - "5. Insert right stylus into socket 1 \u2192 press dark button."
   - "6.Insert left stylus into socket 1 \u2192 press dark button."
   - 7. Repeat for another stylus.
-  sequenceHandler: {fileID: 680717015}
+  sequenceHandler: {fileID: 9015838625420687577}
   wasConsoleCalibrated: 0
   wasRightStylusActivated: 0
   wasLeftStylusActivated: 0

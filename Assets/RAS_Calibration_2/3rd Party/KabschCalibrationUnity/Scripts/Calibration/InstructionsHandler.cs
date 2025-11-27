@@ -217,6 +217,7 @@ public class InstructionsHandler : MonoBehaviour
     void ToggleUI()
     {
         dynamicUI_instructions.SetActive(!dynamicUI_instructions.activeSelf);
+        dynamicUI_updatedText.SetActive(!dynamicUI_updatedText.activeSelf);
         staticUI.SetActive(!staticUI.activeSelf);
     }
 

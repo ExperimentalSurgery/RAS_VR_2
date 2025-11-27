@@ -158,7 +158,7 @@ public class StepTextHandler : MonoBehaviour
                 var renderers_8 = stepArrows[8].GetComponentsInChildren<Renderer>();
                 var renderersList_7_8 = renderers_7.Concat(renderers_8).ToArray();
                 allArrowRenders.AddRange(renderersList_7_8);
-                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_8), 3f));
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderersList_7_8), 3f));
                 break;
             default:
                 break;

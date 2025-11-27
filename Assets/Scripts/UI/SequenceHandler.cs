@@ -7,6 +7,8 @@ public class SequenceHandler : MonoBehaviour
 {
     [SerializeField]
     GameObject dynamicUI_updatedText;
+    [SerializeField]
+    GameObject childUI;
 
     [Serializable]
     class SequencStep
@@ -36,7 +38,7 @@ public class SequenceHandler : MonoBehaviour
         {
             onFinishedReading?.Invoke();
             dynamicUI_updatedText.SetActive(true);
-            this.transform.parent.transform.parent.gameObject.SetActive(false);
+            childUI.SetActive(false);
         }
         m_StepList[m_CurrentStepIndex].stepObject.SetActive(true);
         m_StepButtonTextField.text = m_StepList[m_CurrentStepIndex].buttonText;

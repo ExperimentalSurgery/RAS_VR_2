@@ -10568,19 +10568,19 @@ PrefabInstance:
       objectReference: {fileID: 1763032853}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnReleaseButton1.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnReleaseButton2.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -10612,7 +10612,7 @@ PrefabInstance:
       objectReference: {fileID: 163138130}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToggleHapticFeedback
+      value: ToggleGameMode
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -10639,7 +10639,15 @@ PrefabInstance:
       value: GameModeManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameModeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
@@ -10649,6 +10657,14 @@ PrefabInstance:
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnReleaseButton2.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GameModeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnReleaseButton1.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
