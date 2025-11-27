@@ -35,8 +35,9 @@ public class CalibrationManager : MonoBehaviour
     [Header("Currently selected object to align")]
     [SerializeField] 
     private bool canCalibrate = false;
-    [SerializeField]
+    [SerializeField] MeshRenderer[] visualMeshes;
     private CalibrateObject currentObjectToCalibrate;
+    [SerializeField]
 
     private string[] alignObjectChoices;
     [SerializeField]
@@ -221,22 +222,9 @@ public class CalibrationManager : MonoBehaviour
         Debug.Log("AddSourcePoint " + tooltip.position);
         Debug.Log("ChoiceIndex: " + choiceIndex);
         currentObjectToCalibrate.AddSourcePoint(tooltip.position, sourcePointParents[choiceIndex].transform, choiceIndex);
-        //currentObjectToCalibrate.AddTargetPoint(tooltip.position, sourcePointParents[choiceIndex].transform, choiceIndex);
         ChangeColorOfPointer();
         OnCalibrationComplete?.Invoke();
-        CreateVisualPointForStylusCalibration(objectId);
         SaveCalibrationToFile();
-    }
-
-    void CreateVisualPointForStylusCalibration(int objectId)
-    {
-        if(objectId == 0) return;
-        GameObject parentObject = new GameObject("ParentVisualPoints");
-        GameObject newRefPoint = Instantiate(Resources.Load("SourcePointPrefab", typeof(GameObject)), tooltips[objectId].position, Quaternion.identity, parentObject.transform) as GameObject;
-        newRefPoint.name = "VisualSourcePoint";
-        Renderer renderer = newRefPoint.GetComponent<Renderer>();
-        renderer.material = new Material(Shader.Find("UI/Unlit/Detail"));
-        renderer.sharedMaterial.color = ColorOrder.GetColor(calibrationPointIndex);
     }
     public void TryCreateDelayedSourcePoint(int objectId)
     {
@@ -399,10 +387,10 @@ public class CalibrationManager : MonoBehaviour
         rendererController.material = new Material(Shader.Find("UI/Unlit/Detail"));
         rendererController.sharedMaterial.color = ColorOrder.GetColor(colorNumber);
 
-        if (choiceIndex == 0) { return; }
-        Renderer rendererRight = tooltips[choiceIndex].GetComponent<Renderer>(); // to change color of another pointer
-        rendererRight.material = new Material(Shader.Find("UI/Unlit/Detail"));
-        rendererRight.sharedMaterial.color = ColorOrder.GetColor(colorNumber);
+        //if (choiceIndex == 0) { return; }
+        //Renderer rendererRight = tooltips[choiceIndex].GetComponent<Renderer>(); // to change color of another pointer
+        //rendererRight.material = new Material(Shader.Find("UI/Unlit/Detail"));
+        //rendererRight.sharedMaterial.color = ColorOrder.GetColor(colorNumber);
     }
 
     #endregion

@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CalibrateObject : MonoBehaviour
@@ -11,6 +12,9 @@ public class CalibrateObject : MonoBehaviour
     private Quaternion origRotation;
     public float calibrationDistanceError = 0;
 
+    [SerializeField]
+    Transform[] visualMeshes;
+
     // Use this for initialization
     public void Start()
     {
@@ -21,10 +25,35 @@ public class CalibrateObject : MonoBehaviour
         calibrationPointIndex = 0;
 
         SaveOriginalPosition();
+        DisplayVisualMeshes(false);
     }
+
+    void DisplayVisualMeshes(bool toDisplay)
+    {
+        for (int i = 0; i < visualMeshes.Length; i++)
+        {
+            foreach (MeshRenderer meshRenderer in visualMeshes[i].GetComponentsInChildren<MeshRenderer>())
+            {
+                if (toDisplay)
+                {
+                    meshRenderer.enabled = true;
+                }
+                else
+                {
+                    meshRenderer.enabled = false;
+                }
+            }
+
+        }
+    }
+
 
     public void ResetAllTargetPoints()
     {
+        foreach (var targetPoint in targetPoints)
+        {
+            targetPoint.GetComponent<Renderer>().enabled = false;
+        }
         foreach (Transform currRefPoint in targetPoints)
         {
             if (currRefPoint != null)
@@ -52,7 +81,7 @@ public class CalibrateObject : MonoBehaviour
         calibrationPointIndex = 0;
     }
 
-	public void ResetLastTargetPoint()
+    public void ResetLastTargetPoint()
     {
         int indexToDelete;
 
@@ -104,6 +133,8 @@ public class CalibrateObject : MonoBehaviour
             ApplyAlignment(alignmentTransform);
             calibrationDistanceError = CalculateCalibrationDistance();
             SaveOriginalPosition();
+            DisplayVisualMeshes(true);
+            ResetAllTargetPoints();
         }
     }
 
@@ -129,17 +160,34 @@ public class CalibrateObject : MonoBehaviour
             renderer.sharedMaterial.color = ColorOrder.GetColor(calibrationPointIndex);
         }
 
+        // make visible and change color of the target point
+        if (targetPoints[calibrationPointIndex] != null)
+        {
+            GameObject newTargPoint = targetPoints[calibrationPointIndex].gameObject;
+            // Set the material and color for the new reference point
+            newTargPoint.GetComponent<Renderer>().enabled = true;
+            Renderer targRenderer = newTargPoint.GetComponent<Renderer>();
+            targRenderer.material = new Material(Shader.Find("UI/Unlit/Detail"));
+            targRenderer.sharedMaterial.color = ColorOrder.GetColor(calibrationPointIndex);
+        }
+
+
         newRefPoint.transform.SetPositionAndRotation(new Vector3(position.x, position.y, position.z), Quaternion.identity);
         sourcePoints[calibrationPointIndex] = newRefPoint.transform;
         calibrationPointIndex += 1;
 
         if (calibrationPointIndex >= sourcePoints.Length)
         {
+            foreach (var targetPoint in targetPoints)
+            {
+                targetPoint.GetComponent<Renderer>().enabled = false;
+            }
             Calibrate();
             Debug.Log("calibrate Object: " + calibrationPointIndex + " / " + sourcePoints.Length);
+            DisplayVisualMeshes(true);
         }
 
-       
+
     }
 
     public void Calibrate()

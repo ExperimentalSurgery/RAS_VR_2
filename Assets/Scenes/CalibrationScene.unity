@@ -4827,7 +4827,6 @@ GameObject:
   - component: {fileID: 289132143}
   - component: {fileID: 289132146}
   - component: {fileID: 289132145}
-  - component: {fileID: 289132144}
   m_Layer: 0
   m_Name: SourcePoint_4
   m_TagString: Untagged
@@ -4850,27 +4849,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 686504291}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &289132144
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 289132142}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &289132145
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6996,7 +6974,6 @@ GameObject:
   - component: {fileID: 455608981}
   - component: {fileID: 455608984}
   - component: {fileID: 455608983}
-  - component: {fileID: 455608982}
   m_Layer: 0
   m_Name: SourcePoint_1
   m_TagString: Untagged
@@ -7019,27 +6996,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 686504291}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &455608982
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455608980}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &455608983
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7873,6 +7829,8 @@ MonoBehaviour:
   - {fileID: 399909813}
   calibrationPointIndex: 0
   calibrationDistanceError: 0
+  visualMeshes:
+  - {fileID: 1155728145}
 --- !u!1001 &507274685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11212,6 +11170,8 @@ MonoBehaviour:
   - {fileID: 1763032853}
   calibrationPointIndex: 0
   calibrationDistanceError: 0
+  visualMeshes:
+  - {fileID: 507274686}
 --- !u!1 &711127080
 GameObject:
   m_ObjectHideFlags: 0
@@ -22160,24 +22120,24 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 9171841333746091440}
           m_TargetAssemblyTypeName: CalibrationManager, Assembly-CSharp
-          m_MethodName: PressButtonLeft
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 9171841333746091440}
-          m_TargetAssemblyTypeName: CalibrationManager, Assembly-CSharp
           m_MethodName: TryCreateDelayedSourcePoint
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 9171841333746091440}
+          m_TargetAssemblyTypeName: CalibrationManager, Assembly-CSharp
+          m_MethodName: PressButtonLeft
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -25401,6 +25361,10 @@ MonoBehaviour:
   - {fileID: 2571566114605426839}
   calibrationPointIndex: 0
   calibrationDistanceError: 0
+  visualMeshes:
+  - {fileID: 553949054408782710}
+  - {fileID: 335440534}
+  - {fileID: 1596291981}
 --- !u!1 &1480495529
 GameObject:
   m_ObjectHideFlags: 0
@@ -27006,7 +26970,6 @@ GameObject:
   - component: {fileID: 1597196335}
   - component: {fileID: 1597196338}
   - component: {fileID: 1597196337}
-  - component: {fileID: 1597196336}
   m_Layer: 0
   m_Name: SourcePoint_3
   m_TagString: Untagged
@@ -27029,27 +26992,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 686504291}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1597196336
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1597196334}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1597196337
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30911,7 +30853,6 @@ GameObject:
   - component: {fileID: 1834774240}
   - component: {fileID: 1834774243}
   - component: {fileID: 1834774242}
-  - component: {fileID: 1834774241}
   m_Layer: 0
   m_Name: SourcePoint_2
   m_TagString: Untagged
@@ -30934,27 +30875,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 686504291}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1834774241
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1834774239}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1834774242
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37289,9 +37209,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6864402470241469732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 184, y: -47}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 320, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &25974517896997977
@@ -38034,9 +37954,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6864402470241469732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 184, y: -12}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 368, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &261960856126690923
@@ -65986,9 +65906,9 @@ RectTransform:
   - {fileID: 4818462224287598009}
   m_Father: {fileID: 4927034118680062058}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75, y: -30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &4927034118680062058
@@ -66007,9 +65927,9 @@ RectTransform:
   - {fileID: 8181225958848486680}
   m_Father: {fileID: 6864402470241469732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 184, y: -125.76448}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4928925375283447356
@@ -73923,7 +73843,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 184, y: -125.8}
-  m_SizeDelta: {x: 368, y: 205.52896}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 0}
 --- !u!1 &6864501791081047164
 GameObject:
@@ -85157,9 +85077,9 @@ RectTransform:
   - {fileID: 3284393928856380556}
   m_Father: {fileID: 4927034118680062058}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75, y: -107.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8183889722735943541
@@ -92587,7 +92507,8 @@ MonoBehaviour:
   sourcePoints: []
   targetPoints: []
   canCalibrate: 0
-  currentObjectToCalibrate: {fileID: 1476155400}
+  visualMeshes: []
+  alignObjectChoices: []
   alignObjectsInScene:
   - {fileID: 1476155400}
   - {fileID: 506851023}
