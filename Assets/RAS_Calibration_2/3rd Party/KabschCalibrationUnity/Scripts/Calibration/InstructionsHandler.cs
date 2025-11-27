@@ -208,12 +208,14 @@ public class InstructionsHandler : MonoBehaviour
 
     public void ResetUI()
     {
+
+        sequenceHandler.onFinishedReading += DisplayFirstInstruction;
         calibrationManager.CanCalibrate = false;
         calibrationManager.RevertTipColors();
         dynamicUI_instructions.SetActive(true);
         dynamicUI_updatedText.SetActive(false);
+        //SelectInstruction();
         staticUI.SetActive(false);
-        SelectInstruction();
     }
 
     void ShowStaticUI()

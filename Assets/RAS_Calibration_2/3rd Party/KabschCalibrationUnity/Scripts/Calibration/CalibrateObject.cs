@@ -52,7 +52,11 @@ public class CalibrateObject : MonoBehaviour
     {
         foreach (var targetPoint in targetPoints)
         {
-            targetPoint.GetComponent<Renderer>().enabled = false;
+            if(targetPoint != null)
+            {
+                if (targetPoint.GetComponent<Renderer>())
+                    targetPoint.GetComponent<Renderer>().enabled = false;
+            }
         }
         foreach (Transform currRefPoint in targetPoints)
         {
@@ -64,6 +68,8 @@ public class CalibrateObject : MonoBehaviour
 
         targetPoints = new Transform[sourcePoints.Length];
         calibrationPointIndex = 0;
+
+        Debug.Log("RRResetAllTargetPoints");
     }
 
     public void ResetAllSourcePoints()

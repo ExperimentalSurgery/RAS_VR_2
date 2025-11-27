@@ -348,6 +348,7 @@ public class CalibrationManager : MonoBehaviour
 
     public void ResetAllTargetPoints()
     {
+        Debug.Log("ResetAllTargetPoints");
         alignObjectsInScene[0].ResetAllTargetPoints();
         alignObjectsInScene[1].calibrationPointIndex = 0;
         alignObjectsInScene[2].calibrationPointIndex = 0;
