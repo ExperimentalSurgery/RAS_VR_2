@@ -35,7 +35,6 @@ public class CalibrationManager : MonoBehaviour
     [Header("Currently selected object to align")]
     [SerializeField] 
     private bool canCalibrate = false;
-    [SerializeField] MeshRenderer[] visualMeshes;
     private CalibrateObject currentObjectToCalibrate;
     [SerializeField]
 
