@@ -156,7 +156,7 @@ public class InstructionsHandler : MonoBehaviour
                     if (wasLeftStylusCalibrated && wasRightStylusCalibrated)
                     {
                         OnCompletedCalibration?.Invoke();
-                        ToggleUI();
+                        ShowStaticUI();
                     }
                     else
                     {
@@ -192,7 +192,7 @@ public class InstructionsHandler : MonoBehaviour
                     if (wasLeftStylusCalibrated && wasRightStylusCalibrated)
                     {
                         OnCompletedCalibration?.Invoke();
-                        ToggleUI();
+                        ShowStaticUI();
                     }
                     else
                     {
@@ -214,11 +214,11 @@ public class InstructionsHandler : MonoBehaviour
         SelectInstruction();
     }
 
-    void ToggleUI()
+    void ShowStaticUI()
     {
-        dynamicUI_instructions.SetActive(!dynamicUI_instructions.activeSelf);
-        dynamicUI_updatedText.SetActive(!dynamicUI_updatedText.activeSelf);
-        staticUI.SetActive(!staticUI.activeSelf);
+        dynamicUI_instructions.SetActive(false);
+        dynamicUI_updatedText.SetActive(false);
+        staticUI.SetActive(true);
     }
 
     private int GetNextSocketNumber(int uiIndex)
