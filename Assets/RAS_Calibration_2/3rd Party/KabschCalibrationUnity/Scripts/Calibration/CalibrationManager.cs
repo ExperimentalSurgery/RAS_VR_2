@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 
 
 public class CalibrationManager : MonoBehaviour
@@ -158,7 +159,6 @@ public class CalibrationManager : MonoBehaviour
             Renderer rendererTip = tip.GetComponent<Renderer>();
             rendererTip.sharedMaterial.color = originalColorsForTips[Array.IndexOf(tooltips, tip)];
         }
-        SceneManager.LoadScene(0);
     }
 
     // 2) OnPassthroughLayerResumed is called once the layer is fully initialized and passthrough is visible
@@ -221,12 +221,23 @@ public class CalibrationManager : MonoBehaviour
         Debug.Log("AddSourcePoint " + tooltip.position);
         Debug.Log("ChoiceIndex: " + choiceIndex);
         currentObjectToCalibrate.AddSourcePoint(tooltip.position, sourcePointParents[choiceIndex].transform, choiceIndex);
+        //currentObjectToCalibrate.AddTargetPoint(tooltip.position, sourcePointParents[choiceIndex].transform, choiceIndex);
         ChangeColorOfPointer();
         OnCalibrationComplete?.Invoke();
+        CreateVisualPointForStylusCalibration(objectId);
         SaveCalibrationToFile();
     }
 
-
+    void CreateVisualPointForStylusCalibration(int objectId)
+    {
+        if(objectId == 0) return;
+        GameObject parentObject = new GameObject("ParentVisualPoints");
+        GameObject newRefPoint = Instantiate(Resources.Load("SourcePointPrefab", typeof(GameObject)), tooltips[objectId].position, Quaternion.identity, parentObject.transform) as GameObject;
+        newRefPoint.name = "VisualSourcePoint";
+        Renderer renderer = newRefPoint.GetComponent<Renderer>();
+        renderer.material = new Material(Shader.Find("UI/Unlit/Detail"));
+        renderer.sharedMaterial.color = ColorOrder.GetColor(calibrationPointIndex);
+    }
     public void TryCreateDelayedSourcePoint(int objectId)
     {
         // Block if already in the middle of creating one
@@ -240,7 +251,7 @@ public class CalibrationManager : MonoBehaviour
         isCreatingSourcePoint = true;
         CreateSourcePoint(objectId);
         //small delay to debounce / avoid double-press
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.25f);
         isCreatingSourcePoint = false;
     }
 

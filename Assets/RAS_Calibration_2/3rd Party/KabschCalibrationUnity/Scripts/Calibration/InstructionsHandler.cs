@@ -208,6 +208,8 @@ public class InstructionsHandler : MonoBehaviour
 
     public void ResetUI()
     {
+        calibrationManager.CanCalibrate = false;
+        calibrationManager.RevertTipColors();
         dynamicUI_instructions.SetActive(true);
         dynamicUI_updatedText.SetActive(false);
         staticUI.SetActive(false);
@@ -216,6 +218,8 @@ public class InstructionsHandler : MonoBehaviour
 
     void ShowStaticUI()
     {
+        calibrationManager.CanCalibrate = false;
+        calibrationManager.RevertTipColors();
         dynamicUI_instructions.SetActive(false);
         dynamicUI_updatedText.SetActive(false);
         staticUI.SetActive(true);
