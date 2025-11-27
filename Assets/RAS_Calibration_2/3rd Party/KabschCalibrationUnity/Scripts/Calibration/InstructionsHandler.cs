@@ -208,8 +208,8 @@ public class InstructionsHandler : MonoBehaviour
 
     public void ResetUI()
     {
-
         dynamicUI_instructions.SetActive(true);
+        dynamicUI_updatedText.SetActive(false);
         staticUI.SetActive(false);
         SelectInstruction();
     }
