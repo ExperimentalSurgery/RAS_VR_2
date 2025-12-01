@@ -90,7 +90,6 @@ public class GameModeManager : MonoBehaviour
 
     private void OnDisable()
     {
-        InitializePassthroughMode();
         oVRPassthroughLayer.passthroughLayerResumed.RemoveListener(OnPassthroughLayerResumed);
     }
 

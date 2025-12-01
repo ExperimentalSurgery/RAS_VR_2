@@ -128,19 +128,19 @@ public class StepTextHandler : MonoBehaviour
             case 2:
                 m_CurrentStepIndex = 2;
                 stepArrows[2].SetActive(true);
+                stepArrows[3].SetActive(true);
                 var renderers_2 = stepArrows[2].GetComponentsInChildren<Renderer>();
-                allArrowRenders.AddRange(renderers_2);
-                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_2), 3f));
+                var renderers_3 = stepArrows[3].GetComponentsInChildren<Renderer>();
+                var renderersList_2_3 = renderers_2.Concat(renderers_3).ToArray();
+                allArrowRenders.AddRange(renderersList_2_3);
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderersList_2_3), 3f));
                 break;
             case 3:
                 m_CurrentStepIndex = 3;
-                stepArrows[3].SetActive(true);
                 stepArrows[4].SetActive(true);
-                var renderers_3 = stepArrows[3].GetComponentsInChildren<Renderer>();
                 var renderers_4 = stepArrows[4].GetComponentsInChildren<Renderer>();
-                var renderersList_3_4 = renderers_3.Concat(renderers_4).ToArray();
-                allArrowRenders.AddRange(renderersList_3_4);
-                StartCoroutine(FadeOutObjects(new List<Renderer>(renderersList_3_4), 3f));
+                allArrowRenders.AddRange(renderers_4);
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_4), 3f));
                 break;
             case 4:
                 stepArrows[5].SetActive(true);
@@ -150,19 +150,12 @@ public class StepTextHandler : MonoBehaviour
             case 5:
                 m_CurrentStepIndex = 5;
                 stepArrows[6].SetActive(true);
-                var renderers_6 = stepArrows[6].GetComponentsInChildren<Renderer>();
-                allArrowRenders.AddRange(renderers_6);
-                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_6), 3f));
-                break;
-            case 6:
-                m_CurrentStepIndex = 6;
                 stepArrows[7].SetActive(true);
-                stepArrows[8].SetActive(true);
+                var renderers_6 = stepArrows[6].GetComponentsInChildren<Renderer>();
                 var renderers_7 = stepArrows[7].GetComponentsInChildren<Renderer>();
-                var renderers_8 = stepArrows[8].GetComponentsInChildren<Renderer>();
-                var renderersList_7_8 = renderers_7.Concat(renderers_8).ToArray();
-                allArrowRenders.AddRange(renderersList_7_8);
-                StartCoroutine(FadeOutObjects(new List<Renderer>(renderersList_7_8), 3f));
+                var renderersList_6_7 = renderers_6.Concat(renderers_7).ToArray();
+                allArrowRenders.AddRange(renderersList_6_7);
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderersList_6_7), 3f));
                 break;
             default:
                 break;

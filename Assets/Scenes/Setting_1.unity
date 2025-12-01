@@ -9334,6 +9334,7 @@ MonoBehaviour:
   - {fileID: 0}
   calibrationPointIndex: 0
   calibrationDistanceError: 0
+  visualMeshes: []
 --- !u!1 &1480495529
 GameObject:
   m_ObjectHideFlags: 0
@@ -63511,7 +63512,6 @@ MonoBehaviour:
   textLabelObject: {fileID: 7984132364044213669}
   textBodyObject: {fileID: 2243673841322717868}
   stepLabelTexts:
-  - Remove calibration platform
   - Put the platform with the liver
   - Touch the liver with your hands
   - Grab the stylus and click the dark grey button on the stylus
@@ -63519,7 +63519,6 @@ MonoBehaviour:
   - Remove the physical liver with platform away
   - 'Click the light grey button to activate haptic feedback and explore the liver '
   stepArrows:
-  - {fileID: 1218415811455801248}
   - {fileID: 1174896068}
   - {fileID: 2102711839463037078}
   - {fileID: 213193868}
@@ -84269,7 +84268,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Remove calibration platform
+  m_text: Put the platform with the liver
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0df7411b8a8f9c54fa9ff0c6df02dcc1, type: 2}
   m_sharedMaterial: {fileID: -430000129102779671, guid: 0df7411b8a8f9c54fa9ff0c6df02dcc1, type: 2}
