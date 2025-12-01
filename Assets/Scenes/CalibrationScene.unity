@@ -92534,14 +92534,15 @@ MonoBehaviour:
   indexText: {fileID: 2003291498}
   uiIndex: 0
   instructions:
-  - "1. Insert right controller into socket 1 \u2192 press hand trigger."
-  - "2. Repeat for sockets 2\u20134."
-  - 3. Complete the console calibration with the controller first.
-  - "4.Start with right or left stylus. \u2192 insert stylus into socket 1 (on the
-    corresponding side) \u2192 press dark button."
-  - "5. Insert right stylus into socket 1 \u2192 press dark button."
-  - "6.Insert left stylus into socket 1 \u2192 press dark button."
-  - 7. Repeat for another stylus.
+  - Take out the styluses
+  - "Insert right controller into socket 1 \u2192 press hand trigger."
+  - "Repeat for sockets 2\u20134."
+  - Complete the console calibration with the controller first.
+  - "Start with right or left robotic controller. \u2192 insert stylus into socket
+    1 (on the corresponding side) \u2192 press dark button."
+  - "Insert right stylus into socket 1 \u2192 press dark button."
+  - "Insert left stylus into socket 1 \u2192 press dark button."
+  - Repeat for another stylus.
   sequenceHandler: {fileID: 9015838625420687577}
   wasConsoleCalibrated: 0
   wasRightStylusActivated: 0

@@ -46,6 +46,8 @@ public class StepTextHandler : MonoBehaviour
         {
             SelectArrows_2();
         }
+
+        m_StepIndex = 1;
     }
 
     private void Update()
@@ -63,21 +65,23 @@ public class StepTextHandler : MonoBehaviour
             LoadNextScene();
         }
 
-        //label
-        textLabelObject.text = stepLabelTexts[m_StepIndex];
-        // body
-        //textBodyObject.text = stepBodyTexts[m_CurrentStepIndex];
         if(currentSetting == Setting.setting_1 )
         {
+            //label
+            textLabelObject.text = stepLabelTexts[m_StepIndex];
             SelectArrows_1();
+            m_StepIndex = (m_StepIndex + 1) % stepLabelTexts.Length;
         }
         if (currentSetting == Setting.setting_2)
         {
+
             SelectArrows_2();
+            if(m_StepIndex <= stepLabelTexts.Length - 1)
+            {   //label
+                textLabelObject.text = stepLabelTexts[m_StepIndex];
+                m_StepIndex = (m_StepIndex + 1);
+            }
         }
-
-
-        m_StepIndex = (m_StepIndex + 1) % stepLabelTexts.Length;
     }
 
 
@@ -192,6 +196,15 @@ public class StepTextHandler : MonoBehaviour
                 var renderersList_0_1 = renderers_0.Concat(renderers_1).ToArray();
                 allArrowRenders.AddRange(renderersList_0_1);
                 StartCoroutine(FadeOutObjects(new List<Renderer>(renderersList_0_1), 6f));
+                break;
+            case 1:
+                m_CurrentStepIndex = 1;
+                stepArrows[0].SetActive(false);
+                stepArrows[1].SetActive(false);
+                stepArrows[2].SetActive(true);
+                var renderers_2 = stepArrows[2].GetComponentsInChildren<Renderer>();
+                allArrowRenders.AddRange(renderers_2);
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_2), 3f));
                 break;
             default:
                 break;

@@ -262,9 +262,12 @@ public class GameModeManager : MonoBehaviour
             if (mrObject != null)
                 mrObject.SetActive(false);
         }
-        foreach (MeshRenderer stylusRenderer in stylusesRenders)
+        if (stylusesRenders != null)
         {
-            stylusRenderer.enabled = false;
+            foreach (MeshRenderer stylusRenderer in stylusesRenders)
+            {
+                stylusRenderer.enabled = false;
+            }
         }
         controllerTip.gameObject.SetActive(false); // Hide the controller tip in main menu at the start
 
