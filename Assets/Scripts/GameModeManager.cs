@@ -41,8 +41,7 @@ public class GameModeManager : MonoBehaviour
     [SerializeField] HapticPlugin hapticPluginL;
 
     public event Action<bool> onHapticEnabled;
-
-
+    public bool DelayFinished { get; private set; } = false;
     private void Awake()
     {
         if (Instance == null)
@@ -59,12 +58,10 @@ public class GameModeManager : MonoBehaviour
     private void OnEnable()
     {
         oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
-        IsCalibrationMode = false;
     }
 
     private void Start()
     {
-        // Initialize the passthrough mode when the script is enabled
         if (isStiffnessSetting)
         {
             oVRPassthroughLayer.textureOpacity = 0f;
@@ -75,6 +72,7 @@ public class GameModeManager : MonoBehaviour
             oVRPassthroughLayer.textureOpacity = 1f;
             StartSimulationMode();
         }
+        StartCoroutine(CallDelayed());
 
     }
 
@@ -82,7 +80,7 @@ public class GameModeManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            StartCalibrationMode();
+           // StartCalibrationMode();
         }
     }
 
@@ -93,6 +91,13 @@ public class GameModeManager : MonoBehaviour
         oVRPassthroughLayer.passthroughLayerResumed.RemoveListener(OnPassthroughLayerResumed);
     }
 
+    IEnumerator CallDelayed()
+    {
+        yield return new WaitForSeconds(1f);
+
+        DelayFinished = true;   // <-- delay has happened
+
+    }
 
     // 2) OnPassthroughLayerResumed is called once the layer is fully initialized and passthrough is visible
     private void OnPassthroughLayerResumed(OVRPassthroughLayer passthroughLayer)
@@ -102,7 +107,8 @@ public class GameModeManager : MonoBehaviour
 
     public void ToggleGameMode()
     {
-        if (!canToggle)
+
+        if (!DelayFinished)
         {
             Debug.Log("Cannot toggle game mode yet.");
             return;
@@ -244,7 +250,6 @@ public class GameModeManager : MonoBehaviour
         }
         // This method can be used to initialize the passthrough mode if needed
         isVirtualReality = false;
-        IsCalibrationMode = false;
         oVRPassthroughLayer.enabled = true;
 
         if (rightStylusCollider != null) { rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue"); }
@@ -277,31 +282,15 @@ public class GameModeManager : MonoBehaviour
 
     public void StartSimulationMode()
     {
-        IsCalibrationMode = false;
         oVRPassthroughLayer.textureOpacity = 1f;
 
         foreach (GameObject mrObject in MRObjects)
         {
             mrObject.SetActive(false);
         }
+
         controllerTip.gameObject.SetActive(false);
     }
-    public void StartCalibrationMode()
-    {
-        IsCalibrationMode = true;
-        oVRPassthroughLayer.textureOpacity = 1f;
-
-        foreach (GameObject mrObject in MRObjects)
-        {
-            mrObject.SetActive(true);
-        }
-        foreach (MeshRenderer stylusRenderer in stylusesRenders)
-        {
-            stylusRenderer.enabled = true;
-        }
-        controllerTip.gameObject.SetActive(true);
-    }
-
     public void ResetSimulation()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -59,6 +59,8 @@ public class StepTextHandler : MonoBehaviour
     }
     public void NextSetting()
     {
+        if (!GameModeManager.Instance.DelayFinished)
+            return;
         // If we are at the last step and the button is clicked, load the next scene
         if (toLoadNextScene)
         {

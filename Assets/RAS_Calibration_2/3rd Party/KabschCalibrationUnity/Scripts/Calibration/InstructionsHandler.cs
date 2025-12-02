@@ -7,7 +7,7 @@ public class InstructionsHandler : MonoBehaviour
     [SerializeField]
     GameObject dynamicUI_instructions;
     [SerializeField]
-    GameObject dynamicUI_updatedText;
+    GameObject dynamicUI_updatedText, startCalibrationButton, resetCalibrationButton;
     [SerializeField]
     GameObject staticUI;
     [SerializeField]
@@ -68,8 +68,8 @@ public class InstructionsHandler : MonoBehaviour
 
     void Start()
     {
-        dynamicUI_instructions.SetActive(true);
-        dynamicUI_updatedText.SetActive(false);
+        dynamicUI_instructions.SetActive(false);
+        dynamicUI_updatedText.SetActive(true);
         staticUI.SetActive(false);
         indexText.text = "Next socket: " + 0;
         uiInstructionsText.text = "Read instructions before calibrating.";
@@ -79,6 +79,8 @@ public class InstructionsHandler : MonoBehaviour
     // Called when the user finishes reading the initial instructions for starting calibration
     public void DisplayFirstInstruction() // for right controller 
     {
+        startCalibrationButton.SetActive(false);
+        resetCalibrationButton.SetActive(true);
         Debug.Log("Displaying first instruction");
         sequenceHandler.onFinishedReading -= DisplayFirstInstruction;
         calibrationManager.CanCalibrate = true;
@@ -212,8 +214,8 @@ public class InstructionsHandler : MonoBehaviour
         sequenceHandler.onFinishedReading += DisplayFirstInstruction;
         calibrationManager.CanCalibrate = false;
         calibrationManager.RevertTipColors();
-        dynamicUI_instructions.SetActive(true);
-        dynamicUI_updatedText.SetActive(false);
+        //dynamicUI_instructions.SetActive(true);
+        //dynamicUI_updatedText.SetActive(true);
         //SelectInstruction();
         staticUI.SetActive(false);
     }
