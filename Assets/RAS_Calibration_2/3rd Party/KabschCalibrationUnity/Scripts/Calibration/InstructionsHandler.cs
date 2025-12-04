@@ -56,13 +56,13 @@ public class InstructionsHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        sequenceHandler.onFinishedReading += DisplayFirstInstruction;
+       // sequenceHandler.onFinishedReading += DisplayFirstInstruction;
         calibrationManager.OnCalibrationComplete += SelectInstruction;
     }
 
     private void OnDisable()
     {
-        sequenceHandler.onFinishedReading -= DisplayFirstInstruction;
+        //sequenceHandler.onFinishedReading -= DisplayFirstInstruction;
         calibrationManager.OnCalibrationComplete -= SelectInstruction;
     }
 
@@ -70,9 +70,12 @@ public class InstructionsHandler : MonoBehaviour
     {
         dynamicUI_instructions.SetActive(false);
         dynamicUI_updatedText.SetActive(true);
+        startCalibrationButton.SetActive(true);
+        resetCalibrationButton.SetActive(false);
         staticUI.SetActive(false);
-        indexText.text = "Next socket: " + 0;
-        uiInstructionsText.text = "Read instructions before calibrating.";
+        indexText.text = "Next socket: ";
+        uiInstructionsText.text = "Take out the styluses";
+        calibrationManager.CanCalibrate = false;
     }
 
 
@@ -82,10 +85,9 @@ public class InstructionsHandler : MonoBehaviour
         startCalibrationButton.SetActive(false);
         resetCalibrationButton.SetActive(true);
         Debug.Log("Displaying first instruction");
-        sequenceHandler.onFinishedReading -= DisplayFirstInstruction;
         calibrationManager.CanCalibrate = true;
         uiIndex = calibrationManager.CalibrationPointIndex;
-        indexText.text = "Next socket: " + (uiIndex + 1);
+        indexText.text = "Next socket: 1";
         uiInstructionsText.text = instructions[0];
         wasConsoleCalibrated = false;
     }
@@ -211,12 +213,15 @@ public class InstructionsHandler : MonoBehaviour
     public void ResetUI()
     {
 
-        sequenceHandler.onFinishedReading += DisplayFirstInstruction;
-        calibrationManager.CanCalibrate = false;
-        calibrationManager.RevertTipColors();
+        //sequenceHandler.onFinishedReading += DisplayFirstInstruction;
+        //calibrationManager.CanCalibrate = false;
         //dynamicUI_instructions.SetActive(true);
         //dynamicUI_updatedText.SetActive(true);
+        //wasConsoleCalibrated = false;
+        //calibrationManager.CanCalibrate = true;
         //SelectInstruction();
+        DisplayFirstInstruction();
+        calibrationManager.RevertTipColors();
         staticUI.SetActive(false);
     }
 
@@ -227,6 +232,28 @@ public class InstructionsHandler : MonoBehaviour
         dynamicUI_instructions.SetActive(false);
         dynamicUI_updatedText.SetActive(false);
         staticUI.SetActive(true);
+    }
+
+    public void ShowInstructionsUI(bool toShowInstruction)
+    {
+
+        if (toShowInstruction)
+        {
+            calibrationManager.RevertTipColors();
+            calibrationManager.CanCalibrate = false;
+            dynamicUI_instructions.SetActive(true);
+            dynamicUI_updatedText.SetActive(false);
+            staticUI.SetActive(false);
+        }
+       else
+        {
+            calibrationManager.CanCalibrate = true;
+            dynamicUI_instructions.SetActive(false);
+            dynamicUI_updatedText.SetActive(true);
+            staticUI.SetActive(false);
+            //SelectInstruction();
+
+        }
     }
 
     private int GetNextSocketNumber(int uiIndex)
