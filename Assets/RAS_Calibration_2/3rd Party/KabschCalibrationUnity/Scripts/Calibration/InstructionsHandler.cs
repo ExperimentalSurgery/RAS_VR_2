@@ -7,6 +7,8 @@ public class InstructionsHandler : MonoBehaviour
     [SerializeField]
     GameObject dynamicUI_instructions;
     [SerializeField]
+    Sprite updatedSprite;
+    [SerializeField]
     GameObject dynamicUI_updatedText, startCalibrationButton, resetCalibrationButton;
     [SerializeField]
     GameObject staticUI;
@@ -16,6 +18,8 @@ public class InstructionsHandler : MonoBehaviour
     int uiIndex;
     [SerializeField]
     string[] instructions;
+    [SerializeField]
+    Sprite[] images;
     CalibrationManager calibrationManager;
     [SerializeField]
     SequenceHandler sequenceHandler;
@@ -86,24 +90,12 @@ public class InstructionsHandler : MonoBehaviour
         resetCalibrationButton.SetActive(true);
         Debug.Log("Displaying first instruction");
         calibrationManager.CanCalibrate = true;
-        uiIndex = calibrationManager.CalibrationPointIndex;
+        wasConsoleCalibrated = false;
+        //SelectInstruction();
+        //uiIndex = calibrationManager.CalibrationPointIndex;
         indexText.text = "Next socket: 1";
         uiInstructionsText.text = instructions[0];
-        wasConsoleCalibrated = false;
-    }
-
-    public void DisplayFirstInstrictionForStylus(bool isRightStykus)
-    {
-        if (isRightStykus) // right stylus
-        {
-            uiInstructionsText.text = instructions[4];
-            indexText.text = "Next socket: " + (uiIndex + 1);
-        }
-        else  // left stylus
-        {
-            uiInstructionsText.text = instructions[5];
-            indexText.text = "Next socket: " + (uiIndex + 1);
-        }
+        
     }
 
 
@@ -111,22 +103,23 @@ public class InstructionsHandler : MonoBehaviour
     {
         uiIndex = calibrationManager.CalibrationPointIndex;
         indexText.text = "Next socket: " + GetNextSocketNumber(uiIndex);
+        Debug.Log("uiIndex" + uiIndex);
         if (calibrationManager == null) return;
 
-        if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[0]) // right controller
+        if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[0] && !wasConsoleCalibrated) // right controller
         {
-            switch (uiIndex)
+            switch (GetNextSocketNumber(uiIndex))
             {
-                case 0:
-                    uiInstructionsText.text = instructions[1];
-                    break;
                 case 1:
-                    uiInstructionsText.text = instructions[1];
+                    uiInstructionsText.text = instructions[0];
                     break;
                 case 2:
                     uiInstructionsText.text = instructions[1];
                     break;
                 case 3:
+                    uiInstructionsText.text = instructions[2];
+                    break;
+                case 4:
                     uiInstructionsText.text = instructions[3];
                     wasConsoleCalibrated = true;
                     break;
@@ -135,27 +128,31 @@ public class InstructionsHandler : MonoBehaviour
                     break;
             }
         }
-
-        if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[1]) // right stylus
+        else if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[0] && wasConsoleCalibrated)
         {
-      
+            uiInstructionsText.text = instructions[4];
+        }
+        if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[1] && !wasRightStylusCalibrated) // right stylus
+        {
+
             if (!wasConsoleCalibrated)
             {
-                uiInstructionsText.text = instructions[2];
+                uiInstructionsText.text = instructions[5];
                 return;
             }
-            switch (uiIndex)
+            switch (GetNextSocketNumber(uiIndex))
             {
-                case 0:
-                    uiInstructionsText.text = instructions[1];
-                    break;
                 case 1:
-                    uiInstructionsText.text = instructions[1];
+                    uiInstructionsText.text = instructions[4];
                     break;
                 case 2:
-                    uiInstructionsText.text = instructions[1];
+                    uiInstructionsText.text = instructions[6];
                     break;
                 case 3:
+                    uiInstructionsText.text = instructions[7];
+                    break;
+                case 4:
+                    uiInstructionsText.text = instructions[8];
                     wasRightStylusCalibrated = true;
                     if (wasLeftStylusCalibrated && wasRightStylusCalibrated)
                     {
@@ -164,7 +161,7 @@ public class InstructionsHandler : MonoBehaviour
                     }
                     else
                     {
-                        uiInstructionsText.text = instructions[6];
+                        uiInstructionsText.text = instructions[8];
                     }
                     break;
                 default:
@@ -177,21 +174,22 @@ public class InstructionsHandler : MonoBehaviour
         {
             if (!wasConsoleCalibrated)
             {
-                uiInstructionsText.text = instructions[2];
+                uiInstructionsText.text = instructions[5];
                 return;
             }
-            switch (uiIndex)
+            switch (GetNextSocketNumber(uiIndex))
             {
-                case 0:
-                    uiInstructionsText.text = instructions[1];
-                    break;
                 case 1:
-                    uiInstructionsText.text = instructions[1];
+                    uiInstructionsText.text = instructions[4];
                     break;
                 case 2:
-                    uiInstructionsText.text = instructions[1];
+                    uiInstructionsText.text = instructions[6];
                     break;
                 case 3:
+                    uiInstructionsText.text = instructions[7];
+                    break;
+                case 4:
+                    uiInstructionsText.text = instructions[8];
                     wasLeftStylusCalibrated = true;
                     if (wasLeftStylusCalibrated && wasRightStylusCalibrated)
                     {
@@ -200,7 +198,7 @@ public class InstructionsHandler : MonoBehaviour
                     }
                     else
                     {
-                        uiInstructionsText.text = instructions[6];
+                        uiInstructionsText.text = instructions[9];
                     }
                     break;
                 default:
