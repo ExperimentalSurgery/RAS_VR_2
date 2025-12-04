@@ -144,6 +144,8 @@ public class CalibrationManager : MonoBehaviour
         InitializePassthroughMode();
         ResetAllTargetPoints();
     }
+
+
     private void OnDisable()
     {
         oVRPassthroughLayer.passthroughLayerResumed.RemoveListener(OnPassthroughLayerResumed);
@@ -222,6 +224,7 @@ public class CalibrationManager : MonoBehaviour
         Debug.Log("ChoiceIndex: " + choiceIndex);
         currentObjectToCalibrate.AddSourcePoint(tooltip.position, sourcePointParents[choiceIndex].transform, choiceIndex);
         ChangeColorOfPointer();
+        FetchSourceAndTargetPointsToDisplay();
         OnCalibrationComplete?.Invoke();
         SaveCalibrationToFile();
     }
@@ -257,6 +260,7 @@ public class CalibrationManager : MonoBehaviour
         currentObjectToCalibrate.AddTargetPoint(tooltip.position, sourcePointParents[choiceIndex].transform, choiceIndex);
 
         ChangeColorOfPointer();
+        FetchSourceAndTargetPointsToDisplay();
         OnCalibrationComplete?.Invoke();
         SaveCalibrationToFile();
 

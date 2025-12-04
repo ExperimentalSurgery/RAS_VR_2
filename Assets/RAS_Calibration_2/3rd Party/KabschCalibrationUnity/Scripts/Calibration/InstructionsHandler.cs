@@ -58,6 +58,17 @@ public class InstructionsHandler : MonoBehaviour
         calibrationManager = GetComponent<CalibrationManager>();
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown(KeyCode.Alpha1.ToString())) //right stylus
+        {
+            calibrationManager.TryCreateDelayedSourcePoint(1);
+        }
+        if (Input.GetButtonDown(KeyCode.Alpha2.ToString())) //left stylus
+        {
+            calibrationManager.TryCreateDelayedSourcePoint(2);
+        }
+    }
     private void OnEnable()
     {
        // sequenceHandler.onFinishedReading += DisplayFirstInstruction;
@@ -80,6 +91,9 @@ public class InstructionsHandler : MonoBehaviour
         indexText.text = "Next socket: ";
         uiInstructionsText.text = "Take out the styluses";
         calibrationManager.CanCalibrate = false;
+        wasConsoleCalibrated = false;
+        wasRightStylusActivated = false;
+        wasLeftStylusActivated = false;
     }
 
 
@@ -108,18 +122,18 @@ public class InstructionsHandler : MonoBehaviour
 
         if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[0] && !wasConsoleCalibrated) // right controller
         {
-            switch (GetNextSocketNumber(uiIndex))
+            switch (uiIndex)
             {
-                case 1:
+                case 0:
                     uiInstructionsText.text = instructions[0];
                     break;
-                case 2:
+                case 1:
                     uiInstructionsText.text = instructions[1];
                     break;
-                case 3:
+                case 2:
                     uiInstructionsText.text = instructions[2];
                     break;
-                case 4:
+                case 3:
                     uiInstructionsText.text = instructions[3];
                     wasConsoleCalibrated = true;
                     break;
@@ -140,6 +154,7 @@ public class InstructionsHandler : MonoBehaviour
                 uiInstructionsText.text = instructions[5];
                 return;
             }
+
             switch (GetNextSocketNumber(uiIndex))
             {
                 case 1:
