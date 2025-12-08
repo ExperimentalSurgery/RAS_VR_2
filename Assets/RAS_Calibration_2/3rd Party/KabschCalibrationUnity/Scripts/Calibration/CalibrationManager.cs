@@ -145,7 +145,6 @@ public class CalibrationManager : MonoBehaviour
         ResetAllTargetPoints();
     }
 
-
     private void OnDisable()
     {
         oVRPassthroughLayer.passthroughLayerResumed.RemoveListener(OnPassthroughLayerResumed);
@@ -182,7 +181,6 @@ public class CalibrationManager : MonoBehaviour
         if (!CanCalibrate) return;
         FetchSourceAndTargetPointsToDisplay();
         ChangeColorOfPointer();
-
 
         //throw new Exception("No input method implemented yet.");
 
@@ -358,6 +356,13 @@ public class CalibrationManager : MonoBehaviour
         alignObjectsInScene[2].calibrationPointIndex = 0;
         GetComponent<InstructionsHandler>().ResetUI();
 
+    }
+
+    public void ResetIndices()
+    {
+        alignObjectsInScene[0].ResetAllTargetPoints();
+        alignObjectsInScene[1].calibrationPointIndex = 0;
+        alignObjectsInScene[2].calibrationPointIndex = 0;
     }
 
     public void ResetTargetPoints()

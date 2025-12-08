@@ -1,13 +1,14 @@
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 public class InstructionsHandler : MonoBehaviour
 {
     [Header("UI Elements")]
     [SerializeField]
     GameObject dynamicUI_instructions;
     [SerializeField]
-    Sprite updatedSprite;
+    Image updatedImage;
     [SerializeField]
     GameObject dynamicUI_updatedText, startCalibrationButton, resetCalibrationButton;
     [SerializeField]
@@ -26,10 +27,6 @@ public class InstructionsHandler : MonoBehaviour
     [SerializeField]
     private bool wasConsoleCalibrated = false;
     [SerializeField]
-    private bool wasRightStylusActivated = false;
-    [SerializeField]
-    private bool wasLeftStylusActivated = false;
-    [SerializeField]
     private bool wasRightStylusCalibrated = false;
     [SerializeField]
     private bool wasLeftStylusCalibrated = false;
@@ -40,17 +37,6 @@ public class InstructionsHandler : MonoBehaviour
     {
         get { return wasConsoleCalibrated; }
     }
-    public bool WasRightStylusActivated
-    {
-        get { return wasRightStylusActivated; }
-        set { wasRightStylusActivated = value; }
-    }
-
-    public bool WasLeftStylusActivated
-    {
-        get { return wasLeftStylusActivated; }
-        set { wasLeftStylusActivated = value; }
-    }
 
     #endregion
     private void Awake()
@@ -60,13 +46,15 @@ public class InstructionsHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown(KeyCode.Alpha1.ToString())) //right stylus
+        if (Input.GetKeyDown(KeyCode.Alpha1)) //right stylus
         {
             calibrationManager.TryCreateDelayedSourcePoint(1);
+                Debug.Log("Pressed 1");
         }
-        if (Input.GetButtonDown(KeyCode.Alpha2.ToString())) //left stylus
+        if (Input.GetKeyDown(KeyCode.Alpha2)) //left stylus
         {
             calibrationManager.TryCreateDelayedSourcePoint(2);
+            Debug.Log("Pressed 2 ");
         }
     }
     private void OnEnable()
@@ -92,8 +80,7 @@ public class InstructionsHandler : MonoBehaviour
         uiInstructionsText.text = "Take out the styluses";
         calibrationManager.CanCalibrate = false;
         wasConsoleCalibrated = false;
-        wasRightStylusActivated = false;
-        wasLeftStylusActivated = false;
+        updatedImage.gameObject.SetActive(false);
     }
 
 
@@ -109,13 +96,16 @@ public class InstructionsHandler : MonoBehaviour
         //uiIndex = calibrationManager.CalibrationPointIndex;
         indexText.text = "Next socket: 1";
         uiInstructionsText.text = instructions[0];
-        
+        updatedImage.sprite = images[0];
+        updatedImage.gameObject.SetActive(true);
+
     }
 
 
     void SelectInstruction()
     {
         uiIndex = calibrationManager.CalibrationPointIndex;
+        //indexText.text = "Next socket: "+ uiIndex.ToString();
         indexText.text = "Next socket: " + GetNextSocketNumber(uiIndex);
         Debug.Log("uiIndex" + uiIndex);
         if (calibrationManager == null) return;
@@ -126,25 +116,31 @@ public class InstructionsHandler : MonoBehaviour
             {
                 case 0:
                     uiInstructionsText.text = instructions[0];
+                    updatedImage.sprite = images[0];
                     break;
                 case 1:
                     uiInstructionsText.text = instructions[1];
+                    updatedImage.sprite = images[1];
                     break;
                 case 2:
                     uiInstructionsText.text = instructions[2];
+                    updatedImage.sprite = images[2];
                     break;
                 case 3:
                     uiInstructionsText.text = instructions[3];
+                    updatedImage.sprite = images[3];
                     wasConsoleCalibrated = true;
                     break;
                 default:
                     uiInstructionsText.text = instructions[0];
+                    updatedImage.sprite = images[0];
                     break;
             }
         }
         else if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[0] && wasConsoleCalibrated)
         {
             uiInstructionsText.text = instructions[4];
+            updatedImage.sprite = images[4];
         }
         if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[1] && !wasRightStylusCalibrated) // right stylus
         {
@@ -152,6 +148,7 @@ public class InstructionsHandler : MonoBehaviour
             if (!wasConsoleCalibrated)
             {
                 uiInstructionsText.text = instructions[5];
+                updatedImage.sprite = images[5];
                 return;
             }
 
@@ -159,15 +156,19 @@ public class InstructionsHandler : MonoBehaviour
             {
                 case 1:
                     uiInstructionsText.text = instructions[4];
+                    updatedImage.sprite = images[4];
                     break;
                 case 2:
                     uiInstructionsText.text = instructions[6];
+                    updatedImage.sprite = images[6];
                     break;
                 case 3:
                     uiInstructionsText.text = instructions[7];
+                    updatedImage.sprite = images[7];
                     break;
                 case 4:
                     uiInstructionsText.text = instructions[8];
+                    updatedImage.sprite = images[8];
                     wasRightStylusCalibrated = true;
                     if (wasLeftStylusCalibrated && wasRightStylusCalibrated)
                     {
@@ -177,34 +178,48 @@ public class InstructionsHandler : MonoBehaviour
                     else
                     {
                         uiInstructionsText.text = instructions[8];
+                        updatedImage.sprite = images[8];
                     }
                     break;
                 default:
                     uiInstructionsText.text = instructions[4];
+                    updatedImage.sprite = images[4];
                     break;
             }
         }
 
-        if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[2]) // left stylus
+        else if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[1] && wasRightStylusCalibrated && !wasLeftStylusCalibrated && uiIndex == 0) // right stylus
+        {
+            uiInstructionsText.text = instructions[9];
+            updatedImage.sprite = images[9];
+        }
+
+        if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[2] && !wasLeftStylusCalibrated) // left stylus
         {
             if (!wasConsoleCalibrated)
             {
                 uiInstructionsText.text = instructions[5];
+                updatedImage.sprite = images[5];
                 return;
             }
             switch (GetNextSocketNumber(uiIndex))
             {
                 case 1:
                     uiInstructionsText.text = instructions[4];
+                    updatedImage.sprite = images[4];
                     break;
                 case 2:
                     uiInstructionsText.text = instructions[6];
+                    updatedImage.sprite = images[6];
+
                     break;
                 case 3:
                     uiInstructionsText.text = instructions[7];
+                    updatedImage.sprite = images[7];
                     break;
                 case 4:
                     uiInstructionsText.text = instructions[8];
+                    updatedImage.sprite = images[8];
                     wasLeftStylusCalibrated = true;
                     if (wasLeftStylusCalibrated && wasRightStylusCalibrated)
                     {
@@ -213,13 +228,20 @@ public class InstructionsHandler : MonoBehaviour
                     }
                     else
                     {
-                        uiInstructionsText.text = instructions[9];
+                        uiInstructionsText.text = instructions[8];
+                        updatedImage.sprite = images[8];
                     }
                     break;
                 default:
                     uiInstructionsText.text = instructions[5];
+                    updatedImage.sprite = images[5];
                     break;
             }
+        }
+        else if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[2] && wasLeftStylusCalibrated && !wasRightStylusCalibrated && uiIndex == 0) // left stylus
+        {
+            uiInstructionsText.text = instructions[9];
+            updatedImage.sprite = images[9];
         }
     }
 
@@ -271,6 +293,7 @@ public class InstructionsHandler : MonoBehaviour
 
     private int GetNextSocketNumber(int uiIndex)
     {
-        return ((uiIndex + 1) % 4) + 1;
+        //return ((uiIndex + 1) % 4) + 1;
+        return uiIndex + 1;
     }
 }
