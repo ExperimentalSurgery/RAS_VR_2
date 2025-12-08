@@ -142,7 +142,7 @@ public class CalibrationManager : MonoBehaviour
             originalColorsForTips[Array.IndexOf(tooltips, tip)] = rendererTip.sharedMaterial.color;
         }
         InitializePassthroughMode();
-        ResetAllTargetPoints();
+        ResetAllTargetPoints(true);
     }
 
     private void OnDisable()
@@ -348,13 +348,13 @@ public class CalibrationManager : MonoBehaviour
     }
 
 
-    public void ResetAllTargetPoints()
+    public void ResetAllTargetPoints(bool isReset)
     {
         Debug.Log("ResetAllTargetPoints");
         alignObjectsInScene[0].ResetAllTargetPoints();
         alignObjectsInScene[1].calibrationPointIndex = 0;
         alignObjectsInScene[2].calibrationPointIndex = 0;
-        GetComponent<InstructionsHandler>().ResetUI();
+        GetComponent<InstructionsHandler>().ResetUI(isReset);
 
     }
 

@@ -49,12 +49,10 @@ public class InstructionsHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1)) //right stylus
         {
             calibrationManager.TryCreateDelayedSourcePoint(1);
-                Debug.Log("Pressed 1");
         }
         if (Input.GetKeyDown(KeyCode.Alpha2)) //left stylus
         {
             calibrationManager.TryCreateDelayedSourcePoint(2);
-            Debug.Log("Pressed 2 ");
         }
     }
     private void OnEnable()
@@ -76,7 +74,7 @@ public class InstructionsHandler : MonoBehaviour
         startCalibrationButton.SetActive(true);
         resetCalibrationButton.SetActive(false);
         staticUI.SetActive(false);
-        indexText.text = "Next socket: ";
+        indexText.text = "";
         uiInstructionsText.text = "Take out the styluses";
         calibrationManager.CanCalibrate = false;
         wasConsoleCalibrated = false;
@@ -85,20 +83,34 @@ public class InstructionsHandler : MonoBehaviour
 
 
     // Called when the user finishes reading the initial instructions for starting calibration
-    public void DisplayFirstInstruction() // for right controller 
+    public void DisplayFirstInstruction(bool isReset) 
     {
-        startCalibrationButton.SetActive(false);
-        resetCalibrationButton.SetActive(true);
-        Debug.Log("Displaying first instruction");
-        calibrationManager.CanCalibrate = true;
+        dynamicUI_instructions.SetActive(false);
+        dynamicUI_updatedText.SetActive(true);
         wasConsoleCalibrated = false;
-        //SelectInstruction();
-        //uiIndex = calibrationManager.CalibrationPointIndex;
-        indexText.text = "Next socket: 1";
-        uiInstructionsText.text = instructions[0];
-        updatedImage.sprite = images[0];
-        updatedImage.gameObject.SetActive(true);
+        wasRightStylusCalibrated = false;
+        wasLeftStylusCalibrated = false;
+        if (!isReset)
+        {
+            startCalibrationButton.SetActive(false);
+            resetCalibrationButton.SetActive(true);
+            Debug.Log("Displaying first instruction");
+            calibrationManager.CanCalibrate = true;
+            indexText.text = "Next socket: 1";
+            uiInstructionsText.text = instructions[0];
+            updatedImage.sprite = images[0];
+            updatedImage.gameObject.SetActive(true);
+        }
+        else
+        {
+            startCalibrationButton.SetActive(true);
+            resetCalibrationButton.SetActive(false);
+            indexText.text = "";
+            uiInstructionsText.text = "Take out the styluses";
+            calibrationManager.CanCalibrate = false;
+            updatedImage.gameObject.SetActive(false);
 
+        }
     }
 
 
@@ -170,16 +182,16 @@ public class InstructionsHandler : MonoBehaviour
                     uiInstructionsText.text = instructions[8];
                     updatedImage.sprite = images[8];
                     wasRightStylusCalibrated = true;
-                    if (wasLeftStylusCalibrated && wasRightStylusCalibrated)
-                    {
-                        OnCompletedCalibration?.Invoke();
-                        ShowStaticUI();
-                    }
-                    else
-                    {
-                        uiInstructionsText.text = instructions[8];
-                        updatedImage.sprite = images[8];
-                    }
+                    //if (wasLeftStylusCalibrated && wasRightStylusCalibrated)
+                    //{
+                    //    OnCompletedCalibration?.Invoke();
+                    //    ShowStaticUI();
+                    //}
+                    //else
+                    //{
+                    //    uiInstructionsText.text = instructions[8];
+                    //    updatedImage.sprite = images[8];
+                    //}
                     break;
                 default:
                     uiInstructionsText.text = instructions[4];
@@ -221,16 +233,16 @@ public class InstructionsHandler : MonoBehaviour
                     uiInstructionsText.text = instructions[8];
                     updatedImage.sprite = images[8];
                     wasLeftStylusCalibrated = true;
-                    if (wasLeftStylusCalibrated && wasRightStylusCalibrated)
-                    {
-                        OnCompletedCalibration?.Invoke();
-                        ShowStaticUI();
-                    }
-                    else
-                    {
-                        uiInstructionsText.text = instructions[8];
-                        updatedImage.sprite = images[8];
-                    }
+                    //if (wasLeftStylusCalibrated && wasRightStylusCalibrated)
+                    //{
+                    //    OnCompletedCalibration?.Invoke();
+                    //    ShowStaticUI();
+                    //}
+                    //else
+                    //{
+                    //    uiInstructionsText.text = instructions[8];
+                    //    updatedImage.sprite = images[8];
+                    //}
                     break;
                 default:
                     uiInstructionsText.text = instructions[5];
@@ -243,9 +255,13 @@ public class InstructionsHandler : MonoBehaviour
             uiInstructionsText.text = instructions[9];
             updatedImage.sprite = images[9];
         }
+        if (wasLeftStylusCalibrated && wasRightStylusCalibrated && uiIndex == 0) {
+            OnCompletedCalibration?.Invoke();
+            ShowStaticUI();
+        }
     }
 
-    public void ResetUI()
+    public void ResetUI(bool isReset)
     {
 
         //sequenceHandler.onFinishedReading += DisplayFirstInstruction;
@@ -255,7 +271,7 @@ public class InstructionsHandler : MonoBehaviour
         //wasConsoleCalibrated = false;
         //calibrationManager.CanCalibrate = true;
         //SelectInstruction();
-        DisplayFirstInstruction();
+        DisplayFirstInstruction(isReset);
         calibrationManager.RevertTipColors();
         staticUI.SetActive(false);
     }
