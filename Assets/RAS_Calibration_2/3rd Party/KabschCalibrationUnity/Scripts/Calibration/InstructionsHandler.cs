@@ -106,7 +106,7 @@ public class InstructionsHandler : MonoBehaviour
             startCalibrationButton.SetActive(true);
             resetCalibrationButton.SetActive(false);
             indexText.text = "";
-            uiInstructionsText.text = "Take out the styluses";
+            uiInstructionsText.text = "Put the styluses on the table before calibration and pick up the controllers";
             calibrationManager.CanCalibrate = false;
             updatedImage.gameObject.SetActive(false);
 
@@ -149,7 +149,7 @@ public class InstructionsHandler : MonoBehaviour
                     break;
             }
         }
-        else if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[0] && wasConsoleCalibrated)
+        else if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[0] && wasConsoleCalibrated && uiIndex == 0)
         {
             uiInstructionsText.text = instructions[4];
             updatedImage.sprite = images[4];
