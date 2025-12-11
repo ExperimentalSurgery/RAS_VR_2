@@ -114,8 +114,8 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DeformDepth1: 0.027549643
-    - _DeformDepth2: 0.020512527
+    - _DeformDepth1: 0
+    - _DeformDepth2: 0
     - _DeformRadius: 0.02
     - _DeformationColorStrength: 0
     - _DetailAlbedoMapScale: 1
@@ -126,8 +126,8 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _IsBeingDeformed1: 1
-    - _IsBeingDeformed2: 1
+    - _IsBeingDeformed1: 0
+    - _IsBeingDeformed2: 0
     - _MaxDepth: 10
     - _Metallic: 0
     - _OcclusionStrength: 1
@@ -147,12 +147,12 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DeformationColor: {r: 0, g: 0, b: 0, a: 1}
-    - _DeformationPosition1: {r: -1.5326415, g: 0.7046853, b: -0.118774235, a: 0}
-    - _DeformationPosition2: {r: -1.340337, g: 0.7078398, b: -0.31376487, a: 0}
+    - _DeformationPosition1: {r: -0.17132373, g: 0.7434436, b: 0.5889484, a: 0}
+    - _DeformationPosition2: {r: -0.23991728, g: 0.7513831, b: 0.60646385, a: 0}
     - _Emission: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SurfaceContactPosition1: {r: -1.5151, g: 0.7008743, b: -0.097875565, a: 0}
-    - _SurfaceContactPosition2: {r: -1.3265079, g: 0.7034463, b: -0.299266, a: 0}
+    - _SurfaceContactPosition1: {r: -0.17132373, g: 0.7434436, b: 0.5889484, a: 0}
+    - _SurfaceContactPosition2: {r: -0.23991728, g: 0.7513831, b: 0.60646385, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

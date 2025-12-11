@@ -22,6 +22,7 @@ public class StepTextHandler : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] TextMeshProUGUI textLabelObject;
     [SerializeField] TextMeshProUGUI textBodyObject;
+    [SerializeField] TextMeshProUGUI stepButtonTextField;
     [SerializeField] string[] stepLabelTexts;
     [SerializeField] GameObject[] stepArrows;
     //[SerializeField] string[] stepBodyTexts;
@@ -97,6 +98,7 @@ public class StepTextHandler : MonoBehaviour
 
     void SelectArrows_1()
     {
+        stepButtonTextField.text = "Continue";
         StopAllCoroutines();
         foreach (var arrow in stepArrows)
         {
@@ -118,14 +120,14 @@ public class StepTextHandler : MonoBehaviour
                 stepArrows[0].SetActive(true);
                 var renderers_0 = stepArrows[0].GetComponentsInChildren<Renderer>();
                 allArrowRenders.AddRange(renderers_0);
-                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_0), 6f));
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_0), 9f));
                 break;
             case 1:
                 m_CurrentStepIndex = 1;
                 stepArrows[1].SetActive(true);
                 var renderers_1 = stepArrows[1].GetComponentsInChildren<Renderer>();
                 allArrowRenders.AddRange(renderers_1);
-                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_1), 3f));
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_1), 6f));
                 break;
             case 2:
                 m_CurrentStepIndex = 2;
@@ -135,19 +137,19 @@ public class StepTextHandler : MonoBehaviour
                 var renderers_3 = stepArrows[3].GetComponentsInChildren<Renderer>();
                 var renderersList_2_3 = renderers_2.Concat(renderers_3).ToArray();
                 allArrowRenders.AddRange(renderersList_2_3);
-                StartCoroutine(FadeOutObjects(new List<Renderer>(renderersList_2_3), 3f));
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderersList_2_3), 6f));
                 break;
             case 3:
                 m_CurrentStepIndex = 3;
                 stepArrows[4].SetActive(true);
                 var renderers_4 = stepArrows[4].GetComponentsInChildren<Renderer>();
                 allArrowRenders.AddRange(renderers_4);
-                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_4), 3f));
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_4), 6f));
                 break;
             case 4:
                 stepArrows[5].SetActive(true);
                 var renderers_5 = stepArrows[5].GetComponentsInChildren<Renderer>();
-                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_5), 3f));
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_5), 6f));
                 break;
             case 5:
                 m_CurrentStepIndex = 5;
@@ -157,7 +159,8 @@ public class StepTextHandler : MonoBehaviour
                 var renderers_7 = stepArrows[7].GetComponentsInChildren<Renderer>();
                 var renderersList_6_7 = renderers_6.Concat(renderers_7).ToArray();
                 allArrowRenders.AddRange(renderersList_6_7);
-                StartCoroutine(FadeOutObjects(new List<Renderer>(renderersList_6_7), 3f));
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderersList_6_7), 6f));
+                stepButtonTextField.text = "Repeat";
                 break;
             default:
                 break;
@@ -190,7 +193,7 @@ public class StepTextHandler : MonoBehaviour
                 var renderers_1 = stepArrows[1].GetComponentsInChildren<Renderer>();
                 var renderersList_0_1 = renderers_0.Concat(renderers_1).ToArray();
                 allArrowRenders.AddRange(renderersList_0_1);
-                StartCoroutine(FadeOutObjects(new List<Renderer>(renderersList_0_1), 6f));
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderersList_0_1), 9f));
                 break;
             case 1:
                 m_CurrentStepIndex = 1;
@@ -199,7 +202,7 @@ public class StepTextHandler : MonoBehaviour
                 stepArrows[2].SetActive(true);
                 var renderers_2 = stepArrows[2].GetComponentsInChildren<Renderer>();
                 allArrowRenders.AddRange(renderers_2);
-                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_2), 3f));
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_2), 6f));
                 break;
             default:
                 break;

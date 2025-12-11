@@ -75,7 +75,7 @@ public class InstructionsHandler : MonoBehaviour
         resetCalibrationButton.SetActive(false);
         staticUI.SetActive(false);
         indexText.text = "";
-        uiInstructionsText.text = "Take out the styluses";
+        uiInstructionsText.text = "Put the styluses on the table before calibration and pick up the controllers";
         calibrationManager.CanCalibrate = false;
         wasConsoleCalibrated = false;
         updatedImage.gameObject.SetActive(false);
@@ -221,17 +221,17 @@ public class InstructionsHandler : MonoBehaviour
                     updatedImage.sprite = images[4];
                     break;
                 case 2:
-                    uiInstructionsText.text = instructions[6];
-                    updatedImage.sprite = images[6];
+                    uiInstructionsText.text = instructions[11];
+                    updatedImage.sprite = images[11];
 
                     break;
                 case 3:
-                    uiInstructionsText.text = instructions[7];
-                    updatedImage.sprite = images[7];
+                    uiInstructionsText.text = instructions[12];
+                    updatedImage.sprite = images[12];
                     break;
                 case 4:
-                    uiInstructionsText.text = instructions[8];
-                    updatedImage.sprite = images[8];
+                    uiInstructionsText.text = instructions[13];
+                    updatedImage.sprite = images[13];
                     wasLeftStylusCalibrated = true;
                     //if (wasLeftStylusCalibrated && wasRightStylusCalibrated)
                     //{
@@ -252,8 +252,8 @@ public class InstructionsHandler : MonoBehaviour
         }
         else if (calibrationManager.ObjectToCalibrate == calibrationManager.AlignObjectsInScene[2] && wasLeftStylusCalibrated && !wasRightStylusCalibrated && uiIndex == 0) // left stylus
         {
-            uiInstructionsText.text = instructions[9];
-            updatedImage.sprite = images[9];
+            uiInstructionsText.text = instructions[10];
+            updatedImage.sprite = images[10];
         }
         if (wasLeftStylusCalibrated && wasRightStylusCalibrated && uiIndex == 0) {
             OnCompletedCalibration?.Invoke();
