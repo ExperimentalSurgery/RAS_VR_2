@@ -197,6 +197,12 @@ public class GameModeManager : MonoBehaviour
 
     public void ToggleHapticFeedback()
     {
+        if(!DelayFinished)
+        {
+            Debug.Log("Cannot toggle haptic feedback yet.");
+            return;
+        }
+
         if (isVirtualReality)
         {
             isHapticFeedbackEnabled = !isHapticFeedbackEnabled;
