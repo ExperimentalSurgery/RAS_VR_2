@@ -1674,7 +1674,7 @@ MonoBehaviour:
   rightStylusCollider: {fileID: 1726081552}
   leftStylusCollider: {fileID: 1726081551}
   isVirtualReality: 1
-  isSetting_2_3: 0
+  isSetting_2: 0
   hapticObject: {fileID: 0}
   haptocObjectHasMeshColliders: 0
   hapticPluginR: {fileID: 1726081554}
@@ -10569,7 +10569,7 @@ PrefabInstance:
       objectReference: {fileID: 1763032853}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.size
@@ -10588,9 +10588,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 163138130}
+    - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 5833972306565706252}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -10612,8 +10620,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 163138130}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ToggleGameMode
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: NextSettingOnButtonClick
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -10640,6 +10656,10 @@ PrefabInstance:
       value: GameModeManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: StepTextHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GameModeManager, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -10664,6 +10684,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -10677,10 +10701,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
@@ -10688,12 +10716,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 163138130}
     - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 5833972306565706252}
+    - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 163138130}
     - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ToggleGameMode
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: NextSettingOnButtonClick
       objectReference: {fileID: 0}
     - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -10702,6 +10742,14 @@ PrefabInstance:
     - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GameModeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: StepTextHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3277817257234116748, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -63519,6 +63567,7 @@ MonoBehaviour:
   - Explore the liver with styluses
   - Remove the physical liver with platform away
   - 'Click the light grey button to activate haptic feedback and explore the liver '
+  - You are done
   stepArrows:
   - {fileID: 1174896068}
   - {fileID: 2102711839463037078}

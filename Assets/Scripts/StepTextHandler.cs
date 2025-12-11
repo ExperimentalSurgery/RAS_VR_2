@@ -58,6 +58,14 @@ public class StepTextHandler : MonoBehaviour
             NextSetting();
         }
     }
+
+    public void NextSettingOnButtonClick()
+    {
+        if(m_CurrentStepIndex == 2)
+        {
+            NextSetting();
+        } 
+    }
     public void NextSetting()
     {
         if (!GameModeManager.Instance.DelayFinished)
@@ -72,7 +80,15 @@ public class StepTextHandler : MonoBehaviour
         {
             //label
             textLabelObject.text = stepLabelTexts[m_StepIndex];
-            SelectArrows_1();
+            if(m_StepIndex < stepLabelTexts.Length-1)
+            {
+                stepButtonTextField.text = "Continue";
+                SelectArrows_1();
+            }
+            else
+            {
+                stepButtonTextField.text = "Repeat";
+            }
             m_StepIndex = (m_StepIndex + 1) % stepLabelTexts.Length;
         }
         if (currentSetting == Setting.setting_2)
@@ -98,7 +114,6 @@ public class StepTextHandler : MonoBehaviour
 
     void SelectArrows_1()
     {
-        stepButtonTextField.text = "Continue";
         StopAllCoroutines();
         foreach (var arrow in stepArrows)
         {
@@ -160,7 +175,6 @@ public class StepTextHandler : MonoBehaviour
                 var renderersList_6_7 = renderers_6.Concat(renderers_7).ToArray();
                 allArrowRenders.AddRange(renderersList_6_7);
                 StartCoroutine(FadeOutObjects(new List<Renderer>(renderersList_6_7), 6f));
-                stepButtonTextField.text = "Repeat";
                 break;
             default:
                 break;

@@ -32,7 +32,7 @@ public class GameModeManager : MonoBehaviour
     [SerializeField] Collider rightStylusCollider;
     [SerializeField] Collider leftStylusCollider;
     public bool isVirtualReality = false;
-    [SerializeField] bool isSetting_2_3 = false;
+    [SerializeField] bool isSetting_2 = false;
     [SerializeField] Transform hapticObject;
     [SerializeField] bool haptocObjectHasMeshColliders = false;
 
@@ -206,7 +206,7 @@ public class GameModeManager : MonoBehaviour
                 leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
                 rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = LayerMask.GetMask("FatTissue");
                 leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = LayerMask.GetMask("FatTissue");
-                if(isSetting_2_3 && haptocObjectHasMeshColliders)
+                if(isSetting_2 && haptocObjectHasMeshColliders)
                 {
                     foreach (var collider in hapticObject.GetComponents<MeshCollider>())
                     {
@@ -222,7 +222,7 @@ public class GameModeManager : MonoBehaviour
             {
                 rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue");
                 leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue");
-                if (isSetting_2_3 && haptocObjectHasMeshColliders)
+                if (isSetting_2 && haptocObjectHasMeshColliders)
                 {
                     foreach (var collider in hapticObject.GetComponents<MeshCollider>())
                     {
