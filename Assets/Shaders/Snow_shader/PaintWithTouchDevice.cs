@@ -12,9 +12,12 @@ public class PaintWithTouchDevice : MonoBehaviour
     [SerializeField][Range(1, 500)] private float size;
     [SerializeField][Range(0, 1)] private float strength;
     [SerializeField] private Transform tipTransform;
+    [SerializeField] private bool startedPainting = false;
 
     void Start()
     {
+        startedPainting = false;
+        drawMaterial.SetInt(name: "_startedPainting", 0);
         drawMaterial = new Material(drawShader);
         drawMaterial.SetVector(name: "_Color", (Vector4)Color.red);
         currentMaterial = GetComponent<MeshRenderer>().material;
@@ -51,6 +54,9 @@ public class PaintWithTouchDevice : MonoBehaviour
             tipTransform = null;
             return;
         }
+
+        startedPainting = true;
+        drawMaterial.SetInt(name: "_startedPainting", 1);
 
         RaycastHit rayInfoTip = new RaycastHit();
         Vector3 surfacePos = new Vector3();

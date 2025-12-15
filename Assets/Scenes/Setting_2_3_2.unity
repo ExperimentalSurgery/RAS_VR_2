@@ -15047,7 +15047,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: NextSetting
+      value: NextSettingOnButtonClick
       objectReference: {fileID: 0}
     - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton1.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -76883,7 +76883,6 @@ MonoBehaviour:
   - {fileID: 1221565502}
   - {fileID: 186067638}
   - {fileID: 4778253033529412947}
-  nextButton: {fileID: 4780246734745254303}
   toLoadNextScene: 0
 --- !u!1 &6703333995629092571
 GameObject:

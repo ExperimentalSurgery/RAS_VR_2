@@ -1740,7 +1740,7 @@ MonoBehaviour:
   rightStylusCollider: {fileID: 1864946859}
   leftStylusCollider: {fileID: 1864946858}
   isVirtualReality: 1
-  isSetting_2_3: 0
+  isSetting_2: 0
   hapticObject: {fileID: 1956833031}
   haptocObjectHasMeshColliders: 1
   hapticPluginR: {fileID: 1864946861}
@@ -76571,6 +76571,7 @@ MonoBehaviour:
   currentSetting: 1
   textLabelObject: {fileID: 7115948251589235794}
   textBodyObject: {fileID: 1382211831575591771}
+  stepButtonTextField: {fileID: 0}
   stepLabelTexts:
   - Grab the stylus and click the light button to activate haptic feedback
   - Explore the borders of ureter
@@ -76578,7 +76579,6 @@ MonoBehaviour:
   - {fileID: 1221565502}
   - {fileID: 186067638}
   - {fileID: 4778253033529412947}
-  nextButton: {fileID: 4780246734745254303}
   toLoadNextScene: 0
 --- !u!1 &6703333995629092571
 GameObject:

@@ -26,7 +26,7 @@ public class StepTextHandler : MonoBehaviour
     [SerializeField] string[] stepLabelTexts;
     [SerializeField] GameObject[] stepArrows;
     //[SerializeField] string[] stepBodyTexts;
-    [SerializeField] TMP_Text nextButton;
+    //[SerializeField] TMP_Text nextButton;
     int m_StepIndex = 0;
     int m_CurrentStepIndex = 0;
     [SerializeField] private bool toLoadNextScene = false;
@@ -47,6 +47,10 @@ public class StepTextHandler : MonoBehaviour
         {
             SelectArrows_2();
         }
+        if (currentSetting == Setting.setting_3)
+        {
+            SelectArrows_3();
+        }
 
         m_StepIndex = 1;
     }
@@ -61,10 +65,20 @@ public class StepTextHandler : MonoBehaviour
 
     public void NextSettingOnButtonClick()
     {
-        if(m_CurrentStepIndex == 2)
+        if(currentSetting == Setting.setting_1 && m_CurrentStepIndex == 2)
         {
             NextSetting();
         } 
+
+        if (currentSetting == Setting.setting_2 && m_CurrentStepIndex == 1)
+        {
+            NextSetting();
+        }
+
+        if (currentSetting == Setting.setting_3 && m_CurrentStepIndex == 1)
+        {
+            NextSetting();
+        }
     }
     public void NextSetting()
     {
@@ -96,6 +110,17 @@ public class StepTextHandler : MonoBehaviour
 
             SelectArrows_2();
             if(m_StepIndex <= stepLabelTexts.Length - 1)
+            {   //label
+                textLabelObject.text = stepLabelTexts[m_StepIndex];
+                m_StepIndex = (m_StepIndex + 1);
+            }
+        }
+
+        if (currentSetting == Setting.setting_3)
+        {
+
+            SelectArrows_3();
+            if (m_StepIndex <= stepLabelTexts.Length - 1)
             {   //label
                 textLabelObject.text = stepLabelTexts[m_StepIndex];
                 m_StepIndex = (m_StepIndex + 1);
@@ -222,6 +247,49 @@ public class StepTextHandler : MonoBehaviour
                 break;
         }
     }
+
+    void SelectArrows_3()
+    {
+        StopAllCoroutines();
+        foreach (var arrow in stepArrows)
+        {
+            arrow.SetActive(false);
+        }
+        if (allArrowRenders != null)
+        {
+            foreach (var rend in allArrowRenders)
+            {
+                Color c = rend.material.color;
+                c.a = 1f;
+                rend.material.color = c;
+            }
+        }
+        switch (m_StepIndex)
+        {
+            case 0:
+                m_CurrentStepIndex = 0;
+                stepArrows[0].SetActive(true);
+                stepArrows[1].SetActive(true);
+                var renderers_0 = stepArrows[0].GetComponentsInChildren<Renderer>();
+                var renderers_1 = stepArrows[1].GetComponentsInChildren<Renderer>();
+                var renderersList_0_1 = renderers_0.Concat(renderers_1).ToArray();
+                allArrowRenders.AddRange(renderersList_0_1);
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderersList_0_1), 9f));
+                break;
+            case 1:
+                m_CurrentStepIndex = 1;
+                stepArrows[0].SetActive(false);
+                stepArrows[1].SetActive(false);
+                stepArrows[2].SetActive(true);
+                var renderers_2 = stepArrows[2].GetComponentsInChildren<Renderer>();
+                allArrowRenders.AddRange(renderers_2);
+                StartCoroutine(FadeOutObjects(new List<Renderer>(renderers_2), 6f));
+                break;
+            default:
+                break;
+        }
+    }
+
 
 
     public IEnumerator FadeOutObjects(List<Renderer> renderers, float duration)
