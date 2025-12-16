@@ -1,4 +1,4 @@
-# Haptic Interaction in Robotic Assisted Surgery (RAS)
+^# Haptic Interaction in Robotic Assisted Surgery (RAS)
 "**Haptic Interaction Toolkit: A VR-Based Robotic Console for Experimental Investigation of Haptic Feedback in Robotic-Assisted Surgery**"
 This project, *Haptic Interaction in RAS*, focuses on developing an XR simulation in Unity to explore and test various experimental setups. It aims to create and evaluate new methods for interacting with the patient’s body during robotic-assisted surgery.
 
@@ -106,6 +106,9 @@ Anna: Insert exact repository URL, branch name, Unity package versions, and plat
 
 2.5.2 Physical console setup
 3D-print and/or machine physical console components using the supplied STL/OBJ and metal fabrication drawings. 
+
+https://bwgcloud.hu-berlin.de/d/4a507cf93cee46f996ea/?p=%2F&mode=list 
+
 Console frame and table surface
 Mounting bases for Touch devices
 Liver and liver platform
@@ -120,7 +123,9 @@ Install and connect the Meta Quest 3 HMD and host PC according to the hardware s
 Upon startup, the user is guided through a calibration procedure that aligns the physical console with the virtual environment and calibrates the haptic devices.
 
 2.5.3.1 Device calibration
+
 2.5.3.2 Spatial alignment (real–virtual registration)
+
 2.5.3.3 Verification (test scene with known targets)
 Anna: Insert detailed step-by-step instructions, including screenshots, for: centering the stylus, aligning the virtual console, checking arm rest positions, etc...
 
@@ -128,9 +133,9 @@ Anna: Insert detailed step-by-step instructions, including screenshots, for: cen
 Examples of use (e.g. experimental scenarios or pilot tasks) and observed limitations of the toolkit...?
 
 3.1 Example scenarios
-[Describe each experimental or demonstrator scenario supported by the toolkit, focusing on how the system is used rather than study results.]
+Describe each experimental scenario supported by the toolkit, focusing on how the system is used rather than study results....
 
-Reference representative screenshots and demo videos (calibration, usage) hosted at: https://bwgcloud.hu-berlin.de/d/4a507cf93cee46f996ea/?p=%2F&mode=list 
+Reference representative screenshots and demo videos (calibration, usage)  
 
 3.2 Performance and usability observations
   
@@ -139,15 +144,17 @@ Anna: List current limitations discovered during use: e.g. device workspace cons
 
 4 Discussion
 4.1 Design choices 
-[Discuss design decisions (e.g. using 3D Systems Touch vs. other devices, Meta Quest 3 vs. tethered HMD, metal console vs. full 3D-print) and how they affect usability, fidelity, and reproducibility.]
+Design decisions (e.g. using 3D Systems Touch vs. other devices) and how they affect usability, fidelity, and reproducibility...
+
 4.2 Scalability and extensibility
-[Discuss how the toolkit can be extended: e.g. different organs/tasks, additional sensors, multi-user setups, integration with real robotic systems, or deployment in other institutions.]
+How the toolkit can be extended: e.g. different organs/tasks, additional sensors, multi-user setups, integration with real robotic systems, or deployment in other surgical scenarios (e.g. weight lift and other suggested scenarios from the surgeons in RAS survey)
+
 4.3 Current limitations and future work
-[Summarize main technical limitations and outline specific future improvements: e.g. optimized console weight, improved comfort, wireless haptics, more advanced haptic shaders, better calibration workflows.]
+Main technical limitations and outline specific future improvements: e.g. optimized console weight, improved comfort, wireless haptics, more advanced haptics, better calibration workflows...
 
 5 Code, data, and architecture
 5.1 Code availability and repository structure
-[Provide repository DOI/URL, license, and a short description of directory structure:]
+Anna: repository DOI/URL, license, and a short description of directory structure...
 /Assets/ (Unity assets, scenes, scripts)
 /Haptics/ (plugin configuration, haptic materials)
 /ConsoleCAD/ (CAD files, STL/OBJ)
@@ -157,21 +164,23 @@ Explain how to:
 Build the Unity project.
 Configure haptic materials.
 Enable/disable optional modules (e.g. experimental logging).
+
 5.2 Data structures and logging
-[Describe what data is collected during use: e.g. 6-DoF pose, forces, button presses, timestamps, task-specific metrics, VR tracking data.]
+Anna: Describe what data is collected during use: e.g. 6-DoF pose, forces, button presses, timestamps, task-specific metrics, VR tracking data...
 Include:
 Data schema (variable names, types, units).
 File formats (e.g. CSV, JSON).
 Any anonymization/pseudonymization measures.
+
 5.3 Privacy and ethical considerations in VR
-[Explain how the toolkit handles data protection and privacy, especially if used with human participants.]
+How the toolkit handles data protection and privacy, especially if used with human participants...
 Include:
 What identifying information is or is not stored.
 Recommendations for ethical approval and informed consent when using the toolkit in user studies.
 Storage and access recommendations.
 
 6 Contribution guidelines
-[Describe how others can fork and extend the project.]
+Anna: Describe how others can fork and extend the project.
 Include:
 Repository location and branching model.
 How to submit bug reports and pull requests.
@@ -194,27 +203,27 @@ https://bwgcloud.hu-berlin.de/d/4a507cf93cee46f996ea/?p=%2F&mode=list
 8 Funding, acknowledgments, and license
 8.1 Funding and acknowledgments
 This work was supported by the Cluster of Excellence “Matters of Activity. Image Space Material” funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany’s Excellence Strategy – EXC 2025.
-[Add acknowledgments for collaborators, labs, and institutional support as appropriate.]
+Other acknowledgments for collaborators, labs, and institutional support???
+
+
 8.2 Authors and contributors
-Example list (to be finalized with CRediT roles):
+Add credit roles? Conceptualization, implementation, game design, programming, validation, writing....
 Moritz Queisner
 Zeynep Akbal
 Igor M. Sauer
 Anna Yadygina
 Christopher Remde
-Julia Blumenthal
-[Add roles such as conceptualization, software, hardware, validation, writing.]
+Julia Blumenthal 
+
+
 8.3 License
-[Specify license(s) clearly:]
-Source code: MIT License (or alternative, as decided).
-3D models and textures: [e.g. CC BY 4.0 / CC BY-NC-SA, depending on asset permissions].
-Documentation and figures: [license].
-Ensure compatibility with the licenses of reused assets from Blender, Sketchfab, and other sources.
+Source code: 
+3D models and textures:  
+Documentation and figures:  
+Licenses of reused assets from Blender, Sketchfab, and other sources...
 
 9 References
-[Standard Frontiers reference style, including references to:
-RAS and haptic feedback in surgery.
-VR haptics and prior wearable/fo
+ 
 
 
 
