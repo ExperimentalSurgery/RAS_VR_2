@@ -5,7 +5,7 @@ The simulation is particularly valuable for researchers and developers intereste
 
 ## Installation
 ### Requirements
----
+-
 #### Software
 * **Unity  version: 6000.0.58f2
 * **Haptic Plugin: Haptics Direct for Unity V1 (https://assetstore.unity.com/packages/tools/integration/haptics-direct-for-unity-v1-197034?srsltid=AfmBOooI1uYz4nglnz78gmfS9Hods_pZBOLKbmEDijF3nTlSZu74s8C-)
