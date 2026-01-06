@@ -10,11 +10,11 @@ The simulation is particularly valuable for researchers and developers intereste
 ### Requirements
 
 #### Software
-* **Unity  version: 6000.0.58f2
-* **Haptic Plugin: Haptics Direct for Unity V1 (https://assetstore.unity.com/packages/tools/integration/haptics-direct-for-unity-v1-197034?srsltid=AfmBOooI1uYz4nglnz78gmfS9Hods_pZBOLKbmEDijF3nTlSZu74s8C-)
-* **Meta SDK
-* **Meta Horizon Link 
-* **Haptic Device Drivers
+* **Unity  version: 6000.0.58f2**
+* **Haptic Plugin: Haptics Direct for Unity V1 (https://assetstore.unity.com/packages/tools/integration/haptics-direct-for-unity-v1-197034?srsltid=AfmBOooI1uYz4nglnz78gmfS9Hods_pZBOLKbmEDijF3nTlSZu74s8C-)**
+* **Meta SDK**
+* **Meta Horizon Link**
+* **Haptic Device Drivers**
 
 #### Hardware
 * **Meta Quest 3 Headset**
@@ -24,10 +24,10 @@ The simulation is particularly valuable for researchers and developers intereste
   [https://www.3dsystems.com/haptics-devices/touch](https://www.3dsystems.com/haptics-devices/touch)
 
 ### Setup
-* **Clone this repository with Git
-* **Open Haptic Drivers to calibrate touch devices
-* **Open Meta Horizon Link  and connect you Meta Quest 3 Headset to your PC
-* **Open the project with Unity 6000.0.58f2
+* **Clone this repository with Git**
+* **Open Haptic Drivers to calibrate touch devices**
+* **Open Meta Horizon Link  and connect you Meta Quest 3 Headset to your PC**
+* **Open the project with Unity 6000.0.58f2**
 
 ## Citation
 ## License
