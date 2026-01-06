@@ -2,7 +2,7 @@
 This project, *Haptic Interaction in RAS*, focuses on developing an XR simulation in Unity to explore and test various experimental setups. It aims to create and evaluate new methods for interacting with the patient’s body during robotic-assisted surgery.
 
 The simulation is particularly valuable for researchers and developers interested in how haptic feedback influences the perception of virtual objects.
-
+---
 ## Installation
 
 ### Requirements
