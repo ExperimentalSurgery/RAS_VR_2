@@ -3,6 +3,7 @@ This project, *Haptic Interaction in RAS*, focuses on developing an XR simulatio
 
 The simulation is particularly valuable for researchers and developers interested in how haptic feedback influences the perception of virtual objects.
 
+## Installation
 ### Requirements
 
 To get started with the project, you'll need the following hardware:
