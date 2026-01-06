@@ -5,7 +5,6 @@ The simulation is particularly valuable for researchers and developers intereste
 
 ## Installation
 ### Requirements
-
 To get started with the project, you'll need the following hardware:
 
 * **Meta Quest 3 Headset**
