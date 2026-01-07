@@ -1720,9 +1720,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hapticlabs Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 994968109841887505, guid: 0c84ddf11e6ba485e88997fe73bb2b43, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 994968109841887512, guid: 0c84ddf11e6ba485e88997fe73bb2b43, type: 3}
+      propertyPath: enableTCP
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 994968109841887512, guid: 0c84ddf11e6ba485e88997fe73bb2b43, type: 3}
       propertyPath: enableSerial
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 994968109841887514, guid: 0c84ddf11e6ba485e88997fe73bb2b43, type: 3}
       propertyPath: m_Pivot.x
