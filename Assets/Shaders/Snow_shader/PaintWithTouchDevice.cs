@@ -17,8 +17,8 @@ public class PaintWithTouchDevice : MonoBehaviour
     void Start()
     {
         startedPainting = false;
-        drawMaterial.SetInt(name: "_startedPainting", 0);
         drawMaterial = new Material(drawShader);
+        drawMaterial.SetInt(name: "_startedPainting", 0);
         drawMaterial.SetVector(name: "_Color", (Vector4)Color.red);
         currentMaterial = GetComponent<MeshRenderer>().material;
         splatMap = new RenderTexture(width: 4096, height: 4096, depth: 0, RenderTextureFormat.ARGBFloat); currentMaterial.SetTexture(name: "_SplatMap", splatMap);
