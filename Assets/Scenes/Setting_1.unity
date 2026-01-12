@@ -10606,7 +10606,7 @@ PrefabInstance:
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 163138130}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -10645,7 +10645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartHapticFeedbackWithFirstTrack
+      value: ToggleHapticFeedback
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -10677,7 +10677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: HapticlabsHandler, Assembly-CSharp
+      value: GameModeManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1719909739031938648, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -10754,7 +10754,7 @@ PrefabInstance:
     - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 163138130}
     - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -10777,7 +10777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartHapticFeedbackWithSecondTrack
+      value: ToggleHapticFeedback
       objectReference: {fileID: 0}
     - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -10793,7 +10793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: HapticlabsHandler, Assembly-CSharp
+      value: GameModeManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1922921808813839654, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: Events.OnClickButton2.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
