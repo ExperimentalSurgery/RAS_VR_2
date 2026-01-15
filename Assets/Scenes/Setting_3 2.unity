@@ -4381,6 +4381,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561208284}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &561710257 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 671094757387325400, guid: d5b017f0d3a3600499e2646d7b23c732, type: 3}
+  m_PrefabInstance: {fileID: 708754175}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eaf0ea0735677a47a4d068682114323, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &571607738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5331,6 +5342,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686856994}
   m_Mesh: {fileID: 5527230054794070121, guid: 26cfb443b66aa144e87701ea19523cfa, type: 3}
+--- !u!1001 &708754175
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7219489986109298144, guid: d5b017f0d3a3600499e2646d7b23c732, type: 3}
+      propertyPath: m_Name
+      value: Hapticlabs
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898252438936607853, guid: d5b017f0d3a3600499e2646d7b23c732, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898252438936607853, guid: d5b017f0d3a3600499e2646d7b23c732, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898252438936607853, guid: d5b017f0d3a3600499e2646d7b23c732, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898252438936607853, guid: d5b017f0d3a3600499e2646d7b23c732, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898252438936607853, guid: d5b017f0d3a3600499e2646d7b23c732, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898252438936607853, guid: d5b017f0d3a3600499e2646d7b23c732, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898252438936607853, guid: d5b017f0d3a3600499e2646d7b23c732, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898252438936607853, guid: d5b017f0d3a3600499e2646d7b23c732, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898252438936607853, guid: d5b017f0d3a3600499e2646d7b23c732, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898252438936607853, guid: d5b017f0d3a3600499e2646d7b23c732, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d5b017f0d3a3600499e2646d7b23c732, type: 3}
 --- !u!1 &738413490
 GameObject:
   m_ObjectHideFlags: 0
@@ -37319,6 +37387,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 561710257}
+          m_TargetAssemblyTypeName: HapticlabsHandler, Assembly-CSharp
+          m_MethodName: StartHapticFeedbackWithSecondTrack
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
     OnReleaseButton2:
       m_PersistentCalls:
         m_Calls: []
@@ -38869,6 +38949,18 @@ MonoBehaviour:
         - m_Target: {fileID: 2319403489577553579}
           m_TargetAssemblyTypeName: StepTextHandler, Assembly-CSharp
           m_MethodName: NextSettingOnButtonClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 561710257}
+          m_TargetAssemblyTypeName: HapticlabsHandler, Assembly-CSharp
+          m_MethodName: StartHapticFeedbackWithFirstTrack
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -94579,24 +94671,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1184082698}
     m_Modifications:
     - target: {fileID: 1422235418017334501, guid: b5f41322d10445b4c8ecf844ae319f3a, type: 3}
-      propertyPath: hDamping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1422235418017334501, guid: b5f41322d10445b4c8ecf844ae319f3a, type: 3}
-      propertyPath: hStiffness
-      value: 0.088
-      objectReference: {fileID: 0}
-    - target: {fileID: 1422235418017334501, guid: b5f41322d10445b4c8ecf844ae319f3a, type: 3}
-      propertyPath: hViscosity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1422235418017334501, guid: b5f41322d10445b4c8ecf844ae319f3a, type: 3}
       propertyPath: hConstForceMag
-      value: 0
+      value: 0.225
       objectReference: {fileID: 0}
     - target: {fileID: 1422235418017334501, guid: b5f41322d10445b4c8ecf844ae319f3a, type: 3}
       propertyPath: hConstForceDir.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1534608390936061885, guid: b5f41322d10445b4c8ecf844ae319f3a, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
@@ -94714,6 +94794,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8586848016211166312, guid: b5f41322d10445b4c8ecf844ae319f3a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7329197636494216100}
+    - targetCorrespondingSourceObject: {fileID: 8586848016211166312, guid: b5f41322d10445b4c8ecf844ae319f3a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7329197636494216105}
   m_SourcePrefab: {fileID: 100100000, guid: b5f41322d10445b4c8ecf844ae319f3a, type: 3}
 --- !u!1 &7329197636494216099 stripped
 GameObject:
@@ -94739,9 +94822,32 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8408473117589660693, guid: 5c6025e4dfea27349a6217ffad0b3a56, type: 3}
+--- !u!136 &7329197636494216105
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7329197636494216099}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.00080659176
+  m_Height: 0.0029925313
+  m_Direction: 0
+  m_Center: {x: 0.00007834244, y: -0.00025210538, z: 0.008814657}
 --- !u!23 &7329914131749297026
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -122802,3 +122908,4 @@ SceneRoots:
   - {fileID: 818957385537166194}
   - {fileID: 163138131}
   - {fileID: 3277817256683070507}
+  - {fileID: 708754175}
