@@ -32,46 +32,4 @@ The simulation is particularly valuable for researchers and developers intereste
 ## Citation
 ## License
 
-flowchart TB
-
-%% ======================
-%% Windows PC Layer
-%% ======================
-subgraph PC["Windows PC (PCVR Host)"]
-
-  subgraph Unity["RAS XR Application (Unity Game Engine)"]
-    MetaSDK["Meta XR SDK (Unity)"]
-    HapticsDirect["Haptics Direct for Unity v1 Plugin"]
-    HapticlabsAPI["Hapticlabs Unity API"]
-  end
-
-  MetaRuntime["Meta XR Runtime (OpenXR)"]
-  HorizonLink["Meta Horizon Link (PC App)"]
-
-  OpenHaptics["OpenHaptics (3D Systems Runtime)"]
-end
-
-%% ======================
-%% Hardware Layer
-%% ======================
-Quest["Meta Quest 3\n(XR Headset)"]
-Touch["Touch Haptic Devices (x2)"]
-Hapticlabs["Hapticlabs DevKit\n(Satellite + 2× Actuators)"]
-
-%% ======================
-%% Connections
-%% ======================
-
-%% XR Pipeline
-MetaSDK --> MetaRuntime
-MetaRuntime --> HorizonLink
-HorizonLink --> Quest
-
-%% Kinesthetic Haptics Pipeline
-HapticsDirect --> OpenHaptics
-OpenHaptics --> Touch
-
-%% Tactile Haptics Pipeline
-HapticlabsAPI -->|Serial| Hapticlabs
-
 
