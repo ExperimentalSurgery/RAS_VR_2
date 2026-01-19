@@ -8,7 +8,8 @@ using System;
 
 public class GameModeManager : MonoBehaviour
 {
-    [SerializeField] bool isStiffnessSetting = false; // Flag to check if we are in stiffness setting mode
+    [SerializeField] bool isFirstSetting = false; // Flag to check if we are in stiffness setting mode
+    [SerializeField] bool isThirdSetting = false; // Flag to check if we are in third setting mode
     public static GameModeManager Instance { get; private set; }
 
     [Header("Passthrough mode settings")]
@@ -62,7 +63,7 @@ public class GameModeManager : MonoBehaviour
 
     private void Start()
     {
-        if (isStiffnessSetting)
+        if (isFirstSetting)
         {
             oVRPassthroughLayer.textureOpacity = 0f;
             InitializePassthroughMode();
@@ -319,6 +320,10 @@ public class GameModeManager : MonoBehaviour
     public void SwapMaterial(bool isOn)
     {
         if(rightStylus.material == null || leftStylus.material == null)
+        {
+            return;
+        }
+        if (isThirdSetting)
         {
             return;
         }

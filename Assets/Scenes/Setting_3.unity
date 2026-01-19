@@ -1586,7 +1586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: db3df77d95fbeac43b847d27526d1934, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1700,7 +1700,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1600
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -1876,15 +1876,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44778858571da3e4095baa1e15986425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isStiffnessSetting: 0
+  isFirstSetting: 0
+  isThirdSetting: 0
   oVRPassthroughLayer: {fileID: 1898261675043310964}
   timeForToggleEnabling: 1
   canToggle: 1
   isHapticFeedbackEnabled: 0
   controllerTip: {fileID: 1696464079800314978}
   stylusesRenders:
-  - {fileID: 7565156540080745666}
-  - {fileID: 1261416057116225871}
   - {fileID: 2125163394}
   - {fileID: 621776993}
   - {fileID: 2067351472}
@@ -4664,6 +4663,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: db3df77d95fbeac43b847d27526d1934, type: 3}
       insertIndex: -1
       addedObject: {fileID: 558475134}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: db3df77d95fbeac43b847d27526d1934, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 558475139}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: db3df77d95fbeac43b847d27526d1934, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 558475138}
   m_SourcePrefab: {fileID: 100100000, guid: db3df77d95fbeac43b847d27526d1934, type: 3}
 --- !u!4 &558475131 stripped
 Transform:
@@ -4706,7 +4711,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1856
+    m_Bits: 1600
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 1
@@ -4715,6 +4720,62 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -217638318533967447, guid: 8ae5af2a2b771024b9dee8c02c9609c8, type: 3}
+--- !u!114 &558475138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558475132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3bb6e69efc5c542a6334e4c0532314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialID: 0
+  bGrabbing: 0
+  hMass: 0
+  hStiffness: 0.118
+  hDamping: 0
+  hImpulseD: 0
+  hViscosity: 0
+  hFrictionS: 0
+  hFrictionD: 0
+  hConstForceDir: {x: 0, y: 0, z: 0}
+  hConstForceMag: 0
+  UseContactNormalCF: 0
+  ContactNormalInverseCF: 0
+  hSpringDir: {x: 0, y: 0, z: 0}
+  SpringAnchorObj: {fileID: 0}
+  hSpringMag: 0
+  hPopthAbs: 0
+--- !u!54 &558475139
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558475132}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &561208284
 GameObject:
   m_ObjectHideFlags: 0
@@ -33518,7 +33579,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2580258976341774816}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -37736,7 +37797,7 @@ MonoBehaviour:
   GlobalScale: 0.001
   VisualizationMesh: {fileID: 3148985291892473292}
   CollisionMesh: {fileID: 4523383892473655715}
-  tipOffset: 0.071
+  tipOffset: 0.06
   GrabObject: {fileID: 0}
   ModelType: Touch
   SerialNumber: 23109000548
@@ -39295,7 +39356,7 @@ MonoBehaviour:
   GlobalScale: 0.001
   VisualizationMesh: {fileID: 1382654140706177822}
   CollisionMesh: {fileID: 2580258976341774816}
-  tipOffset: 0.071
+  tipOffset: 0.06
   GrabObject: {fileID: 0}
   ModelType: Touch
   SerialNumber: 23129000763
@@ -51345,7 +51406,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0, z: 0}
-  m_LocalScale: {x: 0.0035, y: 0.0035, z: 0.0035}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5958214283067078215}
@@ -100380,7 +100441,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4523383892473655715}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
