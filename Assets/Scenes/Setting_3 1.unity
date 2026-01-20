@@ -1915,6 +1915,8 @@ MonoBehaviour:
   haptocObjectHasMeshColliders: 0
   hapticPluginR: {fileID: 1719909740891542271}
   hapticPluginL: {fileID: 1922921807419769217}
+  wasRightButtonReleased: 0
+  wasLeftButtonReleased: 0
 --- !u!4 &163138131
 Transform:
   m_ObjectHideFlags: 0
@@ -37978,7 +37980,7 @@ MonoBehaviour:
         - m_Target: {fileID: 163138130}
           m_TargetAssemblyTypeName: GameModeManager, Assembly-CSharp
           m_MethodName: ToggleHapticFeedback
-          m_Mode: 1
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -38013,7 +38015,19 @@ MonoBehaviour:
           m_CallState: 2
     OnReleaseButton2:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 163138130}
+          m_TargetAssemblyTypeName: GameModeManager, Assembly-CSharp
+          m_MethodName: OnReleasedButton
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
     OnHoldButton2:
       m_PersistentCalls:
         m_Calls: []
@@ -39549,7 +39563,7 @@ MonoBehaviour:
         - m_Target: {fileID: 163138130}
           m_TargetAssemblyTypeName: GameModeManager, Assembly-CSharp
           m_MethodName: ToggleHapticFeedback
-          m_Mode: 1
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -39584,7 +39598,19 @@ MonoBehaviour:
           m_CallState: 2
     OnReleaseButton2:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 163138130}
+          m_TargetAssemblyTypeName: GameModeManager, Assembly-CSharp
+          m_MethodName: OnReleasedButton
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     OnHoldButton2:
       m_PersistentCalls:
         m_Calls: []

@@ -6,6 +6,19 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using System;
 
+
+public enum LevelSetting
+{
+    FirstSetting,
+    SecondSetting,
+    ThirdSetting
+}
+
+public enum Stylus
+{
+    RightStylus,
+    LeftStylus
+}
 public class GameModeManager : MonoBehaviour
 {
     [SerializeField] bool isFirstSetting = false; // Flag to check if we are in stiffness setting mode
@@ -43,6 +56,8 @@ public class GameModeManager : MonoBehaviour
 
     public event Action<bool> onHapticEnabled;
     public bool DelayFinished { get; private set; } = false;
+    [SerializeField] private bool wasRightButtonReleased = false;
+    [SerializeField] private bool wasLeftButtonReleased = false;
     private void Awake()
     {
         if (Instance == null)
@@ -77,15 +92,6 @@ public class GameModeManager : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-           // StartCalibrationMode();
-        }
-    }
-
-
 
     private void OnDisable()
     {
@@ -106,6 +112,13 @@ public class GameModeManager : MonoBehaviour
         // 3) Do something here after the passthrough layer has resumed 
     }
 
+    public void OnReleasedButton(bool isRightStylus)
+    {
+        Stylus stylus = isRightStylus ? Stylus.RightStylus : Stylus.LeftStylus;
+
+        bool wasButtonReleased = isRightStylus ? wasRightButtonReleased : wasLeftButtonReleased;
+        DisableHapticFeedback(wasButtonReleased, stylus);
+    }
     public void ToggleGameMode()
     {
 
@@ -121,7 +134,7 @@ public class GameModeManager : MonoBehaviour
             oVRPassthroughLayer.enabled = false;
             oVRPassthroughLayer.textureOpacity = 0f; // Set the opacity to 0 to hide the passthrough layer
 
-            if (isHapticFeedbackEnabled)
+            if (isHapticFeedbackEnabled && !isThirdSetting)
             {
                 rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
                 leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
@@ -196,14 +209,17 @@ public class GameModeManager : MonoBehaviour
         }
     }
 
+
+    // for setting 1 and 2
     public void ToggleHapticFeedback()
     {
-        if(!DelayFinished)
+
+
+        if (!DelayFinished)
         {
             Debug.Log("Cannot toggle haptic feedback yet.");
             return;
         }
-
         if (isVirtualReality)
         {
             isHapticFeedbackEnabled = !isHapticFeedbackEnabled;
@@ -213,7 +229,7 @@ public class GameModeManager : MonoBehaviour
                 leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
                 rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = LayerMask.GetMask("FatTissue");
                 leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = LayerMask.GetMask("FatTissue");
-                if(isSetting_2 && haptocObjectHasMeshColliders)
+                if (isSetting_2 && haptocObjectHasMeshColliders)
                 {
                     foreach (var collider in hapticObject.GetComponents<MeshCollider>())
                     {
@@ -245,6 +261,97 @@ public class GameModeManager : MonoBehaviour
         {
             Debug.LogWarning("Haptic feedback is only available in Virtual Reality mode.");
         }
+    }
+
+
+    // for setting 3 overloaded method, to toggle styluses individually
+    public void ToggleHapticFeedback(bool isRightStylus)
+    {
+        if (!DelayFinished)
+        {
+            Debug.Log("Cannot toggle haptic feedback yet.");
+            return;
+        }
+
+        if (isRightStylus)
+        {
+
+            wasRightButtonReleased = false;
+        }
+        else
+        {
+            wasLeftButtonReleased = false;
+        }
+
+
+
+        if (isVirtualReality)
+        {
+            isHapticFeedbackEnabled = !isHapticFeedbackEnabled;
+            if (isHapticFeedbackEnabled)
+            {
+                if (isRightStylus)
+                {
+                    rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
+                    rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = LayerMask.GetMask("FatTissue");
+                }
+                else
+                {
+                    leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = 0;
+                    leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = LayerMask.GetMask("FatTissue");
+                }
+                StartCoroutine(EnableQuickVibration(isRightStylus));
+                onHapticEnabled?.Invoke(true);
+
+            }
+            else
+            {
+                if (isRightStylus)
+                {
+                    rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue");
+                }
+                else
+                {
+                    leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue");
+                }
+
+                onHapticEnabled?.Invoke(false);
+            }
+            Debug.Log("Haptic feedback toggled: " + isHapticFeedbackEnabled);
+        }
+        else
+        {
+            Debug.LogWarning("Haptic feedback is only available in Virtual Reality mode.");
+        }
+    }
+
+
+    // the overloaded method with a parameter for third setting
+    public void DisableHapticFeedback(bool wasButtonReleased, Stylus stylus)
+    {
+        isHapticFeedbackEnabled  = false;
+        if ( stylus == Stylus.RightStylus)
+        {
+
+            wasRightButtonReleased = true;
+        }
+        else if (stylus == Stylus.LeftStylus)
+        {
+            wasLeftButtonReleased = true;
+        }
+
+
+        if (stylus == Stylus.RightStylus)
+        {
+            rightStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue");
+        }
+        if (stylus == Stylus.LeftStylus)
+        {
+            leftStylusCollider.gameObject.GetComponent<Rigidbody>().excludeLayers = ~LayerMask.GetMask("Deform", "FatTissue");
+        }
+        SwapMaterial(false);
+        onHapticEnabled?.Invoke(false);
+
     }
 
     void InitializePassthroughMode()
@@ -319,11 +426,7 @@ public class GameModeManager : MonoBehaviour
 
     public void SwapMaterial(bool isOn)
     {
-        if(rightStylus.material == null || leftStylus.material == null)
-        {
-            return;
-        }
-        if (isThirdSetting)
+        if (rightStylus.material == null || leftStylus.material == null)
         {
             return;
         }
@@ -347,6 +450,24 @@ public class GameModeManager : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         hapticPluginR.DisableVibration();
         hapticPluginL.DisableVibration();
+    }
+
+    IEnumerator EnableQuickVibration(bool isRightStylus)
+    {
+        if(isRightStylus)
+        {
+            hapticPluginR.EnableVibration();
+            yield return new WaitForSeconds(.5f);
+            hapticPluginR.DisableVibration();
+            yield break;
+        }
+        else
+        {
+            hapticPluginL.EnableVibration();
+            yield return new WaitForSeconds(.5f);
+            hapticPluginL.DisableVibration();
+            yield break;
+        } 
     }
 
     IEnumerator StatTimerForToggling()
