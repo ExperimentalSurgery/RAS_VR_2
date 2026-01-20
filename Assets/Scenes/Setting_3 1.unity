@@ -38003,8 +38003,8 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 7224029817213678432}
           m_TargetAssemblyTypeName: HapticlabsHandler, Assembly-CSharp
-          m_MethodName: StartHapticFeedbackWithSecondTrack
-          m_Mode: 1
+          m_MethodName: StartHapticFeedbackWithTrack
+          m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -38020,6 +38020,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: GameModeManager, Assembly-CSharp
           m_MethodName: OnReleasedButton
           m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 7224029817213678432}
+          m_TargetAssemblyTypeName: HapticlabsHandler, Assembly-CSharp
+          m_MethodName: StopTrack
+          m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -39586,12 +39598,12 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 7224029817213678432}
           m_TargetAssemblyTypeName: HapticlabsHandler, Assembly-CSharp
-          m_MethodName: StartHapticFeedbackWithFirstTrack
-          m_Mode: 1
+          m_MethodName: StartHapticFeedbackWithTrack
+          m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: 1
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -39607,6 +39619,18 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7224029817213678432}
+          m_TargetAssemblyTypeName: HapticlabsHandler, Assembly-CSharp
+          m_MethodName: StopTrack
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -94161,8 +94185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eaf0ea0735677a47a4d068682114323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstTrackName: Single Vibration
-  secondTrackName: Simple pattern
+  tracks:
+  - name: Single Vibration
+    duration: 240
+  - name: Simple pattern
+    duration: 240
 --- !u!114 &7229247836717008437
 MonoBehaviour:
   m_ObjectHideFlags: 0
