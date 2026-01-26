@@ -5229,11 +5229,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 994968109841887512, guid: 0c84ddf11e6ba485e88997fe73bb2b43, type: 3}
       propertyPath: enableTCP
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 994968109841887512, guid: 0c84ddf11e6ba485e88997fe73bb2b43, type: 3}
       propertyPath: enableSerial
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 994968109841887513, guid: 0c84ddf11e6ba485e88997fe73bb2b43, type: 3}
       propertyPath: logDebugInfos
@@ -5321,7 +5321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4904336827256296084, guid: 0c84ddf11e6ba485e88997fe73bb2b43, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
