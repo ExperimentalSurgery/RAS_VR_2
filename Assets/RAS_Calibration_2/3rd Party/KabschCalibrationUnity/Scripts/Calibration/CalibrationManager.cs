@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
+using UnityEngine.XR;
 
 
 public class CalibrationManager : MonoBehaviour
@@ -14,6 +15,8 @@ public class CalibrationManager : MonoBehaviour
     public Transform[] tooltips;
     public Transform tooltip;
     public Color[] originalColorsForTips;
+
+    [SerializeField] OVRCameraRig cameraRig;
 
     [Header("Passthrough mode settings")]
     [SerializeField] private OVRPassthroughLayer oVRPassthroughLayer;
@@ -107,7 +110,7 @@ public class CalibrationManager : MonoBehaviour
 
     void Awake()
     {
-        //alignObjectsInScene = FindObjectsByType<CalibrateObject>(FindObjectsSortMode.None);
+        
         alignObjectChoices = CreateCalibrationObjectsAsString(alignObjectsInScene);
 
         if (alignObjectsInScene.Length != 0)
@@ -131,6 +134,7 @@ public class CalibrationManager : MonoBehaviour
     private void OnEnable()
     {
         oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
+        cameraRig.TrackingSpaceChanged += LoadCalibrationFromFile;
     }
 
     private void Start()
@@ -384,6 +388,12 @@ public class CalibrationManager : MonoBehaviour
     public void LoadCalibrationFromFile()
     {
         TransformPersistence.GetInstance().LoadAndApplyTransformationFromFile();
+    }
+
+    public void LoadCalibrationFromFile(Transform newPosition)
+    {
+        TransformPersistence.GetInstance().LoadAndApplyTransformationFromFile();
+        Debug.Log("LoadCalibration");
     }
 
     public void ChangeColorOfPointer()
