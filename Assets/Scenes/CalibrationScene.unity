@@ -83292,7 +83292,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 40, y: -23}
-  m_SizeDelta: {x: 0, y: 18}
+  m_SizeDelta: {x: 40.01, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2932972708240008281
 GameObject:
@@ -90384,7 +90384,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 46.095, y: -23}
-  m_SizeDelta: {x: 0, y: 18}
+  m_SizeDelta: {x: 64.19, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4518607721254451954
 GameObject:
@@ -95429,7 +95429,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 40, y: -23}
-  m_SizeDelta: {x: 0, y: 18}
+  m_SizeDelta: {x: 34.8, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &5706929926305035001
 Transform:
@@ -99016,7 +99016,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 40, y: -23}
-  m_SizeDelta: {x: 0, y: 18}
+  m_SizeDelta: {x: 34.8, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!135 &6634618033001264197
 SphereCollider:
@@ -105278,7 +105278,7 @@ MonoBehaviour:
   _headPoseRelativeOffsetTranslation: {x: 0, y: 0, z: 0}
   profilerTcpPort: 32419
   expandMixedRealityCapturePropertySheet: 1
-  enableMixedReality: 0
+  enableMixedReality: 1
   compositionMethod: 0
   extraHiddenLayers:
     serializedVersion: 2
@@ -105319,7 +105319,7 @@ MonoBehaviour:
   requestRecordAudioPermissionOnStartup: 0
   requestPassthroughCameraAccessPermissionOnStartup: 0
   _localDimming: 1
-  _trackingOriginType: 2
+  _trackingOriginType: 6
   usePositionTracking: 1
   useRotationTracking: 1
   useIPDInPositionTracking: 1
