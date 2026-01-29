@@ -105547,7 +105547,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   dynamicCullingMask: 1
-  externalCompositionBackdropColorRift: {r: 0, g: 1, b: 0, a: 1}
+  externalCompositionBackdropColorRift: {r: 0, g: 0, b: 0, a: 1}
   externalCompositionBackdropColorQuest: {r: 0, g: 0, b: 0, a: 0}
   capturingCameraDevice: 0
   flipCameraFrameHorizontally: 0
@@ -105580,12 +105580,12 @@ MonoBehaviour:
   requestPassthroughCameraAccessPermissionOnStartup: 0
   _localDimming: 1
   _trackingOriginType: 6
-  usePositionTracking: 1
+  usePositionTracking: 0
   useRotationTracking: 1
-  useIPDInPositionTracking: 1
+  useIPDInPositionTracking: 0
   resetTrackerOnLoad: 0
   AllowRecenter: 0
-  LateControllerUpdate: 1
+  LateControllerUpdate: 0
   LateLatching: 0
   controllerDrivenHandPosesType: 0
   SimultaneousHandsAndControllersEnabled: 1

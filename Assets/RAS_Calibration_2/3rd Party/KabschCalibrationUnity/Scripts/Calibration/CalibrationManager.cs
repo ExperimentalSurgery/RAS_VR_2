@@ -136,6 +136,7 @@ public class CalibrationManager : MonoBehaviour
         oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
         OVRManager.TrackingOriginChangePending += LoadCalibrationFromFile;
         OVRManager.display.RecenteredPose += LoadCalibrationFromFile; // useful for “Reset View”/recenter flows
+        OVRManager.TrackingOriginChangePending += LoadCalibrationFromFile;
 
     }
 
