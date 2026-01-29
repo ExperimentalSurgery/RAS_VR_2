@@ -16,7 +16,7 @@ public class CalibrationManager : MonoBehaviour
     public Transform tooltip;
     public Color[] originalColorsForTips;
 
-    [SerializeField] OVRCameraRig cameraRig;
+    [SerializeField] OVRManager ovrManager;
 
     [Header("Passthrough mode settings")]
     [SerializeField] private OVRPassthroughLayer oVRPassthroughLayer;
@@ -134,7 +134,9 @@ public class CalibrationManager : MonoBehaviour
     private void OnEnable()
     {
         oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
-        cameraRig.TrackingSpaceChanged += LoadCalibrationFromFile;
+        OVRManager.TrackingOriginChangePending += LoadCalibrationFromFile;
+        OVRManager.display.RecenteredPose += LoadCalibrationFromFile; // useful for “Reset View”/recenter flows
+
     }
 
     private void Start()
@@ -388,12 +390,13 @@ public class CalibrationManager : MonoBehaviour
     public void LoadCalibrationFromFile()
     {
         TransformPersistence.GetInstance().LoadAndApplyTransformationFromFile();
+        Debug.Log("Load Calibration");
     }
 
-    public void LoadCalibrationFromFile(Transform newPosition)
+    public void LoadCalibrationFromFile(OVRManager.TrackingOrigin origin, OVRPose? pose)
     {
         TransformPersistence.GetInstance().LoadAndApplyTransformationFromFile();
-        Debug.Log("LoadCalibration");
+        Debug.Log("Load Calibration OnTrackingOriginChangePending");
     }
 
     public void ChangeColorOfPointer()
