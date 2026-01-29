@@ -4,7 +4,6 @@ using UnityEngine.XR.Interaction.Toolkit.UI;
 [RequireComponent (typeof(LazyFollow))]
 public class LazyFollowToggle : MonoBehaviour
 {
-
     LazyFollow lazyFollow;
     private void Awake()
     {
