@@ -119,14 +119,31 @@ public class GameModeManager : MonoBehaviour
         bool wasButtonReleased = isRightStylus ? wasRightButtonReleased : wasLeftButtonReleased;
         DisableHapticFeedback(wasButtonReleased, stylus);
     }
+
+    // toggle between VR and MR mode
     public void ToggleGameMode()
     {
-
         if (!DelayFinished)
         {
             Debug.Log("Cannot toggle game mode yet.");
             return;
         }
+
+        StartCoroutine(FadeThenSwitch());
+    }
+
+    IEnumerator FadeThenSwitch()
+    {
+        OVRScreenFade.instance.FadeOut();
+        yield return new WaitForSeconds(OVRScreenFade.instance.fadeTime);
+
+        SwitchGameMode();
+
+        OVRScreenFade.instance.FadeIn();
+    }
+
+    private void SwitchGameMode()
+    {
         StartCoroutine(StatTimerForToggling());
         isVirtualReality = !isVirtualReality;
         if (isVirtualReality)
