@@ -13004,7 +13004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1485723238335785016, guid: 1c52a3e0bfcfbcf49b89c3c998138b74, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 40.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1485723238335785016, guid: 1c52a3e0bfcfbcf49b89c3c998138b74, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -13040,7 +13040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8412454116549774906, guid: 1c52a3e0bfcfbcf49b89c3c998138b74, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 34.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8412454116549774906, guid: 1c52a3e0bfcfbcf49b89c3c998138b74, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -13241,7 +13241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1301669018512811393, guid: f1f45f6eb290b9842b3187672059ebad, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 34.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1301669018512811393, guid: f1f45f6eb290b9842b3187672059ebad, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -78324,6 +78324,8 @@ MonoBehaviour:
   textLabelObject: {fileID: 7115948251589235794}
   textBodyObject: {fileID: 1382211831575591771}
   stepButtonTextField: {fileID: 0}
+  initialFadingDuration: 900000
+  fadingDuration: 600000
   stepLabelTexts:
   - Grab the stylus and click the light button to activate haptic feedback
   - Explore the borders of ureter
@@ -88416,7 +88418,7 @@ MonoBehaviour:
   requestRecordAudioPermissionOnStartup: 0
   requestPassthroughCameraAccessPermissionOnStartup: 0
   _localDimming: 1
-  _trackingOriginType: 2
+  _trackingOriginType: 6
   usePositionTracking: 1
   useRotationTracking: 1
   useIPDInPositionTracking: 1
