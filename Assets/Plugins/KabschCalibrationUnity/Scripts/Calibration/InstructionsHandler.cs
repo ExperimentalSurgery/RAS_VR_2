@@ -16,6 +16,8 @@ public class InstructionsHandler : MonoBehaviour
     [SerializeField]
     TMP_Text uiInstructionsText, indexText;
     [SerializeField]
+    private string initialInstruction = "Put the styluses on the table before calibration and pick up the controllers";
+    [SerializeField]
     int uiIndex;
     [SerializeField]
     string[] instructions;
@@ -23,14 +25,13 @@ public class InstructionsHandler : MonoBehaviour
     Sprite[] images;
     CalibrationManager calibrationManager;
     [SerializeField]
-    SequenceHandler sequenceHandler;
-    [SerializeField]
     private bool wasConsoleCalibrated = false;
     [SerializeField]
     private bool wasRightStylusCalibrated = false;
     [SerializeField]
     private bool wasLeftStylusCalibrated = false;
     public Action OnCompletedCalibration;
+  
     #region GETTER AND SETTER
 
     public bool WasConsoleCalibrated
@@ -44,26 +45,13 @@ public class InstructionsHandler : MonoBehaviour
         calibrationManager = GetComponent<CalibrationManager>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) //right stylus
-        {
-            calibrationManager.TryCreateDelayedSourcePoint(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) //left stylus
-        {
-            calibrationManager.TryCreateDelayedSourcePoint(2);
-        }
-    }
     private void OnEnable()
     {
-       // sequenceHandler.onFinishedReading += DisplayFirstInstruction;
         calibrationManager.OnCalibrationComplete += SelectInstruction;
     }
 
     private void OnDisable()
     {
-        //sequenceHandler.onFinishedReading -= DisplayFirstInstruction;
         calibrationManager.OnCalibrationComplete -= SelectInstruction;
     }
 
@@ -75,7 +63,7 @@ public class InstructionsHandler : MonoBehaviour
         resetCalibrationButton.SetActive(false);
         staticUI.SetActive(false);
         indexText.text = "";
-        uiInstructionsText.text = "Put the styluses on the table before calibration and pick up the controllers";
+        uiInstructionsText.text = initialInstruction;
         calibrationManager.CanCalibrate = false;
         wasConsoleCalibrated = false;
         updatedImage.gameObject.SetActive(false);
@@ -106,7 +94,7 @@ public class InstructionsHandler : MonoBehaviour
             startCalibrationButton.SetActive(true);
             resetCalibrationButton.SetActive(false);
             indexText.text = "";
-            uiInstructionsText.text = "Put the styluses on the table before calibration and pick up the controllers";
+            uiInstructionsText.text = initialInstruction;
             calibrationManager.CanCalibrate = false;
             updatedImage.gameObject.SetActive(false);
 
@@ -182,16 +170,6 @@ public class InstructionsHandler : MonoBehaviour
                     uiInstructionsText.text = instructions[8];
                     updatedImage.sprite = images[8];
                     wasRightStylusCalibrated = true;
-                    //if (wasLeftStylusCalibrated && wasRightStylusCalibrated)
-                    //{
-                    //    OnCompletedCalibration?.Invoke();
-                    //    ShowStaticUI();
-                    //}
-                    //else
-                    //{
-                    //    uiInstructionsText.text = instructions[8];
-                    //    updatedImage.sprite = images[8];
-                    //}
                     break;
                 default:
                     uiInstructionsText.text = instructions[4];
@@ -233,16 +211,6 @@ public class InstructionsHandler : MonoBehaviour
                     uiInstructionsText.text = instructions[13];
                     updatedImage.sprite = images[13];
                     wasLeftStylusCalibrated = true;
-                    //if (wasLeftStylusCalibrated && wasRightStylusCalibrated)
-                    //{
-                    //    OnCompletedCalibration?.Invoke();
-                    //    ShowStaticUI();
-                    //}
-                    //else
-                    //{
-                    //    uiInstructionsText.text = instructions[8];
-                    //    updatedImage.sprite = images[8];
-                    //}
                     break;
                 default:
                     uiInstructionsText.text = instructions[5];
@@ -263,14 +231,6 @@ public class InstructionsHandler : MonoBehaviour
 
     public void ResetUI(bool isReset)
     {
-
-        //sequenceHandler.onFinishedReading += DisplayFirstInstruction;
-        //calibrationManager.CanCalibrate = false;
-        //dynamicUI_instructions.SetActive(true);
-        //dynamicUI_updatedText.SetActive(true);
-        //wasConsoleCalibrated = false;
-        //calibrationManager.CanCalibrate = true;
-        //SelectInstruction();
         DisplayFirstInstruction(isReset);
         calibrationManager.RevertTipColors();
         staticUI.SetActive(false);
@@ -302,14 +262,11 @@ public class InstructionsHandler : MonoBehaviour
             dynamicUI_instructions.SetActive(false);
             dynamicUI_updatedText.SetActive(true);
             staticUI.SetActive(false);
-            //SelectInstruction();
-
         }
     }
 
     private int GetNextSocketNumber(int uiIndex)
     {
-        //return ((uiIndex + 1) % 4) + 1;
-        return uiIndex + 1;
+        return (uiIndex + 1);
     }
 }
