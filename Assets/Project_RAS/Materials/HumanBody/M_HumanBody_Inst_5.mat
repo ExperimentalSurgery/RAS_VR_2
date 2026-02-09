@@ -33,7 +33,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 4_Human_3_Unity_Hand_Dark 6
+  m_Name: M_HumanBody_Inst_5
   m_Shader: {fileID: -6465566751694194690, guid: 89a6790c28795dd4987bb267c3d05338, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -109,6 +109,7 @@ Material:
     - _CastShadows: 0
     - _Cull: 2
     - _DstBlend: 10
+    - _DstBlendAlpha: 10
     - _EdgeHighlightPower: 1.1
     - _FadeSize: 0
     - _FadeStart: 0
@@ -124,6 +125,7 @@ Material:
     - _QueueOffset: 0
     - _Scale: 0.16
     - _SrcBlend: 5
+    - _SrcBlendAlpha: 1
     - _Surface: 1
     - _TransitionSize: 0.1
     - _ZTest: 4
@@ -141,8 +143,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 0.78039217}
     - _Color_1: {r: 0, g: 0, b: 0, a: 0.5803922}
     - _EdgeColor: {r: 0, g: 0.08110308, b: 0.42452824, a: 0.50980395}
-    - _FadeCenter: {r: 0, g: 6.1, b: 3.7, a: 0}
-    - _FadeScale: {r: 2.9, g: 0.03, b: 0.0006, a: 0}
+    - _FadeCenter: {r: -10, g: 0, b: 26.7, a: 0}
+    - _FadeScale: {r: 0.0009, g: 1, b: 0.00058, a: 0}
     - _FingerColor_1: {r: 1, g: 1, b: 1, a: 0}
     - _FingerColor_2: {r: 1, g: 1, b: 1, a: 0}
     - _FingerColor_3: {r: 1, g: 1, b: 1, a: 0}

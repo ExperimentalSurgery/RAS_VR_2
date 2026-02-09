@@ -152657,6 +152657,8 @@ MonoBehaviour:
   staticUI: {fileID: 2769114516773093584}
   uiInstructionsText: {fileID: 1085434050}
   indexText: {fileID: 2003291498}
+  initialInstruction: Put the styluses on the table before calibration and pick up
+    the controllers
   uiIndex: 0
   instructions:
   - "Insert the bottom tip of the right controller into socket 1 \u2192 press calibrate
@@ -152695,7 +152697,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1afeef2009cfdba45b2827204efc15d6, type: 3}
   - {fileID: 21300000, guid: bfd392dc24ac41b4ca5fa0494dc1cdfc, type: 3}
   - {fileID: 21300000, guid: ae73bf3f96e140440a51a15b74e5bd8b, type: 3}
-  sequenceHandler: {fileID: 9015838625420687577}
   wasConsoleCalibrated: 0
   wasRightStylusCalibrated: 0
   wasLeftStylusCalibrated: 0

@@ -117,11 +117,9 @@ public class CalibrationManager : MonoBehaviour
         {
             currentObjectToCalibrate = alignObjectsInScene[0];
             tooltip = tooltips[0];
-            //ChangeColorOfPointer(0);
         }
 
         sourcePointTopParentInScene = new GameObject("SourcePoints");
-        //targetPointTopParentInScene.transform.SetParent(GameObject.FindGameObjectWithTag("SteamVR").transform);
         sourcePointParents = new GameObject[alignObjectsInScene.Length];
 
         for (int i = 0; i < alignObjectsInScene.Length; i++)
@@ -134,10 +132,7 @@ public class CalibrationManager : MonoBehaviour
     private void OnEnable()
     {
         oVRPassthroughLayer.passthroughLayerResumed.AddListener(OnPassthroughLayerResumed);
-        OVRManager.TrackingOriginChangePending += LoadCalibrationFromFile;
-        OVRManager.display.RecenteredPose += LoadCalibrationFromFile; // useful for �Reset View�/recenter flows
-        OVRManager.TrackingOriginChangePending += LoadCalibrationFromFile;
-
+        OVRManager.display.RecenteredPose += LoadCalibrationFromFile;
     }
 
     private void Start()
@@ -155,7 +150,6 @@ public class CalibrationManager : MonoBehaviour
     private void OnDisable()
     {
         oVRPassthroughLayer.passthroughLayerResumed.RemoveListener(OnPassthroughLayerResumed);
-        //RevertTipColors();
     }
 
 
@@ -169,18 +163,16 @@ public class CalibrationManager : MonoBehaviour
         }
     }
 
-    // 2) OnPassthroughLayerResumed is called once the layer is fully initialized and passthrough is visible
+    // OnPassthroughLayerResumed is called once the layer is fully initialized and passthrough is visible
     private void OnPassthroughLayerResumed(OVRPassthroughLayer passthroughLayer)
     {
-        // 3) Do something here after the passthrough layer has resumed
+        // Do something here after the passthrough layer has resumed
     }
 
     void InitializePassthroughMode()
     {
-        Debug.Log("Initializing Passthrough Mode...");
         oVRPassthroughLayer.enabled = true;
         oVRPassthroughLayer.textureOpacity = 1f; // set the opacity to 0 to hide the passthrough layer
-
     }
 
     void Update()
@@ -188,33 +180,11 @@ public class CalibrationManager : MonoBehaviour
         if (!CanCalibrate) return;
         FetchSourceAndTargetPointsToDisplay();
         ChangeColorOfPointer();
-
-        //throw new Exception("No input method implemented yet.");
-
-        /*
-        TODO: Add calibration input here, depending on VR system used - example is for SteamVR 1.0.        
-        if (SteamVR_Input._default.inActions.InteractUI.GetStateDown(SteamVR_Input_Sources.RightHand))
-        {
-            currentObjectToCalibrate.AddTargetPoint(tooltip.position, targetPointParents[choiceIndex].transform);
-            ChangeColorOfPointer();
-        }
-        */
-
     }
 
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(0);
-    }
-
-    public void PressButtonRight()
-    {
-        Debug.Log("PRESS Button RIGHT");
-    }
-
-    public void PressButtonLeft()
-    {
-        Debug.Log("PRESS Button LEFT");
     }
 
     public void CreateSourcePoint(int objectId)
@@ -225,8 +195,7 @@ public class CalibrationManager : MonoBehaviour
         {
             SetCallibrationObject(objectId);
         }
-        Debug.Log("AddSourcePoint " + tooltip.position);
-        Debug.Log("ChoiceIndex: " + choiceIndex);
+
         currentObjectToCalibrate.AddSourcePoint(tooltip.position, sourcePointParents[choiceIndex].transform, choiceIndex);
         ChangeColorOfPointer();
         FetchSourceAndTargetPointsToDisplay();
@@ -259,9 +228,7 @@ public class CalibrationManager : MonoBehaviour
         {
             SetCallibrationObject(objectId);
         }
-        Debug.Log("AddTargetPoint " + tooltip.position);
-        Debug.Log("can calibrate " + CanCalibrate);
-        Debug.Log("ChoiceIndex: " + choiceIndex);
+
         currentObjectToCalibrate.AddTargetPoint(tooltip.position, sourcePointParents[choiceIndex].transform, choiceIndex);
 
         ChangeColorOfPointer();
@@ -320,7 +287,6 @@ public class CalibrationManager : MonoBehaviour
         calibrationDistanceError = currentObjectToCalibrate.calibrationDistanceError;
         calibrationPointIndex = currentObjectToCalibrate.calibrationPointIndex;
         
-        Debug.Log("calibrationPointIndex: " + currentObjectToCalibrate + ": " + currentObjectToCalibrate.calibrationPointIndex);
         sourcePoints = GetVectorsFromTransforms(currentObjectToCalibrate.sourcePoints);
         targetPoints = GetVectorsFromTransforms(currentObjectToCalibrate.targetPoints);
     }
@@ -349,7 +315,6 @@ public class CalibrationManager : MonoBehaviour
             choiceIndex = objectId;
             currentObjectToCalibrate = alignObjectsInScene[choiceIndex];
             tooltip = tooltips[choiceIndex];
-            Debug.Log("Set currentObjectToCalibrate to: " + currentObjectToCalibrate.name);
             ChangeColorOfPointer();
         }
     }
@@ -357,7 +322,6 @@ public class CalibrationManager : MonoBehaviour
 
     public void ResetAllTargetPoints(bool isReset)
     {
-        Debug.Log("ResetAllTargetPoints");
         alignObjectsInScene[0].ResetAllTargetPoints();
         alignObjectsInScene[1].calibrationPointIndex = 0;
         alignObjectsInScene[2].calibrationPointIndex = 0;
@@ -391,29 +355,21 @@ public class CalibrationManager : MonoBehaviour
     public void LoadCalibrationFromFile()
     {
         TransformPersistence.GetInstance().LoadAndApplyTransformationFromFile();
-        Debug.Log("Load Calibration");
     }
 
     public void LoadCalibrationFromFile(OVRManager.TrackingOrigin origin, OVRPose? pose)
     {
         TransformPersistence.GetInstance().LoadAndApplyTransformationFromFile();
-        Debug.Log("Load Calibration OnTrackingOriginChangePending");
     }
 
     public void ChangeColorOfPointer()
     {
         int colorNumber = (sourcePoints.Length != 0) ? calibrationPointIndex : 0;
-        Debug.Log("colorNumber: " + colorNumber);
-        //int colorNumber = calibrationPointIndex;
 
         Renderer rendererController = tooltips[0].GetComponent<Renderer>(); // to change color of controller pointer
         rendererController.material = new Material(Shader.Find("UI/Unlit/Detail"));
         rendererController.sharedMaterial.color = ColorOrder.GetColor(colorNumber);
 
-        //if (choiceIndex == 0) { return; }
-        //Renderer rendererRight = tooltips[choiceIndex].GetComponent<Renderer>(); // to change color of another pointer
-        //rendererRight.material = new Material(Shader.Find("UI/Unlit/Detail"));
-        //rendererRight.sharedMaterial.color = ColorOrder.GetColor(colorNumber);
     }
 
     #endregion

@@ -33,7 +33,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 2_Human_1_Unity_Hand_Dark 5
+  m_Name: M_HumanBody_Inst_4
   m_Shader: {fileID: -6465566751694194690, guid: 89a6790c28795dd4987bb267c3d05338, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -109,6 +109,7 @@ Material:
     - _CastShadows: 0
     - _Cull: 2
     - _DstBlend: 10
+    - _DstBlendAlpha: 10
     - _EdgeHighlightPower: 1.1
     - _FadeSize: 1
     - _FadeStart: 10
@@ -124,6 +125,7 @@ Material:
     - _QueueOffset: 0
     - _Scale: 0.16
     - _SrcBlend: 5
+    - _SrcBlendAlpha: 1
     - _Surface: 1
     - _TransitionSize: 0.1
     - _ZTest: 4
