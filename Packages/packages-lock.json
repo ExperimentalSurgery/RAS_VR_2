@@ -8,14 +8,14 @@
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.core": {
-      "version": "83.0.3",
+      "version": "83.0.4",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.interaction": {
-      "version": "83.0.1",
+      "version": "83.0.4",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -25,12 +25,12 @@
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.interaction.ovr": {
-      "version": "83.0.3",
+      "version": "83.0.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.meta.xr.sdk.core": "83.0.3",
-        "com.meta.xr.sdk.interaction": "83.0.1"
+        "com.meta.xr.sdk.core": "83.0.4",
+        "com.meta.xr.sdk.interaction": "83.0.4"
       },
       "url": "https://packages.unity.com"
     },
