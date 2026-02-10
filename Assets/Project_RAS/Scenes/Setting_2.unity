@@ -13100,95 +13100,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8933069477646621892, guid: 1c52a3e0bfcfbcf49b89c3c998138b74, type: 3}
   m_PrefabInstance: {fileID: 1685639013}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1709847820
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1709847821}
-  - component: {fileID: 1709847823}
-  - component: {fileID: 1709847822}
-  m_Layer: 0
-  m_Name: Intestine_Large_Dikke_darms_large_int_mat_0 (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1709847821
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709847820}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3315783499211190031}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &1709847822
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709847820}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 60cb69caab059e048865ea2b445c63e3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1709847823
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709847820}
-  m_Mesh: {fileID: 477315817188857035, guid: c61e3f37572c24b40a8600d30fde2cc5, type: 3}
 --- !u!1 &1710644424
 GameObject:
   m_ObjectHideFlags: 0
@@ -36548,7 +36459,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5270252149505042189}
   m_Layer: 0
-  m_Name: Urether_R1
+  m_Name: Urether
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48269,7 +48180,7 @@ GameObject:
   - component: {fileID: 1510288563998789208}
   - component: {fileID: 3679836975825386130}
   m_Layer: 0
-  m_Name: chopped_human_base_meshes_female__
+  m_Name: HumanBody_mesh_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51261,7 +51172,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1707149053061968066}
-  - {fileID: 1709847821}
   m_Father: {fileID: 1619261477903458893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3316190526602230185
@@ -53680,7 +53590,7 @@ GameObject:
   - component: {fileID: 3071983457717761301}
   - component: {fileID: 4245430386286087803}
   m_Layer: 0
-  m_Name: chopped_human_base_meshes_female_1 (1)
+  m_Name: HumanBody_mesh_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62280,7 +62190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 654282792526032835}
   m_Layer: 0
-  m_Name: anatomy_male_1
+  m_Name: anatomy_male_as_reference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64355,7 +64265,7 @@ GameObject:
   - component: {fileID: 5866479676001688450}
   - component: {fileID: 6663522777892071063}
   m_Layer: 0
-  m_Name: human_base_meshes_female_1 (2)
+  m_Name: HumanBody_mesh_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82889,7 +82799,7 @@ GameObject:
   - component: {fileID: 6363019331904817459}
   - component: {fileID: 9198895908554653177}
   m_Layer: 0
-  m_Name: chopped_human_base_meshes_female_1
+  m_Name: HumanBody_mesh_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84858,7 +84768,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5792114072725965953}
   m_Layer: 0
-  m_Name: DangerZone_HumanBody_AbdomenAnatomy
+  m_Name: DangerZone_HumanBody_AbdomenAnatomy_reference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101231,7 +101141,7 @@ GameObject:
   - component: {fileID: 4710931833594137856}
   - component: {fileID: 7495082103826454489}
   m_Layer: 0
-  m_Name: human_base_meshes_female_1 (1)
+  m_Name: HumanBody_mesh_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
