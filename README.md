@@ -32,5 +32,4 @@ The simulation is particularly valuable for researchers and developers intereste
 ## Citation
 
 ## License
-This is an open-access article distributed under the terms of the [Creative Commons Attribution License (CC BY] (https://creativecommons.org/licenses/by/4.0/). The use, distribution or reproduction in other forums is permitted, provided the original author(s) and the copyright owner(s) are credited and that the original publication in this journal is cited, in accordance with accepted academic practice. No use, distribution or reproduction is permitted which does not comply with these terms.
-
+This is an open-access article distributed under the terms of the [Creative Commons Attribution License (CC BY)](https://creativecommons.org/licenses/by/4.0/).
