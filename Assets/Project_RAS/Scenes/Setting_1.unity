@@ -8826,6 +8826,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5265000187879623756, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580153898700700105, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6105449159498312269, guid: d10e1fbe02a987c4db86ac7cf90a98c4, type: 3}
       propertyPath: m_Name
       value: HapticDevicesHandler
@@ -62057,7 +62065,6 @@ MonoBehaviour:
   - {fileID: 1218415811455801248}
   - {fileID: 1522068730}
   - {fileID: 759277724}
-  toLoadNextScene: 0
 --- !u!4 &5836208702637068295
 Transform:
   m_ObjectHideFlags: 0
@@ -76725,7 +76732,7 @@ MonoBehaviour:
   requestRecordAudioPermissionOnStartup: 0
   requestPassthroughCameraAccessPermissionOnStartup: 0
   _localDimming: 1
-  _trackingOriginType: 6
+  _trackingOriginType: 1
   usePositionTracking: 1
   useRotationTracking: 1
   useIPDInPositionTracking: 1
@@ -78045,6 +78052,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 14.501
       objectReference: {fileID: 0}
+    - target: {fileID: 8506714720596448319, guid: 0a9036023fb4903489bc25833783a0c0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 7071989906153597848, guid: 47a8f17f0e18b76409280818430c6843, type: 3}
     - target: {fileID: 8727877579065000025, guid: 0a9036023fb4903489bc25833783a0c0, type: 3}
       propertyPath: m_Enabled
       value: 0

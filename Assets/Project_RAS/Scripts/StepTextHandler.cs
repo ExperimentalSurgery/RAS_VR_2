@@ -28,11 +28,8 @@ public class StepTextHandler : MonoBehaviour
     [SerializeField] float fadingDuration = 6;   
     [SerializeField] string[] stepLabelTexts;
     [SerializeField] GameObject[] stepArrows;
-    //[SerializeField] string[] stepBodyTexts;
-    //[SerializeField] TMP_Text nextButton;
     int m_StepIndex = 0;
     int m_CurrentStepIndex = 0;
-    [SerializeField] private bool toLoadNextScene = false;
     List<Renderer> allArrowRenders = new List<Renderer>();
 
     private void Start()
@@ -85,15 +82,10 @@ public class StepTextHandler : MonoBehaviour
     }
     public void NextSetting()
     {
-        if (!GameModeManager.Instance.DelayFinished)
-            return;
-        // If we are at the last step and the button is clicked, load the next scene
-        if (toLoadNextScene)
-        {
-            LoadNextScene();
-        }
+        if (!GameModeManager.Instance.DelayFinished) { return; }
 
-        if(currentSetting == Setting.setting_1 )
+
+        if (currentSetting == Setting.setting_1 )
         {
             //label
             textLabelObject.text = stepLabelTexts[m_StepIndex];
@@ -142,7 +134,8 @@ public class StepTextHandler : MonoBehaviour
 
     void SelectArrows_1()
     {
-        StopAllCoroutines();
+        DeactivateAllArrows(stepArrows);
+
         foreach (var arrow in stepArrows)
         {
             arrow.SetActive(false);
@@ -211,11 +204,8 @@ public class StepTextHandler : MonoBehaviour
 
     void SelectArrows_2()
     {
-        StopAllCoroutines();
-        foreach (var arrow in stepArrows)
-        {
-            arrow.SetActive(false);
-        }
+        DeactivateAllArrows(stepArrows);
+
         if (allArrowRenders != null)
         {
             foreach (var rend in allArrowRenders)
@@ -239,8 +229,8 @@ public class StepTextHandler : MonoBehaviour
                 break;
             case 1:
                 m_CurrentStepIndex = 1;
-                stepArrows[0].SetActive(false);
-                stepArrows[1].SetActive(false);
+                //stepArrows[0].SetActive(false);
+                //stepArrows[1].SetActive(false);
                 stepArrows[2].SetActive(true);
                 var renderers_2 = stepArrows[2].GetComponentsInChildren<Renderer>();
                 allArrowRenders.AddRange(renderers_2);
@@ -253,11 +243,8 @@ public class StepTextHandler : MonoBehaviour
 
     void SelectArrows_3()
     {
-        StopAllCoroutines();
-        foreach (var arrow in stepArrows)
-        {
-            arrow.SetActive(false);
-        }
+        DeactivateAllArrows(stepArrows);
+       
         if (allArrowRenders != null)
         {
             foreach (var rend in allArrowRenders)
@@ -281,8 +268,8 @@ public class StepTextHandler : MonoBehaviour
                 break;
             case 1:
                 m_CurrentStepIndex = 1;
-                stepArrows[0].SetActive(false);
-                stepArrows[1].SetActive(false);
+               // stepArrows[0].SetActive(false);
+                //stepArrows[1].SetActive(false);
                 stepArrows[2].SetActive(true);
                 var renderers_2 = stepArrows[2].GetComponentsInChildren<Renderer>();
                 allArrowRenders.AddRange(renderers_2);
@@ -290,6 +277,13 @@ public class StepTextHandler : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    void DeactivateAllArrows(GameObject[] stepArrowsArray) {        
+        foreach (var arrow in stepArrowsArray)
+        {
+            arrow.SetActive(false);
         }
     }
 
