@@ -593,8 +593,8 @@ public class HapticPlugin : MonoBehaviour
     private Queue hapticErrorQueue;
     [HideInInspector]
     public bool enable_damping = false;
-    double[] max_extents = { -0.210, -0.110, -0.085, 0.210, 0.205, 0.130 };
-    double[] usable_extents = { -0.08, -0.06, -0.035, 0.08, 0.06, 0.035 };
+    public readonly double[] Max_extents = { -0.210, -0.110, -0.085, 0.210, 0.205, 0.130 };
+    public readonly double[] Usable_extents = { -0.08, -0.06, -0.035, 0.08, 0.06, 0.035 };
     private Matrix4x4 DeviceTransformRaw;   //!< (Readonly) Stylus transform, in device coordinates.
     float ScaleFactor = 1.0f;
     [HideInInspector]
@@ -857,23 +857,23 @@ public class HapticPlugin : MonoBehaviour
 
         if (FitToWorkspace == BoxType.usableWorkspace)
         {
-            hapticWidth = (float)(usable_extents[maxX] - usable_extents[minX]);
-            hapticHeight = (float)(usable_extents[maxY] - usable_extents[minY]);
-            hapticDepth = (float)(usable_extents[maxZ] - usable_extents[minZ]);
+            hapticWidth = (float)(Usable_extents[maxX] - Usable_extents[minX]);
+            hapticHeight = (float)(Usable_extents[maxY] - Usable_extents[minY]);
+            hapticDepth = (float)(Usable_extents[maxZ] - Usable_extents[minZ]);
             hapticCenter = new Vector3(
-                (float)(usable_extents[maxX] + usable_extents[minX]) / 2,
-                (float)(usable_extents[maxY] + usable_extents[minY]) / 2,
-                (float)(usable_extents[maxZ] + usable_extents[minZ]) / 2);
+                (float)(Usable_extents[maxX] + Usable_extents[minX]) / 2,
+                (float)(Usable_extents[maxY] + Usable_extents[minY]) / 2,
+                (float)(Usable_extents[maxZ] + Usable_extents[minZ]) / 2);
         }
         else
         {
-            hapticWidth = (float)(max_extents[maxX] - max_extents[minX]);
-            hapticHeight = (float)(max_extents[maxY] - max_extents[minY]);
-            hapticDepth = (float)(max_extents[maxZ] - max_extents[minZ]);
+            hapticWidth = (float)(Max_extents[maxX] - Max_extents[minX]);
+            hapticHeight = (float)(Max_extents[maxY] - Max_extents[minY]);
+            hapticDepth = (float)(Max_extents[maxZ] - Max_extents[minZ]);
             hapticCenter = new Vector3(
-                (float)(max_extents[maxX] + max_extents[minX]) / 2,
-                (float)(max_extents[maxY] + max_extents[minY]) / 2,
-                (float)(max_extents[maxZ] + max_extents[minZ]) / 2);
+                (float)(Max_extents[maxX] + Max_extents[minX]) / 2,
+                (float)(Max_extents[maxY] + Max_extents[minY]) / 2,
+                (float)(Max_extents[maxZ] + Max_extents[minZ]) / 2);
         }
 
 
@@ -970,32 +970,32 @@ public class HapticPlugin : MonoBehaviour
         }
 
 
-        if (this.transform.position.x > position_nav.x + max_extents[0] + Min_TNav.x)
+        if (this.transform.position.x > position_nav.x + Max_extents[0] + Min_TNav.x)
         {
             inRange[0] = true;
         }
 
-        if (this.transform.position.x < position_nav.x + max_extents[3] + Max_TNav.x)
+        if (this.transform.position.x < position_nav.x + Max_extents[3] + Max_TNav.x)
         {
             inRange[3] = true;
         }
 
-        if (this.transform.position.y > position_nav.y + max_extents[1] + Min_TNav.y)
+        if (this.transform.position.y > position_nav.y + Max_extents[1] + Min_TNav.y)
         {
             inRange[1] = true;
         }
 
-        if (this.transform.position.y < position_nav.y + max_extents[4] + Max_TNav.y)
+        if (this.transform.position.y < position_nav.y + Max_extents[4] + Max_TNav.y)
         {
             inRange[4] = true;
         }
 
-        if (this.transform.position.z > position_nav.z + max_extents[2] + Min_TNav.z)
+        if (this.transform.position.z > position_nav.z + Max_extents[2] + Min_TNav.z)
         {
             inRange[2] = true;
         }
 
-        if (this.transform.position.z < position_nav.z + max_extents[5] + Max_TNav.z)
+        if (this.transform.position.z < position_nav.z + Max_extents[5] + Max_TNav.z)
         {
             inRange[5] = true;
         }
@@ -1439,7 +1439,7 @@ public class HapticPlugin : MonoBehaviour
 
 
             getDeviceMaxValues(DeviceIdentifier, ref MaxStiffness, ref MaxDamping, ref MaxForce);
-            getWorkspaceArea(DeviceIdentifier, usable_extents, max_extents);
+            getWorkspaceArea(DeviceIdentifier, Usable_extents, Max_extents);
 
 
             if (ScaleToMeter)
@@ -1453,8 +1453,8 @@ public class HapticPlugin : MonoBehaviour
 
             for (int i = 0; i < 6; i++)
             {
-                usable_extents[i] = usable_extents[i] * ScaleFactor;
-                max_extents[i] = max_extents[i] * ScaleFactor;
+                Usable_extents[i] = Usable_extents[i] * ScaleFactor;
+                Max_extents[i] = Max_extents[i] * ScaleFactor;
             }
 
 
@@ -2450,26 +2450,26 @@ public class HapticPlugin : MonoBehaviour
             const int maxZ = 5;
 
             Vector3 usableBox = new Vector3(
-                                    (float)(usable_extents[maxX] - usable_extents[minX]),
-                                    (float)(usable_extents[maxY] - usable_extents[minY]),
-                                    (float)(usable_extents[maxZ] - usable_extents[minZ]));
+                                    (float)(Usable_extents[maxX] - Usable_extents[minX]),
+                                    (float)(Usable_extents[maxY] - Usable_extents[minY]),
+                                    (float)(Usable_extents[maxZ] - Usable_extents[minZ]));
             Vector3 usableCenter = new Vector3(
-                                       0.5f * (float)(usable_extents[maxX] + usable_extents[minX]),
-                                       0.5f * (float)(usable_extents[maxY] + usable_extents[minY]),
-                                       0.5f * (float)(usable_extents[maxZ] + usable_extents[minZ]));
+                                       0.5f * (float)(Usable_extents[maxX] + Usable_extents[minX]),
+                                       0.5f * (float)(Usable_extents[maxY] + Usable_extents[minY]),
+                                       0.5f * (float)(Usable_extents[maxZ] + Usable_extents[minZ]));
 
             Gizmos.color = Color.green;
             Gizmos.matrix = gameObject.transform.localToWorldMatrix;
             Gizmos.DrawWireCube(usableCenter, usableBox);
 
             Vector3 maxBox = new Vector3(
-                                 (float)(max_extents[maxX] - max_extents[minX]),
-                                 (float)(max_extents[maxY] - max_extents[minY]),
-                                 (float)(max_extents[maxZ] - max_extents[minZ]));
+                                 (float)(Max_extents[maxX] - Max_extents[minX]),
+                                 (float)(Max_extents[maxY] - Max_extents[minY]),
+                                 (float)(Max_extents[maxZ] - Max_extents[minZ]));
             Vector3 maxCenter = new Vector3(
-                                    0.5f * (float)(max_extents[maxX] + max_extents[minX]),
-                                    0.5f * (float)(max_extents[maxY] + max_extents[minY]),
-                                    0.5f * (float)(max_extents[maxZ] + max_extents[minZ]));
+                                    0.5f * (float)(Max_extents[maxX] + Max_extents[minX]),
+                                    0.5f * (float)(Max_extents[maxY] + Max_extents[minY]),
+                                    0.5f * (float)(Max_extents[maxZ] + Max_extents[minZ]));
 
 
             if (SceneLimit)
