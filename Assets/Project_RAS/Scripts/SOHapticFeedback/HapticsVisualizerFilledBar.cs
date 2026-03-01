@@ -1,30 +1,34 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(HapticPlugin))]
 public class HapticsVisualizerFilledBar : MonoBehaviour
 {
-    [Header("Force Label")]
-    [SerializeField] private bool showLabel = true;
-    [SerializeField] private TMP_Text labelPrefab; // assign a TextMeshPro (3D) prefab
-    [SerializeField] private float labelYOffset = 0.025f; // matches your +0.025f
-    [SerializeField] private float labelFontSize = 0.2f;
-    //[SerializeField] private Transform labelLookAt; // optional (camera)
-
-    [Header("Runtime Debug Render")]
-    [SerializeField] private bool renderInPlayMode = true;
+    [Header("Runtime Render")]
+    private static bool renderInPlayMode = true;
+    [SerializeField] private Sprite redneringEnabledSprite;
+    [SerializeField] private Sprite redneringDisabledSprite;
+    [SerializeField] private Image targetImage;
 
     [Header("Force Bar (Filled)")]
-    [SerializeField] private Transform collisionMesh;       // CollisionMesh.transform
-    [SerializeField] private float barWidth = 0.01f;        // x/z size
-    [SerializeField] private float barHeightScale = 0.05f;  // height = scale * MagForce
-    [SerializeField] private float maxForce = 1.0f;         // for color mapping
+    [SerializeField] private Transform collisionMesh;        // defaults to _haptic.CollisionMesh.transform if null
+    [SerializeField] private float barWidth = 0.01f;         // x/z size (matches Gizmos: 0.01f)
+    [SerializeField] private float barHeightScale = 0.05f;   // height = 0.05f * MagForce (matches Gizmos)
+    [SerializeField] private float maxForce = 1.0f;          // MaxForce for color mapping
     [SerializeField, Range(0f, 1f)] private float opacity = 1.0f;
 
-    [Header("Material")]
-    [Tooltip("Use an opaque material to prevent see-through. For URP: Lit/Unlit (Opaque).")]
+    [Header("Materials")]
+    [Tooltip("Use an OPAQUE material to avoid see-through. URP: Lit/Unlit (Surface=Opaque).")]
     [SerializeField] private Material barMaterial;
+
+    [Header("Label (TextMeshPro 3D)")]
+    [SerializeField] private bool showLabel = true;
+    [SerializeField] private TMP_Text labelPrefab;           // assign a TextMeshPro (3D) prefab
+    [SerializeField] private float labelYOffset = 0.025f;    // matches Gizmos: +0.025f
+    [SerializeField] private float labelFontSize = 0.2f;
+    [SerializeField] private Transform labelLookAt;          // optional: camera for billboard
 
     private HapticPlugin _haptic;
 
@@ -36,79 +40,128 @@ public class HapticsVisualizerFilledBar : MonoBehaviour
 
     private MaterialPropertyBlock _mpb;
     private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor"); // URP
-    private static readonly int ColorId = Shader.PropertyToID("_Color");         // legacy
+    private static readonly int ColorId = Shader.PropertyToID("_Color");     // Built-in/legacy
 
     private void Awake()
     {
         _haptic = GetComponent<HapticPlugin>();
         _mpb = new MaterialPropertyBlock();
 
+        // Auto-assign collision mesh if not set
         if (collisionMesh == null && _haptic.CollisionMesh != null)
             collisionMesh = _haptic.CollisionMesh.transform;
 
-        // Create a Unity cube primitive as the filled bar
+        // Create filled bar cube
         _barGO = GameObject.CreatePrimitive(PrimitiveType.Cube);
         _barGO.name = "ForceBar_Filled";
         _barTf = _barGO.transform;
         _barTf.SetParent(transform, worldPositionStays: true);
 
-        // Remove collider from primitive (we only want visuals)
+        // Remove collider (visual only)
         var col = _barGO.GetComponent<Collider>();
         if (col) Destroy(col);
 
         _barRenderer = _barGO.GetComponent<MeshRenderer>();
-
         if (barMaterial != null)
             _barRenderer.sharedMaterial = barMaterial;
 
-        CreateLabel();
-        //if (labelLookAt == null && Camera.main != null) labelLookAt = Camera.main.transform;
+        // Create label (optional)
+        if (showLabel)
+        {
+            if (labelPrefab != null)
+            {
+                _label = Instantiate(labelPrefab, transform);
+                _label.fontSize = labelFontSize;
+            }
+            else
+            {
+                Debug.LogWarning("HapticsVisualizer: labelPrefab is not assigned (TMP 3D). Label will not be shown.");
+                showLabel = false;
+            }
+
+            if (labelLookAt == null && Camera.main != null)
+                labelLookAt = Camera.main.transform;
+        }
     }
 
     private void LateUpdate()
     {
         if (!Application.isPlaying || !renderInPlayMode)
         {
-            if (_barGO) _barGO.SetActive(false);
+            SetActiveVisuals(false);
             return;
         }
 
-        if (_haptic.MagForce <= 0f || collisionMesh == null)
+        if (collisionMesh == null || _haptic.MagForce <= 0f)
         {
-            if (_barGO) _barGO.SetActive(false);
+            SetActiveVisuals(false);
             return;
         }
 
-        _barGO.SetActive(true);
-        UpdateFilledBar();
-        UpdateForceLabel();
+        SetActiveVisuals(true);
+        UpdateFilledBarAndLabel();
     }
 
-    public void ToggleHapticVisualization()
+    public void ToogleRendering()
     {
         renderInPlayMode = !renderInPlayMode;
+        if(targetImage != null)
+        {
+            targetImage.sprite = renderInPlayMode ? redneringEnabledSprite : redneringDisabledSprite;
+        }
+    }
+    private void SetActiveVisuals(bool active)
+    {
+        if (_barGO != null) _barGO.SetActive(active);
+        if (_label != null) _label.gameObject.SetActive(active);
     }
 
-    private void UpdateFilledBar()
+    private void UpdateFilledBarAndLabel()
     {
         float magForce = _haptic.MagForce;
+
+        // Same Gizmos math:
+        // size.y = 0.05f * MagForce
         float height = barHeightScale * magForce;
 
-        // Same as your Gizmos.DrawCube:
-        // position = CollisionMesh.pos + (0, height/2, 0)
+        // Same Gizmos placement:
+        // DrawCube(CollisionMesh.pos + (0, height/2, 0), size)
         Vector3 center = collisionMesh.position + new Vector3(0f, height * 0.5f, 0f);
 
-        // Size = (0.01, 0.05*MagForce, 0.01)
+        // Filled bar transform (Gizmos.matrix = identity -> no local-to-world mixing)
         _barTf.position = center;
-        _barTf.rotation = Quaternion.identity; // matches Gizmos.matrix = identity
+        _barTf.rotation = Quaternion.identity;
         _barTf.localScale = new Vector3(barWidth, height, barWidth);
 
+        // Color mapping exactly like your Gizmos (applied to material)
         ApplyForceColorToMaterial(_haptic.CurrentForce.magnitude, maxForce);
+
+        // Label (same logic as Handles.Label placement)
+        if (_label != null)
+        {
+            // Your original:
+            // base = pos + (0, height/2, 0)
+            // label = base + (0, height/2 + 0.025, 0)
+            Vector3 basePos = collisionMesh.position + new Vector3(0f, height * 0.5f, 0f);
+            Vector3 labelPos = basePos + new Vector3(0f, height * 0.5f + labelYOffset, 0f);
+
+            _label.transform.position = labelPos;
+            _label.text = magForce.ToString("0.###");
+
+            // Optional billboard to camera
+            if (labelLookAt != null)
+            {
+                Vector3 dir = _label.transform.position - labelLookAt.position;
+                if (dir.sqrMagnitude > 0.0001f)
+                    _label.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
+            }
+        }
     }
 
     private void ApplyForceColorToMaterial(float currentForceMagnitude, float maxForceValue)
     {
-        // Your exact mapping
+        // EXACT Gizmos mapping:
+        // new Color(2*t, 2*(1-t), 0) where t = CurrentForce.magnitude / MaxForce
         float t = (maxForceValue > 0f) ? (currentForceMagnitude / maxForceValue) : 0f;
 
         Color c = new Color(
@@ -126,53 +179,4 @@ public class HapticsVisualizerFilledBar : MonoBehaviour
 
         _barRenderer.SetPropertyBlock(_mpb);
     }
-
-    private void CreateLabel()
-    {
-        if (!showLabel || _label != null) return;
-        if (labelPrefab == null)
-        {
-            Debug.LogWarning("HapticsVisualizer: labelPrefab not assigned (TMP 3D).");
-            return;
-        }
-
-        _label = Instantiate(labelPrefab, transform);
-        _label.transform.localScale = Vector3.one;
-        _label.fontSize = labelFontSize;
-    }
-
-    private void UpdateForceLabel()
-    {
-        if (!showLabel || _label == null)
-            return;
-
-        if (_haptic.MagForce <= 0f || collisionMesh == null)
-        {
-            _label.gameObject.SetActive(false);
-            return;
-        }
-
-        _label.gameObject.SetActive(true);
-
-        float magForce = _haptic.MagForce;
-
-        // Your gizmo math: 0.05f * MagForce
-        float y = barHeightScale * magForce;
-
-        // Exactly matching the two-step offset from Handles.Label:
-        Vector3 basePos = collisionMesh.position + new Vector3(0f, y / 2f, 0f);
-        Vector3 labelPos = basePos + new Vector3(0f, y / 2f + labelYOffset, 0f);
-
-        _label.transform.position = labelPos;
-        _label.text = magForce.ToString("0.###"); // same as "" + MagForce, just formatted
-
-        // Optional: billboard to camera
-        //if (labelLookAt != null)
-        //{
-        //    Vector3 dir = _label.transform.position - labelLookAt.position;
-        //    if (dir.sqrMagnitude > 0.0001f)
-        //        _label.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
-        //}
-    }
-
 }
