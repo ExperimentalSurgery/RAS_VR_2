@@ -9,6 +9,10 @@ public class HapticsVisualizer : MonoBehaviour
     [SerializeField] private Material lineMaterial;
     [SerializeField] private float lineWidth = 0.01f;
 
+    [Header("Line smoothing")]
+    [SerializeField, Range(0, 32)] private int numCapVertices = 8;      // round line ends
+    [SerializeField, Range(0, 32)] private int numCornerVertices = 8;   // round corners/joins
+
     [Header("Force Bar")]
     [SerializeField] private Transform collisionMesh;     // assign CollisionMesh.transform here (or auto-pull from plugin if you prefer)
     [SerializeField] private float barWidth = 0.01f;      // x/z size in your gizmo code
@@ -39,6 +43,9 @@ public class HapticsVisualizer : MonoBehaviour
         _lr.loop = false; // we close manually with point 0 repeated
         _lr.positionCount = RectPointCount;
         _lr.widthMultiplier = lineWidth;
+
+        _lr.numCapVertices = numCapVertices;
+        _lr.numCornerVertices = numCornerVertices;
 
         if (lineMaterial != null)
             _lr.material = lineMaterial;

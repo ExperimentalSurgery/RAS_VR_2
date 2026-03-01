@@ -3559,7 +3559,7 @@ MonoBehaviour:
   currentHapticPlugin: {fileID: 0}
   drawShader: {fileID: 4800000, guid: 8f60fe0386feb4e4a8ea8b6559caeb44, type: 3}
   size: 2
-  strength: 0.7
+  strength: 0.9
   tipTransform: {fileID: 0}
   startedPainting: 0
 --- !u!64 &558475135
@@ -58078,6 +58078,8 @@ MonoBehaviour:
   renderInPlayMode: 1
   lineMaterial: {fileID: 2100000, guid: e1d905c957eb8964ab2242ddbc8fe790, type: 2}
   lineWidth: 0.01
+  numCapVertices: 8
+  numCornerVertices: 8
   collisionMesh: {fileID: 0}
   barWidth: 0.01
   barHeightScale: 0.05
@@ -58182,7 +58184,7 @@ LineRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
-    numCapVertices: 0
+    numCapVertices: 30
     alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 1}
@@ -108529,6 +108531,8 @@ MonoBehaviour:
   renderInPlayMode: 1
   lineMaterial: {fileID: 2100000, guid: e1d905c957eb8964ab2242ddbc8fe790, type: 2}
   lineWidth: 0.01
+  numCapVertices: 8
+  numCornerVertices: 8
   collisionMesh: {fileID: 0}
   barWidth: 0.01
   barHeightScale: 0.05
