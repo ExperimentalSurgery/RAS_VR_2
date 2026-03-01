@@ -1,6 +1,7 @@
 using UnityEngine;
 
 
+[RequireComponent(typeof(LineRenderer))]
 public class HapticsVisualizer : MonoBehaviour
 {
     [Header("Runtime Debug Render")]
@@ -14,7 +15,7 @@ public class HapticsVisualizer : MonoBehaviour
     [SerializeField] private float barHeightScale = 0.05f; // the "0.05f * MagForce" factor
     [SerializeField] private float maxForce = 1.0f;       // used for color mapping, replace with your MaxForce
 
-    [SerializeField] private HapticPlugin _haptic;
+    private HapticPlugin _haptic;
     private LineRenderer _lr;
 
     // We draw a single rectangle loop with 5 points (closing point repeats first).
