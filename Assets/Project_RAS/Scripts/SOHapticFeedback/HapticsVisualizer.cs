@@ -10,38 +10,37 @@ public class HapticsVisualizer : MonoBehaviour
     [SerializeField] private float lineWidth = 0.01f;
 
     [Header("Line smoothing")]
-    [SerializeField, Range(0, 32)] private int numCapVertices = 8;      // round line ends
-    [SerializeField, Range(0, 32)] private int numCornerVertices = 8;   // round corners/joins
+    [SerializeField, Range(0, 32)] private int numCapVertices = 8;
+    [SerializeField, Range(0, 32)] private int numCornerVertices = 8;
 
-    [Header("Force Bar")]
-    [SerializeField] private Transform collisionMesh;     // assign CollisionMesh.transform here (or auto-pull from plugin if you prefer)
-    [SerializeField] private float barWidth = 0.01f;      // x/z size in your gizmo code
-    [SerializeField] private float barHeightScale = 0.05f; // the "0.05f * MagForce" factor
-    [SerializeField] private float maxForce = 1.0f;       // used for color mapping, replace with your MaxForce
+    [Header("Force Bar (3D Wire Box)")]
+    [SerializeField] private Transform collisionMesh;
+    [SerializeField] private float barWidth = 0.01f;        // x and z size
+    [SerializeField] private float barHeightScale = 0.05f;  // height = scale * MagForce
+    [SerializeField] private float maxForce = 1.0f;         // for color mapping
 
     private HapticPlugin _haptic;
     private LineRenderer _lr;
 
-    // We draw a single rectangle loop with 5 points (closing point repeats first).
-    private const int RectPointCount = 5;
-    private readonly Vector3[] _pts = new Vector3[RectPointCount];
-
     private MaterialPropertyBlock _mpb;
-    private static readonly int ColorId = Shader.PropertyToID("_BaseColor"); // URP
+    private static readonly int ColorId = Shader.PropertyToID("_BaseColor");     // URP
     private static readonly int ColorIdFallback = Shader.PropertyToID("_Color"); // legacy
+
+    // 12 edges * 2 points = 24
+    private const int EdgePointCount = 24;
+
+    // Cached corners (world) no allocations per frame
+    private readonly Vector3[] _wc = new Vector3[8];
+
     private void Awake()
     {
         _haptic = GetComponent<HapticPlugin>();
-
         _lr = GetComponent<LineRenderer>();
-
         _mpb = new MaterialPropertyBlock();
 
-        if (_lr == null) _lr = gameObject.AddComponent<LineRenderer>();
-
         _lr.useWorldSpace = true;
-        _lr.loop = false; // we close manually with point 0 repeated
-        _lr.positionCount = RectPointCount;
+        _lr.loop = false;
+        _lr.positionCount = EdgePointCount;
         _lr.widthMultiplier = lineWidth;
 
         _lr.numCapVertices = numCapVertices;
@@ -53,12 +52,8 @@ public class HapticsVisualizer : MonoBehaviour
         _lr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         _lr.receiveShadows = false;
 
-        // If you didn’t assign collisionMesh in inspector, try to find it from plugin.
         if (collisionMesh == null && _haptic.CollisionMesh != null)
             collisionMesh = _haptic.CollisionMesh.transform;
-
-        // If your plugin has MaxForce field, you can read it here instead:
-        // maxForce = (float)_haptic.MaxForce;
     }
 
     private void LateUpdate()
@@ -69,7 +64,6 @@ public class HapticsVisualizer : MonoBehaviour
             return;
         }
 
-        // Mirror your condition
         if (_haptic.MagForce <= 0f || collisionMesh == null)
         {
             _lr.enabled = false;
@@ -77,45 +71,83 @@ public class HapticsVisualizer : MonoBehaviour
         }
 
         _lr.enabled = true;
-        DrawForceBarOutline();
+
+        // optional live tweaking
+        _lr.widthMultiplier = lineWidth;
+        _lr.numCapVertices = numCapVertices;
+        _lr.numCornerVertices = numCornerVertices;
+
+        DrawForceBarWireBox3D();
     }
 
-    private void DrawForceBarOutline()
+    private void DrawForceBarWireBox3D()
     {
         float magForce = _haptic.MagForce;
 
-        // same “height” math as your gizmo:
-        // size.y = 0.05f * MagForce
         float height = barHeightScale * magForce;
 
-        // same center offset as your gizmo:
-        // position = CollisionMesh.pos + (0, 0.05f * MagForce / 2, 0)
+        // Same as your Gizmos cube:
+        // position = CollisionMesh.pos + (0, height/2, 0)
         Vector3 center = collisionMesh.position + new Vector3(0f, height * 0.5f, 0f);
 
-        // half-width in X/Z
-        float hx = barWidth * 0.5f;
-        float hz = barWidth * 0.5f;
-
-        // We draw an outline rectangle in the X-Y plane at z = center.z
-        // (If you want a 3D box outline, say so — I’ll draw all 12 edges like before.)
-        _pts[0] = new Vector3(center.x - hx, center.y - height * 0.5f, center.z);
-        _pts[1] = new Vector3(center.x + hx, center.y - height * 0.5f, center.z);
-        _pts[2] = new Vector3(center.x + hx, center.y + height * 0.5f, center.z);
-        _pts[3] = new Vector3(center.x - hx, center.y + height * 0.5f, center.z);
-        _pts[4] = _pts[0]; // close
-
-        // Match your color mapping:
-        // new Color(2 * ratio, 2*(1-ratio), 0)
-        float ratio = (maxForce > 0f) ? Mathf.Clamp01(_haptic.CurrentForce.magnitude / maxForce) : 0f;
+        Vector3 size = new Vector3(barWidth, height, barWidth);
 
         ApplyForceColorToMaterial(_haptic.CurrentForce.magnitude, maxForce);
-        _lr.SetPositions(_pts);
+        SetWireBoxPositions(center, size);
     }
 
-    private void ApplyForceColorToMaterial(float currentForceMagnitude, float maxForce)
+    private void SetWireBoxPositions(Vector3 center, Vector3 size)
+    {
+        Vector3 e = size * 0.5f; // half extents
+
+        // 8 corners in WORLD space (axis-aligned box)
+        // bottom (y - ey)
+        _wc[0] = new Vector3(center.x - e.x, center.y - e.y, center.z - e.z);
+        _wc[1] = new Vector3(center.x + e.x, center.y - e.y, center.z - e.z);
+        _wc[2] = new Vector3(center.x + e.x, center.y - e.y, center.z + e.z);
+        _wc[3] = new Vector3(center.x - e.x, center.y - e.y, center.z + e.z);
+
+        // top (y + ey)
+        _wc[4] = new Vector3(center.x - e.x, center.y + e.y, center.z - e.z);
+        _wc[5] = new Vector3(center.x + e.x, center.y + e.y, center.z - e.z);
+        _wc[6] = new Vector3(center.x + e.x, center.y + e.y, center.z + e.z);
+        _wc[7] = new Vector3(center.x - e.x, center.y + e.y, center.z + e.z);
+
+        int p = 0;
+
+        // bottom square
+        SetEdge(ref p, 0, 1);
+        SetEdge(ref p, 1, 2);
+        SetEdge(ref p, 2, 3);
+        SetEdge(ref p, 3, 0);
+
+        // top square
+        SetEdge(ref p, 4, 5);
+        SetEdge(ref p, 5, 6);
+        SetEdge(ref p, 6, 7);
+        SetEdge(ref p, 7, 4);
+
+        // vertical edges
+        SetEdge(ref p, 0, 4);
+        SetEdge(ref p, 1, 5);
+        SetEdge(ref p, 2, 6);
+        SetEdge(ref p, 3, 7);
+
+        // Ensure count (in case changed in inspector)
+        if (_lr.positionCount != EdgePointCount)
+            _lr.positionCount = EdgePointCount;
+    }
+
+    private void SetEdge(ref int p, int a, int b)
+    {
+        _lr.SetPosition(p++, _wc[a]);
+        _lr.SetPosition(p++, _wc[b]);
+    }
+
+    private void ApplyForceColorToMaterial(float currentForceMagnitude, float maxForceValue)
     {
         // Match your Gizmos calculation exactly
-        float t = (maxForce > 0f) ? (currentForceMagnitude / maxForce) : 0f;
+        float t = (maxForceValue > 0f) ? (currentForceMagnitude / maxForceValue) : 0f;
 
         Color c = new Color(
             2.0f * t,
@@ -123,14 +155,9 @@ public class HapticsVisualizer : MonoBehaviour
             0.0f
         );
 
-        // Set on material via property block (preferred)
-        if (_mpb == null) _mpb = new MaterialPropertyBlock();
         _lr.GetPropertyBlock(_mpb);
-
-        // Set both to support URP + legacy shaders
-        _mpb.SetColor(ColorId, c);     // "_BaseColor"
-        _mpb.SetColor(ColorIdFallback, c);         // "_Color"
-
+        _mpb.SetColor(ColorId, c);
+        _mpb.SetColor(ColorIdFallback, c);
         _lr.SetPropertyBlock(_mpb);
     }
 }
