@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class HapticsVisualizerFilledBar : MonoBehaviour
 {
     [Header("Runtime Render")]
-    private static bool renderInPlayMode = true;
+    private bool renderInPlayMode = true;
     [SerializeField] private Sprite redneringEnabledSprite;
     [SerializeField] private Sprite redneringDisabledSprite;
     [SerializeField] private Image targetImage;

@@ -38665,8 +38665,8 @@ MonoBehaviour:
   textLabelObject: {fileID: 6748101853469029580}
   textBodyObject: {fileID: 795019210683603246}
   stepButtonTextField: {fileID: 0}
-  initialFadingDuration: 900000
-  fadingDuration: 600000
+  initialFadingDuration: 9
+  fadingDuration: 6
   stepLabelTexts:
   - Grab the stylus and press the dark button on the stylus
   - Dissect/remove the fat tissue
@@ -67669,6 +67669,8 @@ MonoBehaviour:
   _hoverColor: {r: 1, g: 1, b: 1, a: 0.6313726}
   _selectColor: {r: 1, g: 1, b: 1, a: 0.9098039}
   _outlineColor: {r: 0.18823531, g: 0.2392157, b: 0.3254902, a: 0.8745098}
+  _hoverSize: 0.48
+  _selectSize: 0.4
   _offsetAlongNormal: 0.005
   _playerHead: {fileID: 0}
 --- !u!4 &5228508031786886322
@@ -74992,6 +74994,8 @@ MonoBehaviour:
   _hoverColor: {r: 1, g: 1, b: 1, a: 0.6313726}
   _selectColor: {r: 1, g: 1, b: 1, a: 0.9098039}
   _outlineColor: {r: 0.18823531, g: 0.2392157, b: 0.3254902, a: 0.8745098}
+  _hoverSize: 0.48
+  _selectSize: 0.4
   _offsetAlongNormal: 0.005
   _playerHead: {fileID: 0}
 --- !u!4 &6171599677702567010
@@ -89956,8 +89960,13 @@ MonoBehaviour:
   maxRenderScale: 1
   _headPoseRelativeOffsetRotation: {x: 0, y: 0, z: 0}
   _headPoseRelativeOffsetTranslation: {x: 0, y: 0, z: 0}
-  profilerTcpPort: 32419
-  expandMixedRealityCapturePropertySheet: 0
+  enableCoreMetricsRelease: 0
+  enableCoreMetricsDevelopment: 1
+  coreMetricVisibility:
+    visibleMemoryMetricStats: 0
+    visibleMemoryMetricGraphs: 0
+    visibleRenderMetricStats: 0
+    visibleRenderMetricGraphs: 0
   enableMixedReality: 0
   compositionMethod: 0
   extraHiddenLayers:

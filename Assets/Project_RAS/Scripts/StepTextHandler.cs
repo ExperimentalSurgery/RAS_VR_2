@@ -291,7 +291,9 @@ public class StepTextHandler : MonoBehaviour
 
     public IEnumerator FadeOutObjects(List<Renderer> renderers, float duration)
     {
-        yield return new WaitForSeconds(1);
+        float fadingDuration = duration / 2;
+        float delay = duration / 2;
+        yield return new WaitForSeconds(delay);
         // Materialien einsammeln
         List<Material> mats = new List<Material>();
         foreach (var rend in renderers)
@@ -303,10 +305,10 @@ public class StepTextHandler : MonoBehaviour
         }
 
         float t = 0f;
-        while (t < duration)
+        while (t < fadingDuration)
         {
             t += Time.deltaTime;
-            float normalized = t / duration;
+            float normalized = t / fadingDuration;
 
             foreach (var mat in mats)
             {
