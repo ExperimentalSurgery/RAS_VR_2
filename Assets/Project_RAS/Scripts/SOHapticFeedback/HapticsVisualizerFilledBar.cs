@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class HapticsVisualizerFilledBar : MonoBehaviour
 {
     [Header("Runtime Render")]
-    private bool renderInPlayMode = true;
+    [SerializeField] private bool renderInPlayMode = true;
     [SerializeField] private Sprite redneringEnabledSprite;
     [SerializeField] private Sprite redneringDisabledSprite;
     [SerializeField] private Image targetImage;
@@ -18,6 +18,11 @@ public class HapticsVisualizerFilledBar : MonoBehaviour
     [SerializeField] private float barHeightScale = 0.05f;   // height = 0.05f * MagForce (matches Gizmos)
     [SerializeField] private float maxForce = 1.0f;          // MaxForce for color mapping
     [SerializeField, Range(0f, 1f)] private float opacity = 1.0f;
+
+    [Header("Bar Offset")]
+    [Tooltip("World-space offset applied to the bar center (and the label). Use this to raise/lower the whole bar.")]
+    [SerializeField] private Vector3 barWorldOffset = Vector3.zero;
+
 
     [Header("Materials")]
     [Tooltip("Use an OPAQUE material to avoid see-through. URP: Lit/Unlit (Surface=Opaque).")]
@@ -126,7 +131,7 @@ public class HapticsVisualizerFilledBar : MonoBehaviour
 
         // Same Gizmos placement:
         // DrawCube(CollisionMesh.pos + (0, height/2, 0), size)
-        Vector3 center = collisionMesh.position + new Vector3(0f, height * 0.5f, 0f);
+        Vector3 center = collisionMesh.position + new Vector3(0f, height * 0.5f, 0f) + barWorldOffset; 
 
         // Filled bar transform (Gizmos.matrix = identity -> no local-to-world mixing)
         _barTf.position = center;
@@ -136,25 +141,23 @@ public class HapticsVisualizerFilledBar : MonoBehaviour
         // Color mapping exactly like your Gizmos (applied to material)
         ApplyForceColorToMaterial(_haptic.CurrentForce.magnitude, maxForce);
 
-        // Label (same logic as Handles.Label placement)
+        // Label: always on top of the filled bar
         if (_label != null)
         {
-            // Your original:
-            // base = pos + (0, height/2, 0)
-            // label = base + (0, height/2 + 0.025, 0)
-            Vector3 basePos = collisionMesh.position + new Vector3(0f, height * 0.5f, 0f);
-            Vector3 labelPos = basePos + new Vector3(0f, height * 0.5f + labelYOffset, 0f);
+            // bar center is _barTf.position, bar height is in localScale.y
+            float halfH = _barTf.localScale.y * 0.5f;
+
+            Vector3 labelPos = _barTf.position + new Vector3(0f, halfH + labelYOffset, 0f);
 
             _label.transform.position = labelPos;
             _label.text = magForce.ToString("0.###");
 
-            // Optional billboard to camera
-            if (labelLookAt != null)
-            {
-                Vector3 dir = _label.transform.position - labelLookAt.position;
-                if (dir.sqrMagnitude > 0.0001f)
-                    _label.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
-            }
+            // Optional billboard to camera //
+            if (labelLookAt != null) 
+            { Vector3 dir = _label.transform.position - labelLookAt.position; 
+                if (dir.sqrMagnitude > 0.0001f) 
+                    _label.transform.rotation = Quaternion.LookRotation(dir, Vector3.up); 
+            } 
         }
     }
 

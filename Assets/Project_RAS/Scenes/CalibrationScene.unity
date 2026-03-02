@@ -127493,6 +127493,8 @@ MonoBehaviour:
   _hoverColor: {r: 1, g: 1, b: 1, a: 0.6313726}
   _selectColor: {r: 1, g: 1, b: 1, a: 0.9098039}
   _outlineColor: {r: 0.18823531, g: 0.2392157, b: 0.3254902, a: 0.8745098}
+  _hoverSize: 0.48
+  _selectSize: 0.4
   _offsetAlongNormal: 0.005
   _playerHead: {fileID: 0}
 --- !u!4 &5228508031786886322
@@ -131590,6 +131592,8 @@ MonoBehaviour:
   _hoverColor: {r: 1, g: 1, b: 1, a: 0.6313726}
   _selectColor: {r: 1, g: 1, b: 1, a: 0.9098039}
   _outlineColor: {r: 0.18823531, g: 0.2392157, b: 0.3254902, a: 0.8745098}
+  _hoverSize: 0.48
+  _selectSize: 0.4
   _offsetAlongNormal: 0.005
   _playerHead: {fileID: 0}
 --- !u!4 &6171599677702567010
@@ -139440,8 +139444,13 @@ MonoBehaviour:
   maxRenderScale: 1
   _headPoseRelativeOffsetRotation: {x: 0, y: 0, z: 0}
   _headPoseRelativeOffsetTranslation: {x: 0, y: 0, z: 0}
-  profilerTcpPort: 32419
-  expandMixedRealityCapturePropertySheet: 1
+  enableCoreMetricsRelease: 0
+  enableCoreMetricsDevelopment: 1
+  coreMetricVisibility:
+    visibleMemoryMetricStats: 0
+    visibleMemoryMetricGraphs: 0
+    visibleRenderMetricStats: 0
+    visibleRenderMetricGraphs: 0
   enableMixedReality: 1
   compositionMethod: 0
   extraHiddenLayers:
@@ -139483,7 +139492,7 @@ MonoBehaviour:
   requestRecordAudioPermissionOnStartup: 0
   requestPassthroughCameraAccessPermissionOnStartup: 0
   _localDimming: 1
-  _trackingOriginType: 1
+  _trackingOriginType: 6
   usePositionTracking: 1
   useRotationTracking: 1
   useIPDInPositionTracking: 1

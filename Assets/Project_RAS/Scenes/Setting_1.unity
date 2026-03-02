@@ -9046,6 +9046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d47dab34019d6c546a4718c47c454896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HapticsVisualizerFilledBar
+  renderInPlayMode: 0
   redneringEnabledSprite: {fileID: 21300000, guid: b342eb1e41a45ce41b5c7c684a17c465, type: 3}
   redneringDisabledSprite: {fileID: 21300000, guid: ac11a0f708f466246a121e038d4b6755, type: 3}
   targetImage: {fileID: 1716974926}
@@ -9054,9 +9055,10 @@ MonoBehaviour:
   barHeightScale: 0.05
   maxForce: 1
   opacity: 1
-  barMaterial: {fileID: 0}
+  barWorldOffset: {x: 0, y: 0.02, z: 0}
+  barMaterial: {fileID: 2100000, guid: e1d905c957eb8964ab2242ddbc8fe790, type: 2}
   showLabel: 1
-  labelPrefab: {fileID: 0}
+  labelPrefab: {fileID: 7435759359320748604, guid: 25f70b4ea3617c448b8c91c0ce2a2f62, type: 3}
   labelYOffset: 0.025
   labelFontSize: 0.2
   labelLookAt: {fileID: 0}
@@ -9072,6 +9074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d47dab34019d6c546a4718c47c454896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HapticsVisualizerFilledBar
+  renderInPlayMode: 0
   redneringEnabledSprite: {fileID: 21300000, guid: b342eb1e41a45ce41b5c7c684a17c465, type: 3}
   redneringDisabledSprite: {fileID: 21300000, guid: ac11a0f708f466246a121e038d4b6755, type: 3}
   targetImage: {fileID: 1716974926}
@@ -9080,9 +9083,10 @@ MonoBehaviour:
   barHeightScale: 0.05
   maxForce: 1
   opacity: 1
-  barMaterial: {fileID: 0}
+  barWorldOffset: {x: 0, y: 0.02, z: 0}
+  barMaterial: {fileID: 2100000, guid: e1d905c957eb8964ab2242ddbc8fe790, type: 2}
   showLabel: 1
-  labelPrefab: {fileID: 0}
+  labelPrefab: {fileID: 7435759359320748604, guid: 25f70b4ea3617c448b8c91c0ce2a2f62, type: 3}
   labelYOffset: 0.025
   labelFontSize: 0.2
   labelLookAt: {fileID: 0}
@@ -78218,6 +78222,22 @@ PrefabInstance:
     - target: {fileID: 542493473096040634, guid: 0a9036023fb4903489bc25833783a0c0, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539495173237509696, guid: 0a9036023fb4903489bc25833783a0c0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -7088251939457776589, guid: 10c5972b4d528e2449d4bda4d1e07c8e, type: 3}
+    - target: {fileID: 1954451289637527839, guid: 0a9036023fb4903489bc25833783a0c0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 7071989906153597848, guid: 47a8f17f0e18b76409280818430c6843, type: 3}
+    - target: {fileID: 1954451289637527839, guid: 0a9036023fb4903489bc25833783a0c0, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550918208599233036, guid: 0a9036023fb4903489bc25833783a0c0, type: 3}
+      propertyPath: hStiffness
+      value: 0.512
       objectReference: {fileID: 0}
     - target: {fileID: 7024696918738121650, guid: 0a9036023fb4903489bc25833783a0c0, type: 3}
       propertyPath: m_Name
