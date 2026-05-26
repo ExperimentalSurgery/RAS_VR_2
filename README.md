@@ -1,4 +1,4 @@
-# Haptic Interaction in Robotic Assisted Surgery (RAS)
+# Haptic Interaction Toolkit in Robotic Assisted Surgery (RAS)
 
 This project, *Haptic Interaction in RAS*, focuses on developing an XR simulation in Unity to explore and test various experimental setups. It aims to create and evaluate new methods for interacting with the patient’s body during robotic-assisted surgery.
 
