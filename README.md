@@ -49,7 +49,7 @@ Three reference scenarios demonstrate the toolkit's capabilities: liver stiffnes
 | Component | Specification |
 |---|---|
 | Head-mounted display | Meta Quest 3 (PC-VR mode via Meta Horizon Link / OpenXR) |
-3D-printed stylus tip for Meta Quest controller, based on the open-source model [Meta Quest 3 Stylus Tip – Thingiverse](https://www.thingiverse.com/thing:6536226) This tip must be printed and attached to the bottom/front nub of the controller for the calibration procedure.
+| Meta Quest 3 Stylus Tip | 3D‑printed tip attached to the bottom nub of the Meta Quest 3 right controller, based on the open‑source model: [Meta Quest 3 Stylus Tip – Thingiverse](https://www.thingiverse.com/thing:6536226) |
 | Haptic devices | 2× 3D Systems Touch or Touch X, mounted with ~30 cm lateral spacing |
 | Host PC (reference config) | Windows 10/11, AMD Ryzen 3950X (or comparable), Nvidia RTX 3090 (or comparable dedicated GPU), 64 GB RAM |
 | USB | High-speed USB 2.0/3.0 ports for both Touch devices |
